@@ -587,11 +587,16 @@
           onmouseover="this.style.transform='translateY(-8px)';this.style.boxShadow='0 16px 40px rgba(184,35,47,0.18),0 32px 64px rgba(28,6,8,0.14)'"
           onmouseout="this.style.transform='';this.style.boxShadow='0 2px 12px rgba(184,35,47,0.08),0 8px 32px rgba(28,6,8,0.08)'">
           <div style="position:relative;height:220px;overflow:hidden;flex-shrink:0;">
-            <!-- Actual video clip -->
-            <video autoplay muted loop playsinline poster="images/ctvnew.jpg"
-              style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
-              <source src="images/CTVIDEO.mp4" type="video/mp4" />
-            </video>
+            <!-- YouTube video background -->
+            <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none;">
+              <div style="position:absolute;top:50%;left:0;width:100%;padding-bottom:56.25%;transform:translateY(-50%);">
+                <iframe src="https://www.youtube.com/embed/tVvq_fq3G7o?autoplay=1&mute=1&loop=1&controls=0&rel=0&modestbranding=1&showinfo=0&disablekb=1&playlist=tVvq_fq3G7o"
+                  style="position:absolute;inset:0;width:100%;height:100%;border:none;pointer-events:none;"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen></iframe>
+              </div>
+            </div>
             <!-- TV scanlines overlay -->
             <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.04) 3px,rgba(0,0,0,0.04) 4px);pointer-events:none;animation:scanline 4s ease infinite;"></div>
             <!-- Dark gradient -->
