@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQ – The Dessert Chapter</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    *{box-sizing:border-box;}body{font-family:'DM Sans',system-ui,sans-serif;background:#FDF9F6;color:#1C0608;margin:0;}h1,h2,h3{font-family:'Playfair Display',Georgia,serif;}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:background 0.3s ease;}
+    .nav-scrolled{background:rgba(253,249,246,0.97);backdrop-filter:blur(12px);box-shadow:0 1px 0 rgba(184,35,47,0.12);}
+    .nav-link{position:relative;font-size:0.8rem;letter-spacing:0.06em;font-weight:500;color:rgba(255,255,255,0.88);text-decoration:none;padding:4px 0;}
+    .nav-link::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1.5px;background:#B8232F;transition:width 0.25s ease;}
+    .nav-link:hover::after{width:100%;}.nav-link:hover{color:#F5A5AF;}
+    .nav-scrolled .nav-link{color:#1C0608;}.nav-scrolled .nav-link:hover{color:#B8232F;}
+    .btn-primary{display:inline-flex;align-items:center;gap:8px;background:#B8232F;color:#fff;padding:14px 32px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:600;text-decoration:none;border:none;cursor:pointer;box-shadow:0 4px 16px rgba(184,35,47,0.3);transition:transform 0.2s cubic-bezier(0.34,1.56,0.64,1);}
+    .btn-primary:hover{background:#D42535;transform:translateY(-2px);}
+    .section-tag{font-family:'DM Sans',sans-serif;font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:#B8232F;font-weight:600;}
+    .faq-group{margin-bottom:48px;}
+    .faq-group-title{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#1C0608;margin-bottom:16px;padding-bottom:12px;border-bottom:2px solid rgba(184,35,47,0.15);display:flex;align-items:center;gap:10px;}
+    .faq-item{border:1px solid rgba(184,35,47,0.1);border-radius:14px;background:#fff;margin-bottom:10px;overflow:hidden;box-shadow:0 2px 8px rgba(28,6,8,0.04);}
+    .faq-question{padding:18px 22px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;font-weight:600;font-size:0.9rem;color:#1C0608;user-select:none;transition:background 0.2s ease;}
+    .faq-question:hover{background:rgba(184,35,47,0.03);}
+    .faq-question:focus-visible{outline:2px solid #B8232F;outline-offset:-2px;}
+    .faq-chevron{flex-shrink:0;width:20px;height:20px;border-radius:50%;background:rgba(184,35,47,0.1);display:flex;align-items:center;justify-content:center;transition:transform 0.25s ease,background 0.2s ease;}
+    .faq-item.open .faq-chevron{transform:rotate(180deg);background:#B8232F;}
+    .faq-item.open .faq-chevron svg{stroke:#fff;}
+    .faq-answer{max-height:0;overflow:hidden;transition:max-height 0.35s ease,padding 0.25s ease;}
+    .faq-answer.open{max-height:600px;}
+    .faq-answer-inner{padding:0 22px 18px;font-size:0.88rem;color:#4A1C20;line-height:1.75;}
+    .faq-answer-inner a{color:#B8232F;font-weight:600;}
+    footer{background:#1C0608;color:#FAF3EE;}#mobile-menu{display:none;}
+  </style>
+</head>
+<body>
+  <nav id="navbar" style="padding:16px 24px;">
+    <div style="max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;">
+      <a href="index.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+        <img src="images/logo.jpg" alt="The Dessert Chapter" style="width:54px;height:54px;border-radius:50%;object-fit:cover;flex-shrink:0;box-shadow:0 2px 12px rgba(184,35,47,0.4);" />
+        <div>
+          <div id="nav-logo-text" style="font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:700;color:#FDF9F6;line-height:1.1;">The Dessert Chapter</div>
+          <div style="font-size:0.6rem;color:rgba(196,151,58,0.9);letter-spacing:0.12em;text-transform:uppercase;font-weight:500;">est. 2025 · Ottawa, CA</div>
+        </div>
+      </a>
+      <div id="desktop-nav" style="align-items:center;gap:24px;" class="hidden lg:flex">
+        <a href="milk-cake-bento.html" class="nav-link">Milk Cake Bento</a>
+        <a href="brownies.html" class="nav-link">Brownies</a>
+        <a href="cream-buns.html" class="nav-link">Cream Buns</a>
+        <a href="build-your-dessert-chapter.html" class="nav-link">Build Your Chapter</a>
+        <a href="catering.html" class="nav-link">Catering</a>
+        <a href="misc-items.html" class="nav-link">Misc Items</a>
+        <a href="faq.html" class="nav-link" style="color:#B8232F;">FAQ</a>
+        <a href="gallery.html" class="nav-link">Gallery</a>
+        <a href="build-your-cake-chapter.html" class="btn-primary" style="padding:10px 22px;font-size:0.78rem;">Order a Cake</a>
+      </div>
+      <button id="menu-toggle" style="display:flex;flex-direction:column;gap:6px;padding:8px;background:none;border:none;cursor:pointer;" class="lg:hidden">
+        <span class="nav-bar" style="display:block;width:22px;height:2px;background:#FDF9F6;border-radius:2px;"></span>
+        <span class="nav-bar" style="display:block;width:22px;height:2px;background:#FDF9F6;border-radius:2px;"></span>
+        <span class="nav-bar" style="display:block;width:22px;height:2px;background:#FDF9F6;border-radius:2px;"></span>
+      </button>
+    </div>
+        <div id="mobile-menu" style="flex-direction:column;gap:4px;padding:16px;background:#fff;border-radius:16px;margin-top:8px;box-shadow:0 8px 32px rgba(28,6,8,0.12);">
+      <a href="index.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">← Home</a>
+      <a href="milk-cake-bento.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Milk Cake Bento</a>
+      <a href="brownies.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Brownies</a>
+      <a href="cream-buns.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Cream Buns</a>
+      <a href="build-your-dessert-chapter.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Build Your Chapter</a>
+      <a href="misc-items.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Misc Items</a>
+      <a href="catering.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Catering</a>
+      <a href="faq.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#B8232F;text-decoration:none;border-radius:8px;background:rgba(184,35,47,0.06);">FAQ</a>
+      <a href="about.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">About</a>
+      <a href="gallery.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Gallery</a>
+      <a href="build-your-cake-chapter.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:600;color:#B8232F;text-decoration:none;border-radius:8px;border:1.5px solid rgba(184,35,47,0.3);margin-top:4px;text-align:center;">Order a Cake</a>
+    </div>
+  </nav>
+
+  <div style="background:linear-gradient(135deg,#1C0608,#3A0C10,#1C0608);padding:160px 24px 80px;text-align:center;position:relative;overflow:hidden;">
+    <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(184,35,47,0.2) 0%,transparent 70%);pointer-events:none;"></div>
+    <div style="position:relative;z-index:1;">
+      <p class="section-tag" style="color:rgba(196,151,58,0.9);margin-bottom:12px;">Got Questions?</p>
+      <h1 style="font-size:clamp(2.5rem,6vw,4.5rem);font-weight:700;color:#FDF9F6;letter-spacing:-0.03em;margin-bottom:16px;"><em style="color:#F5A5AF;">FAQ</em></h1>
+      <p style="color:rgba(255,255,255,0.7);max-width:480px;margin:0 auto;font-size:0.95rem;line-height:1.75;">Everything you need to know about ordering, delivery, and caring for your desserts.</p>
+    </div>
+  </div>
+
+  <section style="padding:80px 24px 120px;">
+    <div style="max-width:760px;margin:0 auto;">
+
+      <!-- Delivery FAQ -->
+      <div class="faq-group">
+        <div class="faq-group-title">
+          <span style="font-size:1.2rem;">🚗</span> Delivery FAQ
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)" tabindex="0">
+            What is the delivery window?
+            <div class="faq-chevron"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="#B8232F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </div>
+          <div class="faq-answer"><div class="faq-answer-inner">Our standard delivery window is <strong>4pm – 6pm Monday to Sunday</strong>, so expect your cake to arrive within this timeframe on the day of delivery (give or take 30 minutes).</div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)" tabindex="0">
+            What happens if I'm not home during the delivery window?
+            <div class="faq-chevron"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="#B8232F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </div>
+          <div class="faq-answer"><div class="faq-answer-inner">Please reach out to us via email at <a href="mailto:thedessertchapter2025@gmail.com">thedessertchapter2025@gmail.com</a> and we'll work something out with you.</div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)" tabindex="0">
+            What if I need the cake by noon?
+            <div class="faq-chevron"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="#B8232F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </div>
+          <div class="faq-answer"><div class="faq-answer-inner">We have a 24-hour cake guarantee* — if you store the cake in its original box and in the fridge overnight, the cake will look and taste 100% as good, so consider having it delivered the day before or arrange to pick up in the morning.<br/><br/><em style="font-size:0.82rem;color:#8B3A3A;">*Does not apply to any cakes using fresh fruit as a main ingredient.</em></div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)" tabindex="0">
+            Can I specify a delivery timeframe?
+            <div class="faq-chevron"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="#B8232F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </div>
+          <div class="faq-answer"><div class="faq-answer-inner">We can only accommodate specific delivery timings for catering or large functions requiring multiple cakes (fees may be applicable). Alternatively, we suggest placing a pick-up order and scheduling your own UberPackage pick-up on your behalf.</div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)" tabindex="0">
+            What if I need to change the delivery address?
+            <div class="faq-chevron"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="#B8232F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </div>
+          <div class="faq-answer"><div class="faq-answer-inner">Reach out via email and we will be able to change the delivery address for you without any issues — as long as it's before 10pm the day before delivery.</div></div>
+        </div>
+      </div>
+
+      <!-- Ordering FAQ -->
+      <div class="faq-group">
+        <div class="faq-group-title">
+          <span style="font-size:1.2rem;">📋</span> Ordering FAQ
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)" tabindex="0">
+            How do I cancel the cake I ordered?
+            <div class="faq-chevron"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="#B8232F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </div>
+          <div class="faq-answer"><div class="faq-answer-inner">Send us an email at <a href="mailto:thedessertchapter2025@gmail.com">thedessertchapter2025@gmail.com</a> for us to cancel and refund your cake. Though we'd appreciate minimum 24 hours notice, we understand that things may come up suddenly, so please feel free to reach out as soon as you can.</div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)" tabindex="0">
+            Do you make gluten-free cakes?
+            <div class="faq-chevron"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="#B8232F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </div>
+          <div class="faq-answer"><div class="faq-answer-inner">Unfortunately we cannot replicate the same taste and texture with our gluten-free recipe, so we do not currently offer a gluten-free option.</div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)" tabindex="0">
+            Can I customize or modify the cake?
+            <div class="faq-chevron"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="#B8232F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </div>
+          <div class="faq-answer"><div class="faq-answer-inner">Yes! Menu items can be customized depending on the kitchen's availability. Get in touch via email or Instagram to discuss your custom order.</div></div>
+        </div>
+      </div>
+
+      <!-- Cake Care FAQ -->
+      <div class="faq-group">
+        <div class="faq-group-title">
+          <span style="font-size:1.2rem;">🎂</span> Cake Care FAQ
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)" tabindex="0">
+            How long can I keep the cake in the fridge?
+            <div class="faq-chevron"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="#B8232F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </div>
+          <div class="faq-answer"><div class="faq-answer-inner">We recommend finishing the cake within <strong>48 hours</strong> for the best taste and texture.</div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)" tabindex="0">
+            Do I need to refrigerate the cake?
+            <div class="faq-chevron"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="#B8232F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </div>
+          <div class="faq-answer"><div class="faq-answer-inner">Yes! Please refrigerate the cake until serving. Our cakes can be served directly from the fridge — no need to bring to room temperature first.</div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)" tabindex="0">
+            How do I transport the cake safely while driving?
+            <div class="faq-chevron"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="#B8232F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </div>
+          <div class="faq-answer"><div class="faq-answer-inner">Place the cake on the <strong>floor of the car</strong> (front passenger seat floor is optimal) and drive smoothly around corners and over bumps. <strong>Do not place the cake on the car seats</strong> as they are not flat surfaces.</div></div>
+        </div>
+      </div>
+
+      <!-- Policies & T&C -->
+      <div class="faq-group">
+        <div class="faq-group-title">
+          <span style="font-size:1.2rem;">📜</span> Ordering Policy & Terms
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)" tabindex="0">
+            How do I place an order?
+            <div class="faq-chevron"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="#B8232F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </div>
+          <div class="faq-answer"><div class="faq-answer-inner">You can order by emailing us at <a href="mailto:thedessertchapter2025@gmail.com">thedessertchapter2025@gmail.com</a> or DMing us on Instagram <a href="https://instagram.com/thedessertchapter" target="_blank" rel="noopener">@thedessertchapter</a>. Please allow <strong>at least 48 hours notice</strong> for all orders. Some items have minimum order quantities — please check the product page for details.</div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)" tabindex="0">
+            What payment methods do you accept?
+            <div class="faq-chevron"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="#B8232F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </div>
+          <div class="faq-answer"><div class="faq-answer-inner">We accept <strong>Cash</strong>, <strong>e-Transfer</strong>, and <strong>Card</strong>. Payment is required to confirm your order.</div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)" tabindex="0">
+            How does pickup work?
+            <div class="faq-chevron"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="#B8232F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </div>
+          <div class="faq-answer"><div class="faq-answer-inner">Pickup is available <strong>by appointment only</strong>. We'll confirm a pickup time with you when your order is placed. Please do not arrive without a confirmed time.</div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)" tabindex="0">
+            Do you offer delivery?
+            <div class="faq-chevron"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="#B8232F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </div>
+          <div class="faq-answer"><div class="faq-answer-inner">Yes! We offer delivery <strong>within 10 km</strong> of our location in Ottawa. Delivery fees may apply. Please mention delivery when placing your order and we'll confirm availability and cost.</div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)" tabindex="0">
+            What is your cancellation policy?
+            <div class="faq-chevron"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="#B8232F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </div>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <strong>More than 48 hours before pickup/delivery:</strong> Full refund.<br/><br/>
+            <strong>24–48 hours before:</strong> 50% refund. The remaining 50% covers ingredients and prep time already invested.<br/><br/>
+            <strong>Less than 24 hours before:</strong> No refund. We will have already begun preparing your order.
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)" tabindex="0">
+            What allergens are present in your products?
+            <div class="faq-chevron"><svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 4L6 8L10 4" stroke="#B8232F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </div>
+          <div class="faq-answer"><div class="faq-answer-inner">Our products contain or may contain: <strong>Dairy</strong>, <strong>Nuts</strong> (including pistachios), <strong>Gluten</strong>, and <strong>Eggs</strong>. Our kitchen is not allergen-free. If you have a severe allergy, please inform us before ordering and we will advise whether we can safely accommodate you.</div></div>
+        </div>
+      </div>
+
+      <!-- Still have questions CTA -->
+      <div style="background:linear-gradient(135deg,#B8232F,#8B0016);border-radius:20px;padding:48px;text-align:center;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:-40px;right:-40px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,0.1) 0%,transparent 70%);pointer-events:none;"></div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:#FDF9F6;margin-bottom:8px;">Still have questions?</h3>
+        <p style="color:rgba(255,255,255,0.8);margin-bottom:24px;font-size:0.9rem;">We're always happy to chat! Reach out and we'll get back to you quickly.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
+          <a href="mailto:thedessertchapter2025@gmail.com" style="display:inline-flex;align-items:center;background:#fff;color:#B8232F;padding:13px 24px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:700;text-decoration:none;">Email Us</a>
+          <a href="https://instagram.com/thedessertchapter" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;background:transparent;color:#fff;padding:13px 24px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:700;text-decoration:none;border:2px solid rgba(255,255,255,0.5);">DM on Instagram</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background:#1C0608;color:#FAF3EE;padding:60px 24px 32px;">
+    <div style="max-width:1200px;margin:0 auto;text-align:center;">
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:600;color:#FDF9F6;margin-bottom:8px;">Let us be in your chapters of life!</h3>
+      <p style="color:rgba(250,243,238,0.6);font-size:0.85rem;margin-bottom:24px;">thedessertchapter2025@gmail.com · @thedessertchapter · Ottawa, Canada</p>
+      <p style="font-size:0.72rem;color:rgba(250,243,238,0.3);">© 2025 The Dessert Chapter. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    function updateNav() {
+      var scrolled = window.scrollY > 60;
+      navbar.classList.toggle('nav-scrolled', scrolled);
+      var logoText = document.getElementById('nav-logo-text');
+      if (logoText) logoText.style.color = scrolled ? '#1C0608' : '#FDF9F6';
+      var bars = document.querySelectorAll('#navbar .nav-bar');
+      bars.forEach(function(b){ b.style.background = scrolled ? '#1C0608' : '#FDF9F6'; });
+    }
+    window.addEventListener('scroll', updateNav);
+    updateNav();
+    const toggle = document.getElementById('menu-toggle'); const menu = document.getElementById('mobile-menu'); let open = false;
+    toggle.addEventListener('click', () => { open = !open; menu.style.display = open ? 'flex' : 'none'; });
+
+    function toggleFaq(el) {
+      const item = el.closest('.faq-item');
+      const answer = item.querySelector('.faq-answer');
+      const isOpen = item.classList.contains('open');
+      // Close all
+      document.querySelectorAll('.faq-item.open').forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.faq-answer').classList.remove('open');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        answer.classList.add('open');
+      }
+    }
+    // Keyboard support
+    document.querySelectorAll('.faq-question').forEach(q => {
+      q.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleFaq(q); } });
+    });
+  </script>
+</body>
+</html>

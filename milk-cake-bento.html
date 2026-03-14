@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Milk Cake Bento – The Dessert Chapter</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: 'DM Sans', system-ui, sans-serif; background: #FDF9F6; color: #1C0608; margin: 0; }
+    h1,h2,h3,h4 { font-family: 'Playfair Display', Georgia, serif; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; transition: background 0.3s ease; }
+    .nav-scrolled { background: rgba(253,249,246,0.97); backdrop-filter: blur(12px); box-shadow: 0 1px 0 rgba(184,35,47,0.12); }
+    .nav-link { position:relative; font-size:0.8rem; letter-spacing:0.06em; font-weight:500; color:rgba(255,255,255,0.88); text-decoration:none; padding:4px 0; }
+    .nav-link::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:1.5px; background:#B8232F; transition:width 0.25s ease; }
+    .nav-link:hover::after { width:100%; }
+    .nav-link:hover { color:#F5A5AF; }
+    .nav-scrolled .nav-link { color:#1C0608; } .nav-scrolled .nav-link:hover { color:#B8232F; }
+    .btn-primary { display:inline-flex; align-items:center; gap:8px; background:#B8232F; color:#fff; padding:14px 32px; border-radius:100px; font-family:'DM Sans',sans-serif; font-size:0.85rem; font-weight:600; letter-spacing:0.05em; text-decoration:none; border:none; cursor:pointer; box-shadow:0 4px 16px rgba(184,35,47,0.3); transition:transform 0.2s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s ease, background 0.2s ease; }
+    .btn-primary:hover { background:#D42535; transform:translateY(-2px); box-shadow:0 8px 24px rgba(184,35,47,0.38); }
+    .section-tag { font-family:'DM Sans',sans-serif; font-size:0.7rem; letter-spacing:0.18em; text-transform:uppercase; color:#B8232F; font-weight:600; }
+    .product-card { background:#fff; border-radius:20px; overflow:hidden; box-shadow:0 2px 8px rgba(184,35,47,0.06),0 8px 32px rgba(28,6,8,0.08); transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.3s ease; }
+    .product-card:hover { transform:translateY(-8px); box-shadow:0 6px 20px rgba(184,35,47,0.14),0 20px 56px rgba(28,6,8,0.12); }
+    .product-card img { width:100%; height:300px; object-fit:cover; display:block; }
+    .price-tag { display:inline-block; background:#B8232F; color:#fff; padding:4px 14px; border-radius:100px; font-size:0.85rem; font-weight:600; font-family:'DM Sans',sans-serif; }
+    footer { background:#1C0608; color:#FAF3EE; }
+    #mobile-menu { display:none; }
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <nav id="navbar" style="padding:16px 24px;" class="md:px-12">
+    <div style="max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;">
+      <a href="index.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+        <img src="images/logo.jpg" alt="The Dessert Chapter" style="width:54px;height:54px;border-radius:50%;object-fit:cover;flex-shrink:0;box-shadow:0 2px 12px rgba(184,35,47,0.4);" />
+        <div>
+          <div id="nav-logo-text" style="font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:700;color:#FDF9F6;line-height:1.1;">The Dessert Chapter</div>
+          <div style="font-size:0.6rem;color:rgba(196,151,58,0.9);letter-spacing:0.12em;text-transform:uppercase;font-weight:500;">est. 2025 · Ottawa, CA</div>
+        </div>
+      </a>
+      <div id="desktop-nav" style="align-items:center;gap:24px;" class="hidden lg:flex">
+        <a href="milk-cake-bento.html" class="nav-link" style="color:#B8232F;">Milk Cake Bento</a>
+        <a href="brownies.html" class="nav-link">Brownies</a>
+        <a href="cream-buns.html" class="nav-link">Cream Buns</a>
+        <a href="build-your-dessert-chapter.html" class="nav-link">Build Your Chapter</a>
+        <a href="catering.html" class="nav-link">Catering</a>
+        <a href="misc-items.html" class="nav-link">Misc Items</a>
+        <a href="faq.html" class="nav-link">FAQ</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="gallery.html" class="nav-link">Gallery</a>
+        <a href="build-your-cake-chapter.html" class="btn-primary" style="padding:10px 22px;font-size:0.78rem;">Order a Cake</a>
+      </div>
+      <button id="menu-toggle" style="display:flex;flex-direction:column;gap:6px;padding:8px;background:none;border:none;cursor:pointer;" class="lg:hidden">
+        <span class="nav-bar" style="display:block;width:22px;height:2px;background:#FDF9F6;border-radius:2px;"></span>
+        <span class="nav-bar" style="display:block;width:22px;height:2px;background:#FDF9F6;border-radius:2px;"></span>
+        <span class="nav-bar" style="display:block;width:22px;height:2px;background:#FDF9F6;border-radius:2px;"></span>
+      </button>
+    </div>
+        <div id="mobile-menu" style="flex-direction:column;gap:4px;padding:16px;background:#fff;border-radius:16px;margin-top:8px;box-shadow:0 8px 32px rgba(28,6,8,0.12);">
+      <a href="index.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">← Home</a>
+      <a href="milk-cake-bento.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#B8232F;text-decoration:none;border-radius:8px;background:rgba(184,35,47,0.06);">Milk Cake Bento</a>
+      <a href="brownies.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Brownies</a>
+      <a href="cream-buns.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Cream Buns</a>
+      <a href="build-your-dessert-chapter.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Build Your Chapter</a>
+      <a href="misc-items.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Misc Items</a>
+      <a href="catering.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Catering</a>
+      <a href="faq.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">FAQ</a>
+      <a href="about.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">About</a>
+      <a href="gallery.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Gallery</a>
+      <a href="build-your-cake-chapter.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:600;color:#B8232F;text-decoration:none;border-radius:8px;border:1.5px solid rgba(184,35,47,0.3);margin-top:4px;text-align:center;">Order a Cake</a>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <div style="background:linear-gradient(135deg,#1C0608 0%,#3A0C10 50%,#1C0608 100%);padding:160px 24px 80px;text-align:center;position:relative;overflow:hidden;">
+    <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(184,35,47,0.2) 0%,transparent 70%);pointer-events:none;"></div>
+    <div style="position:relative;z-index:1;">
+      <p class="section-tag" style="color:rgba(196,151,58,0.9);margin-bottom:12px;">Our Signature Creation</p>
+      <h1 style="font-size:clamp(2.5rem,6vw,4.5rem);font-weight:700;color:#FDF9F6;letter-spacing:-0.03em;margin-bottom:16px;">Milk Cake <em style="color:#F5A5AF;">Bento</em></h1>
+      <p style="color:rgba(255,255,255,0.7);max-width:520px;margin:0 auto;font-size:0.95rem;line-height:1.75;">Delicate sponge cakes soaked in fragrant milk, crowned with handcrafted cream, rose petals, pistachios & gold leaf — each one a tiny edible chapter.</p>
+    </div>
+  </div>
+
+  <!-- PRODUCTS -->
+  <section style="padding:80px 24px 120px;">
+    <div style="max-width:1200px;margin:0 auto;">
+
+      <!-- Note -->
+      <div style="background:rgba(184,35,47,0.06);border:1px solid rgba(184,35,47,0.15);border-radius:12px;padding:16px 20px;margin-bottom:32px;display:flex;align-items:center;gap:12px;">
+        <span style="font-size:1.1rem;">💬</span>
+        <p style="font-size:0.85rem;color:#4A1C20;margin:0;">All prices are in CAD. DM us on Instagram <strong>@thedessertchapter</strong> or email <strong>thedessertchapter2025@gmail.com</strong> to place your order.</p>
+      </div>
+
+      <!-- Pricing Tiers -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:52px;">
+        <div style="background:#fff;border-radius:16px;padding:22px 20px;text-align:center;box-shadow:0 2px 8px rgba(184,35,47,0.06),0 8px 24px rgba(28,6,8,0.07);">
+          <p style="font-size:1.5rem;margin-bottom:6px;">☕</p>
+          <p style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:#1C0608;margin-bottom:4px;">Mini Shot</p>
+          <p style="font-size:1.6rem;font-weight:700;color:#B8232F;margin-bottom:4px;">$5</p>
+          <p style="font-size:0.78rem;color:#5A2428;">per shot · min. 6</p>
+        </div>
+        <div style="background:#fff;border-radius:16px;padding:22px 20px;text-align:center;box-shadow:0 2px 8px rgba(184,35,47,0.06),0 8px 24px rgba(28,6,8,0.07);">
+          <p style="font-size:1.5rem;margin-bottom:6px;">🥛</p>
+          <p style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:#1C0608;margin-bottom:4px;">Single Tub</p>
+          <p style="font-size:1.6rem;font-weight:700;color:#B8232F;margin-bottom:4px;">$8.50</p>
+          <p style="font-size:0.78rem;color:#5A2428;">per tub · min. 6</p>
+        </div>
+        <div style="background:linear-gradient(135deg,#B8232F,#8B0016);border-radius:16px;padding:22px 20px;text-align:center;box-shadow:0 4px 16px rgba(184,35,47,0.3);">
+          <p style="font-size:1.5rem;margin-bottom:6px;">🎉</p>
+          <p style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:#FDF9F6;margin-bottom:4px;">Party Tray</p>
+          <p style="font-size:1.6rem;font-weight:700;color:#fff;margin-bottom:4px;">$65</p>
+          <p style="font-size:0.78rem;color:rgba(255,255,255,0.8);">serves ~12 · ideal for events</p>
+        </div>
+      </div>
+      <p style="font-size:0.8rem;color:#5A2428;margin-bottom:52px;text-align:center;">Available flavours: Saffron · Biscoff · Coconut · Strawberry Cream</p>
+
+      <!-- Bento Box Cakes -->
+      <div style="margin-bottom:60px;">
+        <p class="section-tag" style="margin-bottom:8px;">Bento Box Cakes</p>
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;color:#1C0608;letter-spacing:-0.02em;margin-bottom:40px;">Small Cakes, Big Love</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:28px;">
+
+          <div class="product-card">
+            <img src="images/2026_02_03_Edible_0294.jpg" alt="Rose & Pistachio Bento Cake" />
+            <div style="padding:22px;">
+              <h3 style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:600;color:#1C0608;margin-bottom:6px;">Rose & Pistachio Bento</h3>
+              <p style="font-size:0.83rem;color:#5A2428;line-height:1.6;margin-bottom:16px;">Soft milk cake topped with cream rosettes, dried rose petals, crushed pistachios, and edible gold leaf.</p>
+              <div style="display:flex;align-items:center;justify-content:space-between;">
+                <span class="price-tag">From $8.50</span>
+                <a href="build-your-cake-chapter.html" style="font-size:0.78rem;color:#B8232F;font-weight:600;text-decoration:none;">Order →</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <img src="images/2026_02_03_Edible_0566.jpg" alt="Gold Pearl Bento Cake" />
+            <div style="padding:22px;">
+              <h3 style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:600;color:#1C0608;margin-bottom:6px;">Gold Pearl Bento</h3>
+              <p style="font-size:0.83rem;color:#5A2428;line-height:1.6;margin-bottom:16px;">Shell-piped cream with luxurious gold pearls and gold leaf flakes — elegant and celebratory.</p>
+              <div style="display:flex;align-items:center;justify-content:space-between;">
+                <span class="price-tag">From $8.50</span>
+                <a href="build-your-cake-chapter.html" style="font-size:0.78rem;color:#B8232F;font-weight:600;text-decoration:none;">Order →</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <img src="images/2026_02_03_Edible_0588.jpg" alt="White Flower Bento Cake" />
+            <div style="padding:22px;">
+              <h3 style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:600;color:#1C0608;margin-bottom:6px;">White Flower Bento</h3>
+              <p style="font-size:0.83rem;color:#5A2428;line-height:1.6;margin-bottom:16px;">Cream piped in delicate star flowers with rose petals, pistachios, and a touch of gold — pure elegance.</p>
+              <div style="display:flex;align-items:center;justify-content:space-between;">
+                <span class="price-tag">From $8.50</span>
+                <a href="build-your-cake-chapter.html" style="font-size:0.78rem;color:#B8232F;font-weight:600;text-decoration:none;">Order →</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <img src="images/2026_02_03_Edible_0596.jpg" alt="Classic Bento Cake" />
+            <div style="padding:22px;">
+              <h3 style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:600;color:#1C0608;margin-bottom:6px;">Classic Milk Bento</h3>
+              <p style="font-size:0.83rem;color:#5A2428;line-height:1.6;margin-bottom:16px;">Classic swirl cream with rose petals and pistachios — timeless, nostalgic, and utterly delicious.</p>
+              <div style="display:flex;align-items:center;justify-content:space-between;">
+                <span class="price-tag">From $8.50</span>
+                <a href="build-your-cake-chapter.html" style="font-size:0.78rem;color:#B8232F;font-weight:600;text-decoration:none;">Order →</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <img src="images/2026_02_03_Edible_0604.jpg" alt="Saffron Bento Cake" />
+            <div style="padding:22px;">
+              <h3 style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:600;color:#1C0608;margin-bottom:6px;">Saffron Cardamom Bento</h3>
+              <p style="font-size:0.83rem;color:#5A2428;line-height:1.6;margin-bottom:16px;">Infused with aromatic saffron and cardamom, topped with lightly spiced cream and pistachios.</p>
+              <div style="display:flex;align-items:center;justify-content:space-between;">
+                <span class="price-tag">From $8.50</span>
+                <a href="build-your-cake-chapter.html" style="font-size:0.78rem;color:#B8232F;font-weight:600;text-decoration:none;">Order →</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <img src="images/2026_02_03_Edible_0309.jpg" alt="Gold Shell Bento Cake" />
+            <div style="padding:22px;">
+              <h3 style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:600;color:#1C0608;margin-bottom:6px;">Gold Shell Bento</h3>
+              <p style="font-size:0.83rem;color:#5A2428;line-height:1.6;margin-bottom:16px;">Luxurious shell-piped cream adorned with gold metallic pearls and shimmering gold leaf — perfect for gifting.</p>
+              <div style="display:flex;align-items:center;justify-content:space-between;">
+                <span class="price-tag">From $8.50</span>
+                <a href="build-your-cake-chapter.html" style="font-size:0.78rem;color:#B8232F;font-weight:600;text-decoration:none;">Order →</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Milk Cake Cups -->
+      <div>
+        <p class="section-tag" style="margin-bottom:8px;">Milk Cake Cups</p>
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;color:#1C0608;letter-spacing:-0.02em;margin-bottom:40px;">Comfort in Every Spoonful</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:28px;">
+
+          <div class="product-card">
+            <img src="images/2026_02_03_Edible_0275.jpg" alt="Rose Milk Cake Cup" />
+            <div style="padding:22px;">
+              <h3 style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:600;color:#1C0608;margin-bottom:6px;">Rose & Pistachio Cup</h3>
+              <p style="font-size:0.83rem;color:#5A2428;line-height:1.6;margin-bottom:16px;">Milk-soaked cake in a cup, crowned with a swirl of cream, rose petals, pistachios, and gold flakes.</p>
+              <div style="display:flex;align-items:center;justify-content:space-between;">
+                <span class="price-tag">$8.50 · min. 6</span>
+                <a href="build-your-cake-chapter.html" style="font-size:0.78rem;color:#B8232F;font-weight:600;text-decoration:none;">Order →</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <img src="images/2026_02_03_Edible_0045.jpg" alt="Coconut Milk Cake" />
+            <div style="padding:22px;">
+              <h3 style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:600;color:#1C0608;margin-bottom:6px;">Coconut Milk Cake</h3>
+              <p style="font-size:0.83rem;color:#5A2428;line-height:1.6;margin-bottom:16px;">Tropical coconut milk cake in our signature cup — light, sweet, and perfectly refreshing.</p>
+              <div style="display:flex;align-items:center;justify-content:space-between;">
+                <span class="price-tag">$8.50 · min. 6</span>
+                <a href="build-your-cake-chapter.html" style="font-size:0.78rem;color:#B8232F;font-weight:600;text-decoration:none;">Order →</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <img src="images/2026_02_03_Edible_0030.jpg" alt="Signature Milk Cake" />
+            <div style="padding:22px;">
+              <h3 style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:600;color:#1C0608;margin-bottom:6px;">Signature Milk Cake Cup</h3>
+              <p style="font-size:0.83rem;color:#5A2428;line-height:1.6;margin-bottom:16px;">Our original milk cake cup — the one that started it all. Perfectly soaked, perfectly creamy.</p>
+              <div style="display:flex;align-items:center;justify-content:space-between;">
+                <span class="price-tag">$8.50 · min. 6</span>
+                <a href="build-your-cake-chapter.html" style="font-size:0.78rem;color:#B8232F;font-weight:600;text-decoration:none;">Order →</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <img src="images/2026_02_03_Edible_0272.jpg" alt="Pistachio Rose Milk Cake" />
+            <div style="padding:22px;">
+              <h3 style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:600;color:#1C0608;margin-bottom:6px;">Pistachio Rose Cup</h3>
+              <p style="font-size:0.83rem;color:#5A2428;line-height:1.6;margin-bottom:16px;">A generous cream swirl finished with pistachios, rose petals — a Middle Eastern–inspired classic.</p>
+              <div style="display:flex;align-items:center;justify-content:space-between;">
+                <span class="price-tag">$8.50 · min. 6</span>
+                <a href="build-your-cake-chapter.html" style="font-size:0.78rem;color:#B8232F;font-weight:600;text-decoration:none;">Order →</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div style="text-align:center;margin-top:72px;padding:56px 40px;background:linear-gradient(135deg,#1C0608,#3A0C10);border-radius:24px;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:-60px;right:-60px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(184,35,47,0.3) 0%,transparent 70%);pointer-events:none;"></div>
+        <p style="font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(196,151,58,0.9);font-family:'DM Sans',sans-serif;font-weight:600;margin-bottom:12px;">Want Something Special?</p>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:#FDF9F6;margin-bottom:12px;">Build Your Own Cake Chapter</h3>
+        <p style="color:rgba(255,255,255,0.7);margin-bottom:28px;font-size:0.9rem;">Tell us your dream cake and we'll craft it just for you.</p>
+        <a href="build-your-cake-chapter.html" class="btn-primary">Order a Custom Cake</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="background:#1C0608;color:#FAF3EE;padding:60px 24px 32px;">
+    <div style="max-width:1200px;margin:0 auto;text-align:center;">
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:600;color:#FDF9F6;margin-bottom:8px;">Let us be in your chapters of life!</h3>
+      <p style="color:rgba(250,243,238,0.6);font-size:0.85rem;margin-bottom:24px;">thedessertchapter2025@gmail.com · @thedessertchapter · Ottawa, Canada</p>
+      <div style="display:flex;justify-content:center;gap:20px;flex-wrap:wrap;font-size:0.82rem;">
+        <a href="index.html" style="color:rgba(250,243,238,0.6);text-decoration:none;">Home</a>
+        <a href="gallery.html" style="color:rgba(250,243,238,0.6);text-decoration:none;">Gallery</a>
+        <a href="faq.html" style="color:rgba(250,243,238,0.6);text-decoration:none;">FAQ</a>
+        <a href="build-your-cake-chapter.html" style="color:rgba(250,243,238,0.6);text-decoration:none;">Order a Cake</a>
+      </div>
+      <p style="font-size:0.72rem;color:rgba(250,243,238,0.3);margin-top:32px;">© 2025 The Dessert Chapter. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    function updateNav() {
+      var scrolled = window.scrollY > 60;
+      navbar.classList.toggle('nav-scrolled', scrolled);
+      var logoText = document.getElementById('nav-logo-text');
+      if (logoText) logoText.style.color = scrolled ? '#1C0608' : '#FDF9F6';
+      var bars = document.querySelectorAll('#navbar .nav-bar');
+      bars.forEach(function(b){ b.style.background = scrolled ? '#1C0608' : '#FDF9F6'; });
+    }
+    window.addEventListener('scroll', updateNav);
+    updateNav();
+    const toggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('mobile-menu');
+    let open = false;
+    toggle.addEventListener('click', () => { open = !open; menu.style.display = open ? 'flex' : 'none'; });
+    // Show desktop nav
+    const dn = document.getElementById('desktop-nav');
+    if (dn) { dn.style.display = 'flex'; }
+  </script>
+</body>
+</html>

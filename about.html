@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Affi – The Dessert Chapter</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    *{box-sizing:border-box;}body{font-family:'DM Sans',system-ui,sans-serif;background:#FDF9F6;color:#1C0608;margin:0;}h1,h2,h3{font-family:'Playfair Display',Georgia,serif;}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:background 0.3s ease;}
+    .nav-scrolled{background:rgba(253,249,246,0.97);backdrop-filter:blur(12px);box-shadow:0 1px 0 rgba(184,35,47,0.12);}
+    .nav-link{position:relative;font-size:0.8rem;letter-spacing:0.06em;font-weight:500;color:rgba(255,255,255,0.88);text-decoration:none;padding:4px 0;}
+    .nav-link::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1.5px;background:#B8232F;transition:width 0.25s ease;}
+    .nav-link:hover::after{width:100%;}.nav-link:hover{color:#F5A5AF;}
+    .nav-scrolled .nav-link{color:#1C0608;}.nav-scrolled .nav-link:hover{color:#B8232F;}
+    .btn-primary{display:inline-flex;align-items:center;gap:8px;background:#B8232F;color:#fff;padding:14px 32px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:600;letter-spacing:0.05em;text-decoration:none;border:none;cursor:pointer;box-shadow:0 4px 16px rgba(184,35,47,0.3);transition:transform 0.2s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.2s ease,background 0.2s ease;}
+    .btn-primary:hover{background:#D42535;transform:translateY(-2px);box-shadow:0 8px 24px rgba(184,35,47,0.38);}
+    .btn-primary:active{transform:translateY(0);}
+    .btn-primary:focus-visible{outline:2px solid #B8232F;outline-offset:4px;}
+    .btn-outline-white{display:inline-flex;align-items:center;gap:8px;background:transparent;color:#fff;padding:13px 30px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:600;letter-spacing:0.05em;text-decoration:none;border:2px solid rgba(255,255,255,0.6);cursor:pointer;transition:transform 0.2s cubic-bezier(0.34,1.56,0.64,1),background 0.2s ease,color 0.2s ease;}
+    .btn-outline-white:hover{background:rgba(255,255,255,0.15);transform:translateY(-2px);}
+    .btn-outline-white:active{transform:translateY(0);}
+    .section-tag{font-family:'DM Sans',sans-serif;font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:#B8232F;font-weight:600;}
+    footer{background:#1C0608;color:#FAF3EE;}
+    #mobile-menu{display:none;}
+
+    /* Scroll reveal animations */
+    .reveal{opacity:0;transform:translateY(32px);transition:opacity 0.7s ease,transform 0.7s cubic-bezier(0.34,1.56,0.64,1);}
+    .reveal.in{opacity:1;transform:translateY(0);}
+    .reveal-left{opacity:0;transform:translateX(-40px);transition:opacity 0.7s ease,transform 0.7s cubic-bezier(0.34,1.56,0.64,1);}
+    .reveal-left.in{opacity:1;transform:translateX(0);}
+    .reveal-right{opacity:0;transform:translateX(40px);transition:opacity 0.7s ease,transform 0.7s cubic-bezier(0.34,1.56,0.64,1);}
+    .reveal-right.in{opacity:1;transform:translateX(0);}
+
+    /* Masonry grid */
+    .masonry-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      grid-template-rows:auto;
+      gap:16px;
+    }
+    .masonry-item{border-radius:16px;overflow:hidden;position:relative;}
+    .masonry-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s cubic-bezier(0.34,1.56,0.64,1);}
+    .masonry-item:hover img{transform:scale(1.04);}
+    .masonry-item .overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(28,6,8,0.5) 0%,transparent 50%);pointer-events:none;}
+    .tall{grid-row:span 2;}
+    .wide{grid-column:span 2;}
+
+    @media(max-width:768px){
+      .masonry-grid{grid-template-columns:repeat(2,1fr);}
+      .wide{grid-column:span 1;}
+      .tall{grid-row:span 1;}
+    }
+    @media(max-width:480px){
+      .masonry-grid{grid-template-columns:1fr;}
+      .tall,.wide{grid-row:span 1;grid-column:span 1;}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════ NAV ═══════════════════════════ -->
+  <nav id="navbar" style="padding:16px 24px;">
+    <div style="max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;">
+      <a href="index.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+        <img src="images/logo.jpg" alt="The Dessert Chapter" style="width:54px;height:54px;border-radius:50%;object-fit:cover;flex-shrink:0;box-shadow:0 2px 12px rgba(184,35,47,0.4);" />
+        <div>
+          <div id="nav-logo-text" style="font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:700;color:#FDF9F6;line-height:1.1;">The Dessert Chapter</div>
+          <div style="font-size:0.6rem;color:rgba(196,151,58,0.9);letter-spacing:0.12em;text-transform:uppercase;font-weight:500;">est. 2025 · Ottawa, CA</div>
+        </div>
+      </a>
+      <div id="desktop-nav" style="display:flex;align-items:center;gap:24px;" class="hidden lg:flex">
+        <a href="milk-cake-bento.html" class="nav-link">Milk Cake Bento</a>
+        <a href="brownies.html" class="nav-link">Brownies</a>
+        <a href="cream-buns.html" class="nav-link">Cream Buns</a>
+        <a href="build-your-dessert-chapter.html" class="nav-link">Build Your Chapter</a>
+        <a href="catering.html" class="nav-link">Catering</a>
+        <a href="misc-items.html" class="nav-link">Misc Items</a>
+        <a href="faq.html" class="nav-link">FAQ</a>
+        <a href="about.html" class="nav-link" style="color:#B8232F;">About</a>
+        <a href="gallery.html" class="nav-link">Gallery</a>
+        <a href="build-your-cake-chapter.html" class="btn-primary" style="padding:10px 22px;font-size:0.78rem;">Order a Cake</a>
+      </div>
+      <button id="menu-toggle" style="display:flex;flex-direction:column;gap:6px;padding:8px;background:none;border:none;cursor:pointer;" class="lg:hidden">
+        <span class="nav-bar" style="display:block;width:22px;height:2px;background:#FDF9F6;border-radius:2px;"></span>
+        <span class="nav-bar" style="display:block;width:22px;height:2px;background:#FDF9F6;border-radius:2px;"></span>
+        <span class="nav-bar" style="display:block;width:22px;height:2px;background:#FDF9F6;border-radius:2px;"></span>
+      </button>
+    </div>
+    <div id="mobile-menu" style="flex-direction:column;gap:4px;padding:16px;background:#fff;border-radius:16px;margin-top:8px;box-shadow:0 8px 32px rgba(28,6,8,0.12);">
+      <a href="index.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">← Home</a>
+      <a href="milk-cake-bento.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Milk Cake Bento</a>
+      <a href="brownies.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Brownies</a>
+      <a href="cream-buns.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Cream Buns</a>
+      <a href="build-your-dessert-chapter.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Build Your Chapter</a>
+      <a href="catering.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Catering</a>
+      <a href="misc-items.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Misc Items</a>
+      <a href="faq.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">FAQ</a>
+      <a href="about.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#B8232F;text-decoration:none;border-radius:8px;background:rgba(184,35,47,0.06);">About</a>
+      <a href="gallery.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Gallery</a>
+      <a href="build-your-cake-chapter.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:600;color:#B8232F;text-decoration:none;border-radius:8px;border:1.5px solid rgba(184,35,47,0.3);margin-top:4px;text-align:center;">Order a Cake</a>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════ HERO ═══════════════════════════ -->
+  <section style="position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;">
+    <!-- Background image -->
+    <div style="position:absolute;inset:0;">
+      <img src="images/2026_02_03_Edible_0469.jpg" alt="Affi, Founder of The Dessert Chapter"
+        style="width:100%;height:100%;object-fit:cover;object-position:center 20%;" />
+    </div>
+    <!-- Overlay -->
+    <div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(28,6,8,0.82) 0%,rgba(184,35,47,0.5) 50%,rgba(28,6,8,0.88) 100%);"></div>
+    <!-- Radial glow -->
+    <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(184,35,47,0.2) 0%,transparent 70%);pointer-events:none;"></div>
+
+    <!-- Content -->
+    <div style="position:relative;z-index:2;padding:200px 24px 80px;">
+      <p class="section-tag" style="color:rgba(196,151,58,0.9);margin-bottom:16px;">Our Founder</p>
+      <h1 style="font-family:'Playfair Display',serif;font-size:clamp(3rem,8vw,6rem);font-weight:700;color:#FDF9F6;letter-spacing:-0.03em;line-height:1.05;margin-bottom:20px;text-shadow:0 4px 24px rgba(28,6,8,0.5);">
+        Meet <em style="color:#F5A5AF;">Affi</em>
+      </h1>
+      <!-- Gold ornament divider -->
+      <div style="display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:20px;">
+        <div style="width:60px;height:1px;background:rgba(196,151,58,0.5);"></div>
+        <span style="color:#C4973A;font-size:1rem;">✦</span>
+        <div style="width:60px;height:1px;background:rgba(196,151,58,0.5);"></div>
+      </div>
+      <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1rem,2vw,1.25rem);color:rgba(255,255,255,0.82);letter-spacing:0.02em;">Baker · Dreamer · Dessert Storyteller</p>
+    </div>
+
+    <!-- Scroll cue -->
+    <div style="position:absolute;bottom:32px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:6px;opacity:0.5;">
+      <span style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:#fff;font-family:'DM Sans',sans-serif;">Scroll</span>
+      <div style="width:1px;height:40px;background:linear-gradient(to bottom,rgba(255,255,255,0.8),transparent);"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ STORY SECTION ═══════════════════════════ -->
+  <section style="background:#FDF9F6;padding:120px 24px;">
+    <div style="max-width:1120px;margin:0 auto;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;" class="md:grid-cols-2 grid-cols-1">
+
+        <!-- Left: Image with gradient border frame -->
+        <div class="reveal-left" style="position:relative;">
+          <div style="padding:6px;background:linear-gradient(135deg,#B8232F 0%,#C4973A 40%,#B8232F 70%,#C4973A 100%);border-radius:26px;box-shadow:0 8px 40px rgba(184,35,47,0.25),0 2px 10px rgba(28,6,8,0.1);">
+            <div style="border-radius:22px;overflow:hidden;position:relative;">
+              <img src="images/2026_02_03_Edible_0469.jpg" alt="Affi, founder of The Dessert Chapter"
+                style="width:100%;height:600px;object-fit:cover;object-position:top center;display:block;" />
+              <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 60%,rgba(28,6,8,0.18));pointer-events:none;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Story text -->
+        <div class="reveal-right">
+          <p class="section-tag" style="margin-bottom:14px;">My Story</p>
+          <h2 style="font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;color:#1C0608;letter-spacing:-0.02em;line-height:1.15;margin-bottom:28px;">
+            Hi, I'm Affi —<br/><em style="color:#B8232F;">a dreamer, baker,<br/>& dessert storyteller.</em>
+          </h2>
+
+          <div style="display:flex;flex-direction:column;gap:16px;font-size:0.95rem;line-height:1.8;color:#4A1C20;font-weight:300;">
+            <p>My journey began thousands of miles away, where flavors were bold, celebrations were sweet, and every family moment had something delicious at its heart. When I moved to Canada, I carried not just memories, but a deep love for the desserts that shaped my life.</p>
+            <p>What started as a simple wish to recreate those comforting tastes in my new home slowly turned into something bigger — a passion to write new "chapters" of dessert stories that blend my roots with the place I now call home.</p>
+            <p>At The Dessert Chapter, every creation has a story — from nostalgic milk cakes infused with saffron and cardamom, to festive sweets inspired by the seasons around us.</p>
+            <p style="font-family:'Playfair Display',serif;font-size:1.05rem;font-style:italic;color:#B8232F;">Because for me, desserts aren't just treats. They're chapters — of home, heritage, and heart.</p>
+          </div>
+
+          <!-- Awards row -->
+          <div style="margin-top:40px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
+            <div style="display:flex;align-items:center;gap:10px;background:#fff;border:1px solid rgba(184,35,47,0.12);border-radius:12px;padding:10px 16px;box-shadow:0 2px 8px rgba(184,35,47,0.06);">
+              <img src="images/CTVLAST.png" alt="CTV News Ottawa" style="height:28px;width:auto;object-fit:contain;" />
+              <span style="font-size:0.75rem;font-weight:600;color:#1C0608;font-family:'DM Sans',sans-serif;">CTV News Ottawa</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;background:#fff;border:1px solid rgba(184,35,47,0.12);border-radius:12px;padding:10px 16px;box-shadow:0 2px 8px rgba(184,35,47,0.06);">
+              <img src="images/edible.jpg" alt="Edible Ottawa" style="height:28px;width:auto;border-radius:4px;object-fit:contain;" />
+              <span style="font-size:0.75rem;font-weight:600;color:#1C0608;font-family:'DM Sans',sans-serif;">Edible Ottawa</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;background:#fff;border:1px solid rgba(184,35,47,0.12);border-radius:12px;padding:10px 16px;box-shadow:0 2px 8px rgba(184,35,47,0.06);">
+              <img src="images/CulinaryCoghort.jpeg" alt="Culinary Cohort" style="height:28px;width:28px;border-radius:50%;object-fit:cover;" />
+              <span style="font-size:0.75rem;font-weight:600;color:#1C0608;font-family:'DM Sans',sans-serif;">Culinary Cohort 2025</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ PHOTO GALLERY ═══════════════════════════ -->
+  <section style="background:#FAF3EE;padding:80px 0 0;">
+    <div style="max-width:1200px;margin:0 auto;padding:0 24px;">
+      <div style="text-align:center;margin-bottom:56px;" class="reveal">
+        <p class="section-tag" style="margin-bottom:12px;">Behind The Chapter</p>
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;color:#1C0608;letter-spacing:-0.02em;">A Glimpse Into Our World</h2>
+      </div>
+    </div>
+    <!-- OGL Circular Gallery -->
+    <div id="circular-gallery" style="width:100%;height:600px;overflow:hidden;cursor:grab;color:#FDF9F6;font-weight:700;font-size:24px;font-family:'DM Sans',sans-serif;"></div>
+    <style>#circular-gallery:active{cursor:grabbing;} #circular-gallery canvas{display:block;}</style>
+    <div style="padding-bottom:80px;"></div>
+  </section>
+
+  <script type="module">
+  import { Renderer, Camera, Transform, Plane, Mesh, Program, Texture } from 'https://esm.sh/ogl';
+
+  function lerp(p1, p2, t) { return p1 + (p2 - p1) * t; }
+  function debounce(func, wait) {
+    let timeout;
+    return function(...args) { clearTimeout(timeout); timeout = setTimeout(() => func.apply(this, args), wait); };
+  }
+  function createTextTexture(gl, text, font, color) {
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    ctx.font = font;
+    const metrics = ctx.measureText(text);
+    const textWidth = Math.ceil(metrics.width);
+    const sizeMatch = font.match(/(\d+(?:\.\d+)?)px/);
+    const fontSize = sizeMatch ? parseFloat(sizeMatch[1]) : 24;
+    const textHeight = Math.ceil(fontSize * 1.2);
+    canvas.width = textWidth + 20;
+    canvas.height = textHeight + 20;
+    ctx.font = font;
+    ctx.fillStyle = color;
+    ctx.textBaseline = 'middle';
+    ctx.textAlign = 'center';
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillText(text, canvas.width / 2, canvas.height / 2);
+    const texture = new Texture(gl, { generateMipmaps: false });
+    texture.image = canvas;
+    return { texture, width: canvas.width, height: canvas.height };
+  }
+
+  class Title {
+    constructor({ gl, plane, renderer, text, textColor, font }) {
+      this.gl = gl; this.plane = plane; this.renderer = renderer;
+      this.text = text; this.textColor = textColor; this.font = font;
+      this.createMesh();
+    }
+    createMesh() {
+      const { texture, width, height } = createTextTexture(this.gl, this.text, this.font, this.textColor);
+      const geometry = new Plane(this.gl);
+      const program = new Program(this.gl, {
+        vertex: `attribute vec3 position;attribute vec2 uv;uniform mat4 modelViewMatrix;uniform mat4 projectionMatrix;varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}`,
+        fragment: `precision highp float;uniform sampler2D tMap;varying vec2 vUv;void main(){vec4 c=texture2D(tMap,vUv);if(c.a<0.1)discard;gl_FragColor=c;}`,
+        uniforms: { tMap: { value: texture } },
+        transparent: true,
+      });
+      this.mesh = new Mesh(this.gl, { geometry, program });
+      const aspect = width / height;
+      const textHeight = this.plane.scale.y * 0.15;
+      this.mesh.scale.set(textHeight * aspect, textHeight, 1);
+      this.mesh.position.y = -this.plane.scale.y * 0.5 - textHeight * 0.5 - 0.05;
+      this.mesh.setParent(this.plane);
+    }
+  }
+
+  class Media {
+    constructor({ geometry, gl, image, index, length, renderer, scene, screen, text, viewport, bend, textColor, borderRadius, font }) {
+      Object.assign(this, { geometry, gl, image, index, length, renderer, scene, screen, text, viewport, bend, textColor, borderRadius, font });
+      this.extra = 0; this.widthTotal = 0; this.width = 0; this.x = 0;
+      this.scale = 1; this.padding = 2; this.speed = 0;
+      this.isBefore = false; this.isAfter = false;
+      this.createShader(); this.createMesh(); this.createTitle(); this.onResize();
+    }
+    createShader() {
+      const texture = new Texture(this.gl, { generateMipmaps: true });
+      this.program = new Program(this.gl, {
+        depthTest: false, depthWrite: false,
+        vertex: `precision highp float;attribute vec3 position;attribute vec2 uv;uniform mat4 modelViewMatrix;uniform mat4 projectionMatrix;uniform float uTime;uniform float uSpeed;varying vec2 vUv;void main(){vUv=uv;vec3 p=position;p.z=(sin(p.x*4.0+uTime)*1.5+cos(p.y*2.0+uTime)*1.5)*(0.1+uSpeed*0.5);gl_Position=projectionMatrix*modelViewMatrix*vec4(p,1.0);}`,
+        fragment: `precision highp float;uniform vec2 uImageSizes;uniform vec2 uPlaneSizes;uniform sampler2D tMap;uniform float uBorderRadius;varying vec2 vUv;float roundedBoxSDF(vec2 p,vec2 b,float r){vec2 d=abs(p)-b;return length(max(d,vec2(0.0)))+min(max(d.x,d.y),0.0)-r;}void main(){vec2 ratio=vec2(min((uPlaneSizes.x/uPlaneSizes.y)/(uImageSizes.x/uImageSizes.y),1.0),min((uPlaneSizes.y/uPlaneSizes.x)/(uImageSizes.y/uImageSizes.x),1.0));vec2 uv=vec2(vUv.x*ratio.x+(1.0-ratio.x)*0.5,vUv.y*ratio.y+(1.0-ratio.y)*0.5);vec4 color=texture2D(tMap,uv);float d=roundedBoxSDF(vUv-0.5,vec2(0.5-uBorderRadius),uBorderRadius);float alpha=1.0-smoothstep(-0.002,0.002,d);gl_FragColor=vec4(color.rgb,alpha);}`,
+        uniforms: {
+          tMap: { value: texture }, uPlaneSizes: { value: [0, 0] },
+          uImageSizes: { value: [0, 0] }, uSpeed: { value: 0 },
+          uTime: { value: 100 * Math.random() }, uBorderRadius: { value: this.borderRadius },
+        },
+        transparent: true,
+      });
+      const img = new Image();
+      img.src = this.image;
+      img.onload = () => {
+        texture.image = img;
+        this.program.uniforms.uImageSizes.value = [img.naturalWidth, img.naturalHeight];
+      };
+    }
+    createMesh() {
+      this.plane = new Mesh(this.gl, { geometry: this.geometry, program: this.program });
+      this.plane.setParent(this.scene);
+    }
+    createTitle() {
+      this.title = new Title({ gl: this.gl, plane: this.plane, renderer: this.renderer, text: this.text, textColor: this.textColor, font: this.font });
+    }
+    update(scroll, direction) {
+      this.plane.position.x = this.x - scroll.current - this.extra;
+      const x = this.plane.position.x;
+      const H = this.viewport.width / 2;
+      if (this.bend === 0) {
+        this.plane.position.y = 0; this.plane.rotation.z = 0;
+      } else {
+        const B = Math.abs(this.bend);
+        const R = (H * H + B * B) / (2 * B);
+        const eX = Math.min(Math.abs(x), H);
+        const arc = R - Math.sqrt(R * R - eX * eX);
+        if (this.bend > 0) {
+          this.plane.position.y = -arc;
+          this.plane.rotation.z = -Math.sign(x) * Math.asin(eX / R);
+        } else {
+          this.plane.position.y = arc;
+          this.plane.rotation.z = Math.sign(x) * Math.asin(eX / R);
+        }
+      }
+      this.speed = scroll.current - scroll.last;
+      this.program.uniforms.uTime.value += 0.04;
+      this.program.uniforms.uSpeed.value = this.speed;
+      const po = this.plane.scale.x / 2, vo = this.viewport.width / 2;
+      this.isBefore = this.plane.position.x + po < -vo;
+      this.isAfter = this.plane.position.x - po > vo;
+      if (direction === 'right' && this.isBefore) { this.extra -= this.widthTotal; this.isBefore = this.isAfter = false; }
+      if (direction === 'left' && this.isAfter) { this.extra += this.widthTotal; this.isBefore = this.isAfter = false; }
+    }
+    onResize({ screen, viewport } = {}) {
+      if (screen) this.screen = screen;
+      if (viewport) this.viewport = viewport;
+      this.scale = this.screen.height / 1500;
+      this.plane.scale.y = (this.viewport.height * (900 * this.scale)) / this.screen.height;
+      this.plane.scale.x = (this.viewport.width * (700 * this.scale)) / this.screen.width;
+      this.program.uniforms.uPlaneSizes.value = [this.plane.scale.x, this.plane.scale.y];
+      this.padding = 2;
+      this.width = this.plane.scale.x + this.padding;
+      this.widthTotal = this.width * this.length;
+      this.x = this.width * this.index;
+    }
+  }
+
+  class GalleryApp {
+    constructor(container, { items, bend, textColor, borderRadius, font, scrollSpeed, scrollEase }) {
+      this.container = container;
+      this.scrollSpeed = scrollSpeed;
+      this.scroll = { ease: scrollEase, current: 0, target: 0, last: 0, position: 0 };
+      this.isDown = false; this.start = 0;
+      this.onCheckDebounce = debounce(this.onCheck.bind(this), 200);
+      this.createRenderer();
+      this.createCamera();
+      this.createScene();
+      this.onResize();
+      this.createGeometry();
+      this.createMedias(items, bend, textColor, borderRadius, font);
+      this.update();
+      this.addEventListeners();
+    }
+    createRenderer() {
+      this.renderer = new Renderer({ alpha: true, antialias: true, dpr: Math.min(window.devicePixelRatio || 1, 2) });
+      this.gl = this.renderer.gl;
+      this.gl.clearColor(0, 0, 0, 0);
+      this.container.appendChild(this.gl.canvas);
+      this.gl.canvas.style.cssText = 'display:block;width:100%;height:100%;';
+    }
+    createCamera() {
+      this.camera = new Camera(this.gl);
+      this.camera.fov = 45;
+      this.camera.position.z = 20;
+    }
+    createScene() { this.scene = new Transform(); }
+    createGeometry() { this.planeGeometry = new Plane(this.gl, { heightSegments: 50, widthSegments: 100 }); }
+    createMedias(items, bend, textColor, borderRadius, font) {
+      const all = [...items, ...items];
+      this.medias = all.map((data, index) => new Media({
+        geometry: this.planeGeometry, gl: this.gl, image: data.image, index,
+        length: all.length, renderer: this.renderer, scene: this.scene,
+        screen: this.screen, text: data.text, viewport: this.viewport,
+        bend, textColor, borderRadius, font,
+      }));
+    }
+    onTouchDown(e) {
+      this.isDown = true;
+      this.scroll.position = this.scroll.current;
+      this.start = e.touches ? e.touches[0].clientX : e.clientX;
+    }
+    onTouchMove(e) {
+      if (!this.isDown) return;
+      const x = e.touches ? e.touches[0].clientX : e.clientX;
+      this.scroll.target = this.scroll.position + (this.start - x) * (this.scrollSpeed * 0.025);
+    }
+    onTouchUp() { this.isDown = false; this.onCheck(); }
+    onWheel(e) {
+      const delta = e.deltaY || e.wheelDelta || e.detail;
+      this.scroll.target += (delta > 0 ? this.scrollSpeed : -this.scrollSpeed) * 0.2;
+      this.onCheckDebounce();
+    }
+    onCheck() {
+      if (!this.medias || !this.medias[0]) return;
+      const w = this.medias[0].width;
+      const idx = Math.round(Math.abs(this.scroll.target) / w);
+      const snap = w * idx;
+      this.scroll.target = this.scroll.target < 0 ? -snap : snap;
+    }
+    onResize() {
+      this.screen = { width: this.container.clientWidth, height: this.container.clientHeight };
+      this.renderer.setSize(this.screen.width, this.screen.height);
+      this.camera.perspective({ aspect: this.screen.width / this.screen.height });
+      const fov = (this.camera.fov * Math.PI) / 180;
+      const h = 2 * Math.tan(fov / 2) * this.camera.position.z;
+      this.viewport = { width: h * this.camera.aspect, height: h };
+      if (this.medias) this.medias.forEach(m => m.onResize({ screen: this.screen, viewport: this.viewport }));
+    }
+    update() {
+      this.scroll.current = lerp(this.scroll.current, this.scroll.target, this.scroll.ease);
+      const dir = this.scroll.current > this.scroll.last ? 'right' : 'left';
+      if (this.medias) this.medias.forEach(m => m.update(this.scroll, dir));
+      this.renderer.render({ scene: this.scene, camera: this.camera });
+      this.scroll.last = this.scroll.current;
+      requestAnimationFrame(() => this.update());
+    }
+    addEventListeners() {
+      window.addEventListener('resize', () => this.onResize());
+      this.container.addEventListener('wheel', e => this.onWheel(e), { passive: true });
+      this.container.addEventListener('mousedown', e => this.onTouchDown(e));
+      window.addEventListener('mousemove', e => this.onTouchMove(e));
+      window.addEventListener('mouseup', () => this.onTouchUp());
+      this.container.addEventListener('touchstart', e => this.onTouchDown(e), { passive: true });
+      window.addEventListener('touchmove', e => this.onTouchMove(e), { passive: true });
+      window.addEventListener('touchend', () => this.onTouchUp());
+    }
+  }
+
+  const container = document.getElementById('circular-gallery');
+  if (container) {
+    new GalleryApp(container, {
+      items: [
+        { image: 'images/2026_02_03_Edible_0469.jpg', text: 'Meet Affi' },
+        { image: 'images/2026_02_03_Edible_0199.jpg', text: 'The Chapter' },
+        { image: 'images/2026_02_03_Edible_0250.jpg', text: 'Sweet Creations' },
+        { image: 'images/2026_02_03_Edible_0267.jpg', text: 'Handcrafted' },
+        { image: 'images/2026_02_03_Edible_0285.jpg', text: 'Made with Love' },
+        { image: 'images/2026_02_03_Edible_0291.jpg', text: 'Ottawa\'s Finest' },
+        { image: 'images/2026_02_03_Edible_0296.jpg', text: 'Every Slice a Story' },
+      ],
+      bend: 3,
+      textColor: '#1C0608',
+      borderRadius: 0.05,
+      font: 'bold 22px DM Sans, sans-serif',
+      scrollSpeed: 2,
+      scrollEase: 0.05,
+    });
+  }
+  </script>
+
+  <!-- ═══════════════════════════ QUOTE SECTION ═══════════════════════════ -->
+  <section style="background:#1C0608;padding:100px 24px;text-align:center;position:relative;overflow:hidden;">
+    <!-- Background radial glow -->
+    <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(184,35,47,0.18) 0%,transparent 70%);pointer-events:none;"></div>
+
+    <div style="position:relative;z-index:1;max-width:800px;margin:0 auto;" class="reveal">
+      <!-- Gold divider top -->
+      <div style="display:flex;align-items:center;justify-content:center;gap:20px;margin-bottom:40px;">
+        <div style="width:80px;height:1px;background:rgba(196,151,58,0.4);"></div>
+        <span style="color:#C4973A;font-size:1.2rem;">✦</span>
+        <div style="width:80px;height:1px;background:rgba(196,151,58,0.4);"></div>
+      </div>
+
+      <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1.4rem,3vw,2.2rem);color:#FDF9F6;line-height:1.55;letter-spacing:0.01em;font-weight:400;">
+        "Because for me, desserts aren't just treats. They're chapters — of home, heritage, and heart."
+      </p>
+
+      <!-- Gold divider bottom -->
+      <div style="display:flex;align-items:center;justify-content:center;gap:20px;margin-top:40px;margin-bottom:28px;">
+        <div style="width:80px;height:1px;background:rgba(196,151,58,0.4);"></div>
+        <span style="color:#C4973A;font-size:1.2rem;">✦</span>
+        <div style="width:80px;height:1px;background:rgba(196,151,58,0.4);"></div>
+      </div>
+
+      <p style="font-family:'DM Sans',sans-serif;font-size:0.85rem;letter-spacing:0.08em;color:rgba(196,151,58,0.85);font-weight:500;text-transform:uppercase;">— Affi, Founder of The Dessert Chapter</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ CTA SECTION ═══════════════════════════ -->
+  <section style="background:#B8232F;padding:80px 24px;text-align:center;position:relative;overflow:hidden;">
+    <!-- Subtle radial highlight -->
+    <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,0.08) 0%,transparent 70%);pointer-events:none;"></div>
+
+    <div style="position:relative;z-index:1;max-width:640px;margin:0 auto;" class="reveal">
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;color:#fff;letter-spacing:-0.02em;margin-bottom:16px;">Start Your Chapter</h2>
+      <p style="font-family:'DM Sans',sans-serif;font-size:1rem;color:rgba(255,255,255,0.82);line-height:1.7;margin-bottom:40px;">Every dessert tells a story. Let's write yours.</p>
+      <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;">
+        <a href="milk-cake-bento.html" class="btn-primary" style="background:#fff;color:#B8232F;box-shadow:0 4px 20px rgba(28,6,8,0.2);">View Our Menu</a>
+        <a href="build-your-cake-chapter.html" class="btn-outline-white">Order a Custom Cake</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ FOOTER ═══════════════════════════ -->
+  <footer style="background:#1C0608;color:#FAF3EE;padding:60px 24px 32px;">
+    <div style="max-width:1200px;margin:0 auto;text-align:center;">
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:600;color:#FDF9F6;margin-bottom:8px;">Let us be in your chapters of life!</h3>
+      <p style="color:rgba(250,243,238,0.6);font-size:0.85rem;margin-bottom:24px;">thedessertchapter2025@gmail.com · @thedessertchapter · Ottawa, Canada</p>
+      <div style="display:flex;justify-content:center;gap:20px;flex-wrap:wrap;font-size:0.82rem;">
+        <a href="index.html" style="color:rgba(250,243,238,0.6);text-decoration:none;">Home</a>
+        <a href="gallery.html" style="color:rgba(250,243,238,0.6);text-decoration:none;">Gallery</a>
+        <a href="faq.html" style="color:rgba(250,243,238,0.6);text-decoration:none;">FAQ</a>
+        <a href="build-your-cake-chapter.html" style="color:rgba(250,243,238,0.6);text-decoration:none;">Order a Cake</a>
+      </div>
+      <p style="font-size:0.72rem;color:rgba(250,243,238,0.3);margin-top:32px;">© 2025 The Dessert Chapter. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Nav scroll behavior
+    const navbar = document.getElementById('navbar');
+    function updateNav() {
+      var scrolled = window.scrollY > 60;
+      navbar.classList.toggle('nav-scrolled', scrolled);
+      var logoText = document.getElementById('nav-logo-text');
+      if (logoText) logoText.style.color = scrolled ? '#1C0608' : '#FDF9F6';
+      var bars = document.querySelectorAll('#navbar .nav-bar');
+      bars.forEach(function(b){ b.style.background = scrolled ? '#1C0608' : '#FDF9F6'; });
+    }
+    window.addEventListener('scroll', updateNav);
+    updateNav();
+
+    // Mobile menu toggle
+    const toggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('mobile-menu');
+    let open = false;
+    toggle.addEventListener('click', () => {
+      open = !open;
+      menu.style.display = open ? 'flex' : 'none';
+    });
+
+    // Scroll reveal IntersectionObserver
+    const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(function(el) { observer.observe(el); });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Build Your Dessert Chapter – The Dessert Chapter</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    *{box-sizing:border-box;}body{font-family:'DM Sans',system-ui,sans-serif;background:#FDF9F6;color:#1C0608;margin:0;}h1,h2,h3{font-family:'Playfair Display',Georgia,serif;}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:background 0.3s ease;}
+    .nav-scrolled{background:rgba(253,249,246,0.97);backdrop-filter:blur(12px);box-shadow:0 1px 0 rgba(184,35,47,0.12);}
+    .nav-link{position:relative;font-size:0.8rem;letter-spacing:0.06em;font-weight:500;color:rgba(255,255,255,0.88);text-decoration:none;padding:4px 0;}
+    .nav-link::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1.5px;background:#B8232F;transition:width 0.25s ease;}
+    .nav-link:hover::after{width:100%;}.nav-link:hover{color:#F5A5AF;}
+    .nav-scrolled .nav-link{color:#1C0608;}.nav-scrolled .nav-link:hover{color:#B8232F;}
+    .btn-primary{display:inline-flex;align-items:center;gap:8px;background:#B8232F;color:#fff;padding:14px 32px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:600;text-decoration:none;border:none;cursor:pointer;box-shadow:0 4px 16px rgba(184,35,47,0.3);transition:transform 0.2s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.2s ease;}
+    .btn-primary:hover{background:#D42535;transform:translateY(-2px);}
+    .section-tag{font-family:'DM Sans',sans-serif;font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:#B8232F;font-weight:600;}
+    .product-card{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 2px 8px rgba(184,35,47,0.06),0 8px 32px rgba(28,6,8,0.08);transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.3s ease;}
+    .product-card:hover{transform:translateY(-8px);box-shadow:0 6px 20px rgba(184,35,47,0.14),0 20px 56px rgba(28,6,8,0.12);}
+    .product-card img{width:100%;height:260px;object-fit:cover;display:block;}
+    .price-tag{display:inline-block;background:#B8232F;color:#fff;padding:4px 14px;border-radius:100px;font-size:0.82rem;font-weight:600;}
+    footer{background:#1C0608;color:#FAF3EE;}#mobile-menu{display:none;}
+  </style>
+</head>
+<body>
+  <nav id="navbar" style="padding:16px 24px;">
+    <div style="max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;">
+      <a href="index.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+        <img src="images/logo.jpg" alt="The Dessert Chapter" style="width:54px;height:54px;border-radius:50%;object-fit:cover;flex-shrink:0;box-shadow:0 2px 12px rgba(184,35,47,0.4);" />
+        <div>
+          <div id="nav-logo-text" style="font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:700;color:#FDF9F6;line-height:1.1;">The Dessert Chapter</div>
+          <div style="font-size:0.6rem;color:rgba(196,151,58,0.9);letter-spacing:0.12em;text-transform:uppercase;font-weight:500;">est. 2025 · Ottawa, CA</div>
+        </div>
+      </a>
+      <div id="desktop-nav" style="align-items:center;gap:24px;" class="hidden lg:flex">
+        <a href="milk-cake-bento.html" class="nav-link">Milk Cake Bento</a>
+        <a href="brownies.html" class="nav-link">Brownies</a>
+        <a href="cream-buns.html" class="nav-link">Cream Buns</a>
+        <a href="build-your-dessert-chapter.html" class="nav-link" style="color:#B8232F;">Build Your Chapter</a>
+        <a href="catering.html" class="nav-link">Catering</a>
+        <a href="misc-items.html" class="nav-link">Misc Items</a>
+        <a href="faq.html" class="nav-link">FAQ</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="gallery.html" class="nav-link">Gallery</a>
+        <a href="build-your-cake-chapter.html" class="btn-primary" style="padding:10px 22px;font-size:0.78rem;">Order a Cake</a>
+      </div>
+      <button id="menu-toggle" style="display:flex;flex-direction:column;gap:6px;padding:8px;background:none;border:none;cursor:pointer;" class="lg:hidden">
+        <span class="nav-bar" style="display:block;width:22px;height:2px;background:#FDF9F6;border-radius:2px;"></span>
+        <span class="nav-bar" style="display:block;width:22px;height:2px;background:#FDF9F6;border-radius:2px;"></span>
+        <span class="nav-bar" style="display:block;width:22px;height:2px;background:#FDF9F6;border-radius:2px;"></span>
+      </button>
+    </div>
+        <div id="mobile-menu" style="flex-direction:column;gap:4px;padding:16px;background:#fff;border-radius:16px;margin-top:8px;box-shadow:0 8px 32px rgba(28,6,8,0.12);">
+      <a href="index.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">← Home</a>
+      <a href="milk-cake-bento.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Milk Cake Bento</a>
+      <a href="brownies.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Brownies</a>
+      <a href="cream-buns.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Cream Buns</a>
+      <a href="build-your-dessert-chapter.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#B8232F;text-decoration:none;border-radius:8px;background:rgba(184,35,47,0.06);">Build Your Chapter</a>
+      <a href="misc-items.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Misc Items</a>
+      <a href="catering.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Catering</a>
+      <a href="faq.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">FAQ</a>
+      <a href="about.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">About</a>
+      <a href="gallery.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Gallery</a>
+      <a href="build-your-cake-chapter.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:600;color:#B8232F;text-decoration:none;border-radius:8px;border:1.5px solid rgba(184,35,47,0.3);margin-top:4px;text-align:center;">Order a Cake</a>
+    </div>
+  </nav>
+
+  <div style="background:linear-gradient(135deg,#1C0608,#3A0C10,#1C0608);padding:160px 24px 80px;text-align:center;position:relative;overflow:hidden;">
+    <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(184,35,47,0.2) 0%,transparent 70%);pointer-events:none;"></div>
+    <div style="position:relative;z-index:1;">
+      <p style="font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.75);font-family:'DM Sans',sans-serif;font-weight:600;margin-bottom:12px;">Complete Menu</p>
+      <h1 style="font-size:clamp(2.2rem,5vw,4rem);font-weight:700;color:#FDF9F6;letter-spacing:-0.03em;margin-bottom:16px;">Build Your<br/><em>Dessert Chapter</em></h1>
+      <p style="color:rgba(255,255,255,0.8);max-width:520px;margin:0 auto;font-size:0.95rem;line-height:1.75;">Pick your favourites and create your perfect dessert box. Every item is handcrafted with love, just for you.</p>
+    </div>
+  </div>
+
+  <section style="padding:80px 24px 120px;">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div style="background:rgba(184,35,47,0.06);border:1px solid rgba(184,35,47,0.15);border-radius:12px;padding:16px 20px;margin-bottom:56px;display:flex;align-items:center;gap:12px;">
+        <span style="font-size:1.1rem;">💬</span>
+        <p style="font-size:0.85rem;color:#4A1C20;margin:0;">To order, DM <strong>@thedessertchapter</strong> on Instagram or email <strong>thedessertchapter2025@gmail.com</strong> with your selections.</p>
+      </div>
+
+      <!-- Milk Cake Bento -->
+      <p class="section-tag" style="margin-bottom:8px;">Milk Cake Bento</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:#1C0608;margin-bottom:32px;">Bento Box Cakes</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:22px;margin-bottom:56px;">
+        <div class="product-card"><img src="images/2026_02_03_Edible_0294.jpg" alt="Rose Bento"/><div style="padding:16px;"><h3 style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;margin-bottom:4px;">Rose & Pistachio Bento</h3><div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;"><span class="price-tag">Contact</span><a href="build-your-cake-chapter.html" style="font-size:0.75rem;color:#B8232F;font-weight:600;text-decoration:none;">Order →</a></div></div></div>
+        <div class="product-card"><img src="images/2026_02_03_Edible_0566.jpg" alt="Gold Pearl Bento"/><div style="padding:16px;"><h3 style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;margin-bottom:4px;">Gold Pearl Bento</h3><div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;"><span class="price-tag">Contact</span><a href="build-your-cake-chapter.html" style="font-size:0.75rem;color:#B8232F;font-weight:600;text-decoration:none;">Order →</a></div></div></div>
+        <div class="product-card"><img src="images/2026_02_03_Edible_0588.jpg" alt="White Flower Bento"/><div style="padding:16px;"><h3 style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;margin-bottom:4px;">White Flower Bento</h3><div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;"><span class="price-tag">Contact</span><a href="build-your-cake-chapter.html" style="font-size:0.75rem;color:#B8232F;font-weight:600;text-decoration:none;">Order →</a></div></div></div>
+        <div class="product-card"><img src="images/2026_02_03_Edible_0604.jpg" alt="Classic Bento"/><div style="padding:16px;"><h3 style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;margin-bottom:4px;">Classic Milk Bento</h3><div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;"><span class="price-tag">Contact</span><a href="build-your-cake-chapter.html" style="font-size:0.75rem;color:#B8232F;font-weight:600;text-decoration:none;">Order →</a></div></div></div>
+      </div>
+
+      <!-- Milk Cake Cups -->
+      <p class="section-tag" style="margin-bottom:8px;">Milk Cake Cups</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:#1C0608;margin-bottom:32px;">Dessert Cups</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:22px;margin-bottom:56px;">
+        <div class="product-card"><img src="images/2026_02_03_Edible_0275.jpg" alt="Rose Milk Cup"/><div style="padding:16px;"><h3 style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;margin-bottom:4px;">Rose & Pistachio Cup</h3><div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;"><span class="price-tag">Contact</span><a href="build-your-cake-chapter.html" style="font-size:0.75rem;color:#B8232F;font-weight:600;text-decoration:none;">Order →</a></div></div></div>
+        <div class="product-card"><img src="images/2026_02_03_Edible_0045.jpg" alt="Coconut Milk Cake"/><div style="padding:16px;"><h3 style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;margin-bottom:4px;">Coconut Milk Cake</h3><div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;"><span class="price-tag">Contact</span><a href="build-your-cake-chapter.html" style="font-size:0.75rem;color:#B8232F;font-weight:600;text-decoration:none;">Order →</a></div></div></div>
+        <div class="product-card"><img src="images/2026_02_03_Edible_0272.jpg" alt="Pistachio Rose Cup"/><div style="padding:16px;"><h3 style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;margin-bottom:4px;">Pistachio Rose Cup</h3><div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;"><span class="price-tag">Contact</span><a href="build-your-cake-chapter.html" style="font-size:0.75rem;color:#B8232F;font-weight:600;text-decoration:none;">Order →</a></div></div></div>
+        <div class="product-card"><img src="images/2026_02_03_Edible_0030.jpg" alt="Signature Cup"/><div style="padding:16px;"><h3 style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;margin-bottom:4px;">Signature Milk Cup</h3><div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;"><span class="price-tag">Contact</span><a href="build-your-cake-chapter.html" style="font-size:0.75rem;color:#B8232F;font-weight:600;text-decoration:none;">Order →</a></div></div></div>
+      </div>
+
+      <!-- Cream Buns -->
+      <p class="section-tag" style="margin-bottom:8px;">Cream Buns</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:#1C0608;margin-bottom:32px;">Floral Cream Buns</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:22px;margin-bottom:56px;">
+        <div class="product-card"><img src="images/2026_02_03_Edible_0078.jpg" alt="Garden Rose Bun"/><div style="padding:16px;"><h3 style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;margin-bottom:4px;">Garden Rose Bun</h3><div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;"><span class="price-tag">Contact</span><a href="build-your-cake-chapter.html" style="font-size:0.75rem;color:#B8232F;font-weight:600;text-decoration:none;">Order →</a></div></div></div>
+        <div class="product-card"><img src="images/2026_02_03_Edible_0267.jpg" alt="Red Velvet Bento"/><div style="padding:16px;"><h3 style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;margin-bottom:4px;">Red Velvet Bento Cup</h3><div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;"><span class="price-tag">Contact</span><a href="build-your-cake-chapter.html" style="font-size:0.75rem;color:#B8232F;font-weight:600;text-decoration:none;">Order →</a></div></div></div>
+        <div class="product-card"><img src="images/2026_02_03_Edible_0261.jpg" alt="Cream Bento"/><div style="padding:16px;"><h3 style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;margin-bottom:4px;">Strawberry Cream Bento</h3><div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;"><span class="price-tag">Contact</span><a href="build-your-cake-chapter.html" style="font-size:0.75rem;color:#B8232F;font-weight:600;text-decoration:none;">Order →</a></div></div></div>
+      </div>
+
+      <!-- Brownies -->
+      <p class="section-tag" style="margin-bottom:8px;">Brownies</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:#1C0608;margin-bottom:32px;">Fudgy Brownies</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:22px;margin-bottom:56px;">
+        <div class="product-card"><img src="images/2026_02_03_Edible_0027.jpg" alt="Valentine Brownie"/><div style="padding:16px;"><h3 style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;margin-bottom:4px;">Valentine Heart Brownie</h3><div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;"><span class="price-tag">Contact</span><a href="build-your-cake-chapter.html" style="font-size:0.75rem;color:#B8232F;font-weight:600;text-decoration:none;">Order →</a></div></div></div>
+      </div>
+
+      <!-- CTA -->
+      <div style="text-align:center;padding:56px 40px;background:linear-gradient(135deg,#B8232F,#8B0016);border-radius:24px;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:-60px;right:-60px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,0.12) 0%,transparent 70%);pointer-events:none;"></div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:#FDF9F6;margin-bottom:12px;">Ready to Write Your Chapter?</h3>
+        <p style="color:rgba(255,255,255,0.8);margin-bottom:32px;font-size:0.95rem;max-width:480px;margin-left:auto;margin-right:auto;">Contact us to place your order or build a custom box from our full menu.</p>
+        <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;">
+          <a href="mailto:thedessertchapter2025@gmail.com" style="display:inline-flex;align-items:center;background:#fff;color:#B8232F;padding:14px 28px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:700;text-decoration:none;transition:transform 0.2s ease;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">Email Us</a>
+          <a href="build-your-cake-chapter.html" style="display:inline-flex;align-items:center;background:transparent;color:#fff;padding:14px 28px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:700;text-decoration:none;border:2px solid rgba(255,255,255,0.6);transition:transform 0.2s ease;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">Custom Cake Order</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background:#1C0608;color:#FAF3EE;padding:60px 24px 32px;">
+    <div style="max-width:1200px;margin:0 auto;text-align:center;">
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:600;color:#FDF9F6;margin-bottom:8px;">Let us be in your chapters of life!</h3>
+      <p style="color:rgba(250,243,238,0.6);font-size:0.85rem;margin-bottom:24px;">thedessertchapter2025@gmail.com · @thedessertchapter · Ottawa, Canada</p>
+      <p style="font-size:0.72rem;color:rgba(250,243,238,0.3);margin-top:32px;">© 2025 The Dessert Chapter. All rights reserved.</p>
+    </div>
+  </footer>
+  <script>
+    const navbar = document.getElementById('navbar');
+    function updateNav() {
+      var scrolled = window.scrollY > 60;
+      navbar.classList.toggle('nav-scrolled', scrolled);
+      var logoText = document.getElementById('nav-logo-text');
+      if (logoText) logoText.style.color = scrolled ? '#1C0608' : '#FDF9F6';
+      var bars = document.querySelectorAll('#navbar .nav-bar');
+      bars.forEach(function(b){ b.style.background = scrolled ? '#1C0608' : '#FDF9F6'; });
+    }
+    window.addEventListener('scroll', updateNav);
+    updateNav();
+    const toggle = document.getElementById('menu-toggle'); const menu = document.getElementById('mobile-menu'); let open = false;
+    toggle.addEventListener('click', () => { open = !open; menu.style.display = open ? 'flex' : 'none'; });
+  </script>
+</body>
+</html>

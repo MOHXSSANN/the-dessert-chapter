@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(frontend-design)",
+      "Skill(frontend-design:*)",
+      "Bash(done)",
+      "Bash(grep -v \"^$\")",
+      "Bash(node -e \":*)"
+    ]
+  }
+}

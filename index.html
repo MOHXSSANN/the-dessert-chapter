@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Dessert Chapter – We Craft Sweetness That Connects Hearts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            crimson: { DEFAULT: '#B8232F', dark: '#8B0016', light: '#D42535', muted: '#F5E6E8' },
+            cream: { DEFAULT: '#FDF9F6', warm: '#FAF3EE', dark: '#F2E8E1' },
+            gold: '#C4973A',
+            ink: '#1C0608',
+          },
+          fontFamily: {
+            display: ['"Playfair Display"', 'Georgia', 'serif'],
+            body: ['"DM Sans"', 'system-ui', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: 'DM Sans', system-ui, sans-serif; background: #FDF9F6; color: #1C0608; }
+    h1, h2, h3, h4 { font-family: 'Playfair Display', Georgia, serif; }
+
+    /* Grain texture overlay */
+    .grain::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Nav */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; }
+    .nav-scrolled { background: rgba(253,249,246,0.97); backdrop-filter: blur(12px); box-shadow: 0 1px 0 rgba(184,35,47,0.12); }
+
+    /* Hero */
+    .hero { min-height: 100vh; position: relative; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; }
+    .hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        160deg,
+        rgba(28,6,8,0.72) 0%,
+        rgba(184,35,47,0.45) 50%,
+        rgba(28,6,8,0.80) 100%
+      );
+    }
+    .hero-content { position: relative; z-index: 2; }
+
+    /* Decorative line */
+    .ornament { display: flex; align-items: center; gap: 12px; }
+    .ornament::before, .ornament::after { content: ''; flex: 1; height: 1px; background: currentColor; opacity: 0.3; }
+
+    /* Section headings */
+    .section-tag { font-family: 'DM Sans', sans-serif; font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: #B8232F; font-weight: 600; }
+
+    /* Product cards */
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(184,35,47,0.06), 0 8px 32px rgba(28,6,8,0.08);
+      transform: translateY(0);
+      opacity: 1;
+      transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease, opacity 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 4px 16px rgba(184,35,47,0.12), 0 16px 48px rgba(28,6,8,0.12);
+    }
+    .card img { width: 100%; height: 280px; object-fit: cover; display: block; }
+    .card-img-wrap { position: relative; overflow: hidden; }
+    .card-img-wrap::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 80px;
+      background: linear-gradient(to top, rgba(28,6,8,0.5) 0%, transparent 100%);
+    }
+
+    /* Review cards */
+    .review-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 2px 8px rgba(184,35,47,0.05), 0 8px 24px rgba(28,6,8,0.06);
+      border: 1px solid rgba(184,35,47,0.08);
+    }
+    .stars { color: #C4973A; font-size: 1rem; letter-spacing: 2px; }
+
+    /* About section */
+    .about-img-wrap { position: relative; }
+    .about-img-wrap::before {
+      content: ''; position: absolute;
+      top: -16px; left: -16px; right: 16px; bottom: 16px;
+      border: 2px solid rgba(184,35,47,0.2);
+      border-radius: 20px;
+      z-index: 0;
+    }
+    .about-img-wrap img { position: relative; z-index: 1; }
+
+    /* Footer */
+    footer { background: #1C0608; color: #FAF3EE; }
+
+    /* Mobile nav */
+    #mobile-menu { display: none; }
+    #mobile-menu.open { display: flex; }
+
+    /* Smooth scroll */
+    html { scroll-behavior: smooth; }
+
+    /* Nav link hover */
+    .nav-link {
+      position: relative; font-size: 0.8rem; letter-spacing: 0.06em; font-weight: 500;
+      color: rgba(255,255,255,0.88); text-decoration: none; padding: 4px 0;
+    }
+    .nav-link::after {
+      content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1.5px;
+      background: #F5A5AF;
+      transition: width 0.25s ease;
+    }
+    .nav-link:hover::after, .nav-link:focus-visible::after { width: 100%; }
+    .nav-link:hover { color: #F5A5AF; }
+    .nav-link:focus-visible { outline: 2px solid #F5A5AF; outline-offset: 4px; border-radius: 2px; }
+    .nav-scrolled .nav-link { color: #1C0608; }
+    .nav-scrolled .nav-link::after { background: #B8232F; }
+    .nav-scrolled .nav-link:hover { color: #B8232F; }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #B8232F; color: #fff;
+      padding: 14px 32px; border-radius: 100px;
+      font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.05em;
+      text-decoration: none; border: none; cursor: pointer;
+      box-shadow: 0 4px 16px rgba(184,35,47,0.3), 0 1px 4px rgba(184,35,47,0.2);
+      transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s ease, background 0.2s ease;
+    }
+    .btn-primary:hover { background: #D42535; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(184,35,47,0.38); }
+    .btn-primary:active { transform: translateY(0); }
+    .btn-primary:focus-visible { outline: 2px solid #B8232F; outline-offset: 4px; }
+
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: #B8232F;
+      padding: 13px 30px; border-radius: 100px;
+      font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.05em;
+      text-decoration: none; border: 2px solid #B8232F; cursor: pointer;
+      transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1), background 0.2s ease, color 0.2s ease;
+    }
+    .btn-outline:hover { background: #B8232F; color: #fff; transform: translateY(-2px); }
+    .btn-outline:active { transform: translateY(0); }
+    .btn-outline:focus-visible { outline: 2px solid #B8232F; outline-offset: 4px; }
+
+    input[type="email"], input[type="text"], textarea {
+      width: 100%; padding: 14px 18px; border: 1.5px solid rgba(184,35,47,0.2);
+      border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+      background: #fff; color: #1C0608; outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    input[type="email"]:focus, input[type="text"]:focus, textarea:focus {
+      border-color: #B8232F; box-shadow: 0 0 0 3px rgba(184,35,47,0.1);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up { animation: fadeUp 0.7s ease forwards; }
+    .delay-1 { animation-delay: 0.15s; opacity: 0; }
+    .delay-2 { animation-delay: 0.3s; opacity: 0; }
+    .delay-3 { animation-delay: 0.45s; opacity: 0; }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════ NAV ═══════════════════════════ -->
+  <nav id="navbar" class="py-4 px-6 md:px-12">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center gap-3 group" style="text-decoration:none;">
+        <img src="images/logo.jpg" alt="The Dessert Chapter" style="width:54px;height:54px;border-radius:50%;object-fit:cover;flex-shrink:0;box-shadow:0 2px 12px rgba(184,35,47,0.4);" />
+        <div>
+          <div id="nav-logo-text" style="font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:700;color:#FDF9F6;line-height:1.1;letter-spacing:-0.01em;">The Dessert Chapter</div>
+          <div id="nav-logo-sub" style="font-family:'DM Sans',sans-serif;font-size:0.6rem;color:rgba(196,151,58,0.9);letter-spacing:0.12em;text-transform:uppercase;font-weight:500;">est. 2025 · Ottawa, CA</div>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="hidden lg:flex items-center gap-6">
+        <a href="milk-cake-bento.html" class="nav-link">Milk Cake Bento</a>
+        <a href="brownies.html" class="nav-link">Brownies</a>
+        <a href="cream-buns.html" class="nav-link">Cream Buns</a>
+        <a href="build-your-dessert-chapter.html" class="nav-link">Build Your Chapter</a>
+        <a href="catering.html" class="nav-link">Catering</a>
+        <a href="misc-items.html" class="nav-link">Misc Items</a>
+        <a href="faq.html" class="nav-link">FAQ</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="gallery.html" class="nav-link">Gallery</a>
+        <a href="build-your-cake-chapter.html" class="btn-primary" style="padding:10px 22px;font-size:0.78rem;">Order a Cake</a>
+      </div>
+
+      <!-- Mobile hamburger -->
+      <button id="menu-toggle" class="lg:hidden flex flex-col gap-1.5 p-2 focus-visible:outline-2 focus-visible:outline-crimson rounded" aria-label="Open menu">
+        <span class="nav-bar" style="display:block;width:22px;height:2px;background:#FDF9F6;border-radius:2px;transition:transform 0.25s ease,opacity 0.25s ease,background 0.25s ease;" id="bar1"></span>
+        <span class="nav-bar" style="display:block;width:22px;height:2px;background:#FDF9F6;border-radius:2px;transition:opacity 0.25s ease,background 0.25s ease;" id="bar2"></span>
+        <span class="nav-bar" style="display:block;width:22px;height:2px;background:#FDF9F6;border-radius:2px;transition:transform 0.25s ease,opacity 0.25s ease,background 0.25s ease;" id="bar3"></span>
+      </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="lg:hidden flex-col gap-1 px-4 pb-4 pt-2 bg-white rounded-2xl mt-2 mx-0 shadow-lg border border-crimson/10" style="display:none;">
+      <a href="milk-cake-bento.html" class="block py-2.5 px-3 text-sm font-medium text-ink hover:text-crimson rounded-lg hover:bg-crimson/5" style="text-decoration:none;">Milk Cake Bento</a>
+      <a href="brownies.html" class="block py-2.5 px-3 text-sm font-medium text-ink hover:text-crimson rounded-lg hover:bg-crimson/5" style="text-decoration:none;">Brownies</a>
+      <a href="cream-buns.html" class="block py-2.5 px-3 text-sm font-medium text-ink hover:text-crimson rounded-lg hover:bg-crimson/5" style="text-decoration:none;">Cream Buns</a>
+      <a href="build-your-dessert-chapter.html" class="block py-2.5 px-3 text-sm font-medium text-ink hover:text-crimson rounded-lg hover:bg-crimson/5" style="text-decoration:none;">Build Your Dessert Chapter</a>
+      <a href="build-your-cake-chapter.html" class="block py-2.5 px-3 text-sm font-medium text-ink hover:text-crimson rounded-lg hover:bg-crimson/5" style="text-decoration:none;">Build Your Cake Chapter</a>
+      <a href="catering.html" class="block py-2.5 px-3 text-sm font-medium text-ink hover:text-crimson rounded-lg hover:bg-crimson/5" style="text-decoration:none;">Catering</a>
+      <a href="misc-items.html" class="block py-2.5 px-3 text-sm font-medium text-ink hover:text-crimson rounded-lg hover:bg-crimson/5" style="text-decoration:none;">Misc Items</a>
+      <a href="faq.html" class="block py-2.5 px-3 text-sm font-medium text-ink hover:text-crimson rounded-lg hover:bg-crimson/5" style="text-decoration:none;">FAQ</a>
+      <a href="about.html" class="block py-2.5 px-3 text-sm font-medium text-ink hover:text-crimson rounded-lg hover:bg-crimson/5" style="text-decoration:none;">About</a>
+      <a href="gallery.html" class="block py-2.5 px-3 text-sm font-medium text-ink hover:text-crimson rounded-lg hover:bg-crimson/5" style="text-decoration:none;">Gallery</a>
+      <div class="pt-2">
+        <a href="build-your-cake-chapter.html" class="btn-primary w-full justify-center" style="padding:12px 24px;">Order a Cake</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════ HERO ═══════════════════════════ -->
+  <section class="hero grain">
+    <div class="hero-bg">
+      <img src="images/2026_02_03_Edible_0118.jpg" alt="The Dessert Chapter spread" />
+    </div>
+    <div class="hero-overlay"></div>
+    <!-- Radial glow -->
+    <div style="position:absolute;top:30%;left:50%;transform:translate(-50%,-50%);width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(184,35,47,0.25) 0%,transparent 70%);pointer-events:none;z-index:1;"></div>
+
+    <div class="hero-content flex flex-col items-center justify-center min-h-screen text-center px-6 py-32">
+      <p class="fade-up delay-1" style="font-family:'DM Sans',sans-serif;font-size:0.7rem;letter-spacing:0.22em;text-transform:uppercase;color:rgba(196,151,58,0.9);font-weight:600;margin-bottom:20px;">Ottawa, Canada · est. 2025</p>
+
+      <h1 class="fade-up delay-2" style="font-family:'Playfair Display',serif;font-size:clamp(3rem,8vw,6.5rem);font-weight:700;color:#FFFAF6;line-height:1.05;letter-spacing:-0.03em;max-width:900px;margin-bottom:28px;text-shadow:0 4px 24px rgba(28,6,8,0.4);">
+        The Dessert<br/><em style="color:#F5A5AF;">Chapter</em>
+      </h1>
+
+      <div class="ornament fade-up delay-3" style="color:rgba(255,255,255,0.5);max-width:480px;width:100%;margin-bottom:24px;">
+        <span style="font-family:'Playfair Display',serif;font-size:0.85rem;font-style:italic;color:rgba(255,255,255,0.75);white-space:nowrap;">A chapter for every craving</span>
+      </div>
+
+      <p class="fade-up delay-3" style="font-size:1.05rem;color:rgba(255,255,255,0.82);max-width:560px;line-height:1.75;margin-bottom:40px;font-weight:300;">
+        We believe every dessert has a chapter — ours is to craft sweetness that connects hearts and cultures.
+      </p>
+
+      <div class="fade-up delay-3 flex flex-wrap gap-3 justify-center">
+        <a href="about.html" class="btn-primary">Discover Our Story</a>
+        <a href="milk-cake-bento.html" class="btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.5);">Explore Menu</a>
+      </div>
+    </div>
+
+    <!-- Scroll cue -->
+    <div style="position:absolute;bottom:32px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:6px;opacity:0.6;">
+      <span style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:#fff;font-family:'DM Sans',sans-serif;">Scroll</span>
+      <div style="width:1px;height:40px;background:linear-gradient(to bottom,rgba(255,255,255,0.8),transparent);"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ FEATURED MARQUEE ═══════════════════════════ -->
+  <div style="background:#1C0608;overflow:hidden;padding:18px 0;cursor:pointer;" onclick="document.getElementById('press').scrollIntoView({behavior:'smooth'})">
+    <div id="marquee-track" style="display:flex;align-items:center;gap:0;white-space:nowrap;animation:marqueeScroll 28s linear infinite;will-change:transform;">
+      <!-- Repeated twice for seamless loop -->
+      <span style="display:inline-flex;align-items:center;gap:14px;padding:0 40px;">
+        <span style="font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.45);font-family:'DM Sans',sans-serif;font-weight:500;">Featured On</span>
+        <img src="images/CTVLAST.png" alt="CTV" style="height:22px;width:auto;object-fit:contain;flex-shrink:0;background:#fff;border-radius:4px;padding:2px 3px;" />
+        <span style="font-family:'Playfair Display',serif;font-size:0.9rem;font-weight:600;color:#FDF9F6;font-style:italic;">CTV News Ottawa</span>
+        <span style="color:rgba(196,151,58,0.6);font-size:1.2rem;padding:0 8px;">✦</span>
+        <span style="font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.45);font-family:'DM Sans',sans-serif;font-weight:500;">Featured In</span>
+        <img src="images/edible.jpg" alt="Edible Ottawa" style="height:22px;width:auto;border-radius:4px;object-fit:contain;flex-shrink:0;" />
+        <span style="font-family:'Playfair Display',serif;font-size:0.9rem;font-weight:600;color:#FDF9F6;font-style:italic;">Edible Ottawa</span>
+        <span style="color:rgba(196,151,58,0.6);font-size:1.2rem;padding:0 8px;">✦</span>
+        <span style="font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.45);font-family:'DM Sans',sans-serif;font-weight:500;">Award</span>
+        <img src="images/CulinaryCoghort.jpeg" alt="Culinary Cohort" style="height:24px;width:24px;border-radius:50%;object-fit:cover;flex-shrink:0;" />
+        <span style="font-family:'Playfair Display',serif;font-size:0.9rem;font-weight:600;color:#C4973A;font-style:italic;">Culinary Cohort 2025</span>
+        <span style="color:rgba(196,151,58,0.6);font-size:1.2rem;padding:0 8px;">✦</span>
+      </span>
+      <span style="display:inline-flex;align-items:center;gap:14px;padding:0 40px;">
+        <span style="font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.45);font-family:'DM Sans',sans-serif;font-weight:500;">Featured On</span>
+        <img src="images/CTVLAST.png" alt="CTV" style="height:22px;width:auto;object-fit:contain;flex-shrink:0;background:#fff;border-radius:4px;padding:2px 3px;" />
+        <span style="font-family:'Playfair Display',serif;font-size:0.9rem;font-weight:600;color:#FDF9F6;font-style:italic;">CTV News Ottawa</span>
+        <span style="color:rgba(196,151,58,0.6);font-size:1.2rem;padding:0 8px;">✦</span>
+        <span style="font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.45);font-family:'DM Sans',sans-serif;font-weight:500;">Featured In</span>
+        <img src="images/edible.jpg" alt="Edible Ottawa" style="height:22px;width:auto;border-radius:4px;object-fit:contain;flex-shrink:0;" />
+        <span style="font-family:'Playfair Display',serif;font-size:0.9rem;font-weight:600;color:#FDF9F6;font-style:italic;">Edible Ottawa</span>
+        <span style="color:rgba(196,151,58,0.6);font-size:1.2rem;padding:0 8px;">✦</span>
+        <span style="font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.45);font-family:'DM Sans',sans-serif;font-weight:500;">Award</span>
+        <img src="images/CulinaryCoghort.jpeg" alt="Culinary Cohort" style="height:24px;width:24px;border-radius:50%;object-fit:cover;flex-shrink:0;" />
+        <span style="font-family:'Playfair Display',serif;font-size:0.9rem;font-weight:600;color:#C4973A;font-style:italic;">Culinary Cohort 2025</span>
+        <span style="color:rgba(196,151,58,0.6);font-size:1.2rem;padding:0 8px;">✦</span>
+      </span>
+    </div>
+    <style>
+      @keyframes marqueeScroll {
+        from { transform: translateX(0); }
+        to { transform: translateX(-50%); }
+      }
+      #marquee-track:hover { animation-play-state: paused; }
+    </style>
+  </div>
+
+  <!-- ═══════════════════════════ WHATSAPP PHOTO STRIP ═══════════════════════════ -->
+  <div style="background:#FAF3EE;overflow:hidden;padding:32px 0;">
+    <div style="display:flex;gap:10px;padding:0 20px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;">
+      <div style="flex-shrink:0;width:220px;height:220px;border-radius:16px;overflow:hidden;box-shadow:0 4px 16px rgba(184,35,47,0.1);"><img src="images/WhatsApp Image 2026-03-12 at 8.17.46 PM.jpeg" style="width:100%;height:100%;object-fit:cover;" /></div>
+      <div style="flex-shrink:0;width:220px;height:220px;border-radius:16px;overflow:hidden;box-shadow:0 4px 16px rgba(184,35,47,0.1);"><img src="images/WhatsApp Image 2026-03-12 at 8.17.46 PM (1).jpeg" style="width:100%;height:100%;object-fit:cover;" /></div>
+      <div style="flex-shrink:0;width:220px;height:220px;border-radius:16px;overflow:hidden;box-shadow:0 4px 16px rgba(184,35,47,0.1);"><img src="images/WhatsApp Image 2026-03-12 at 8.17.47 PM.jpeg" style="width:100%;height:100%;object-fit:cover;" /></div>
+      <div style="flex-shrink:0;width:220px;height:220px;border-radius:16px;overflow:hidden;box-shadow:0 4px 16px rgba(184,35,47,0.1);"><img src="images/WhatsApp Image 2026-03-12 at 8.17.47 PM (1).jpeg" style="width:100%;height:100%;object-fit:cover;" /></div>
+      <div style="flex-shrink:0;width:220px;height:220px;border-radius:16px;overflow:hidden;box-shadow:0 4px 16px rgba(184,35,47,0.1);"><img src="images/WhatsApp Image 2026-03-12 at 8.17.48 PM.jpeg" style="width:100%;height:100%;object-fit:cover;" /></div>
+      <div style="flex-shrink:0;width:220px;height:220px;border-radius:16px;overflow:hidden;box-shadow:0 4px 16px rgba(184,35,47,0.1);"><img src="images/WhatsApp Image 2026-03-12 at 8.17.48 PM (1).jpeg" style="width:100%;height:100%;object-fit:cover;" /></div>
+      <div style="flex-shrink:0;width:220px;height:220px;border-radius:16px;overflow:hidden;box-shadow:0 4px 16px rgba(184,35,47,0.1);"><img src="images/WhatsApp Image 2026-03-12 at 8.17.50 PM.jpeg" style="width:100%;height:100%;object-fit:cover;" /></div>
+      <div style="flex-shrink:0;width:220px;height:220px;border-radius:16px;overflow:hidden;box-shadow:0 4px 16px rgba(184,35,47,0.1);"><img src="images/WhatsApp Image 2026-03-12 at 8.17.50 PM (1).jpeg" style="width:100%;height:100%;object-fit:cover;" /></div>
+      <div style="flex-shrink:0;width:220px;height:220px;border-radius:16px;overflow:hidden;box-shadow:0 4px 16px rgba(184,35,47,0.1);"><img src="images/WhatsApp Image 2026-03-12 at 8.17.50 PM (2).jpeg" style="width:100%;height:100%;object-fit:cover;" /></div>
+      <div style="flex-shrink:0;width:220px;height:220px;border-radius:16px;overflow:hidden;box-shadow:0 4px 16px rgba(184,35,47,0.1);"><img src="images/WhatsApp Image 2026-03-12 at 8.17.51 PM.jpeg" style="width:100%;height:100%;object-fit:cover;" /></div>
+      <div style="flex-shrink:0;width:220px;height:220px;border-radius:16px;overflow:hidden;box-shadow:0 4px 16px rgba(184,35,47,0.1);"><img src="images/WhatsApp Image 2026-03-12 at 8.17.51 PM (1).jpeg" style="width:100%;height:100%;object-fit:cover;" /></div>
+      <div style="flex-shrink:0;width:220px;height:220px;border-radius:16px;overflow:hidden;box-shadow:0 4px 16px rgba(184,35,47,0.1);"><img src="images/WhatsApp Image 2026-03-12 at 8.17.51 PM (2).jpeg" style="width:100%;height:100%;object-fit:cover;" /></div>
+      <div style="flex-shrink:0;width:220px;height:220px;border-radius:16px;overflow:hidden;box-shadow:0 4px 16px rgba(184,35,47,0.1);"><img src="images/WhatsApp Image 2026-03-12 at 8.17.52 PM.jpeg" style="width:100%;height:100%;object-fit:cover;" /></div>
+      <div style="flex-shrink:0;width:220px;height:220px;border-radius:16px;overflow:hidden;box-shadow:0 4px 16px rgba(184,35,47,0.1);"><img src="images/WhatsApp Image 2026-03-12 at 8.17.52 PM (1).jpeg" style="width:100%;height:100%;object-fit:cover;" /></div>
+      <div style="flex-shrink:0;width:220px;height:220px;border-radius:16px;overflow:hidden;box-shadow:0 4px 16px rgba(184,35,47,0.1);"><img src="images/WhatsApp Image 2026-03-12 at 8.17.52 PM (2).jpeg" style="width:100%;height:100%;object-fit:cover;" /></div>
+      <div style="flex-shrink:0;width:220px;height:220px;border-radius:16px;overflow:hidden;box-shadow:0 4px 16px rgba(184,35,47,0.1);"><img src="images/WhatsApp Image 2026-03-12 at 8.17.52 PM (3).jpeg" style="width:100%;height:100%;object-fit:cover;" /></div>
+    </div>
+    <style>div::-webkit-scrollbar{display:none;}</style>
+  </div>
+
+  <!-- ═══════════════════════════ MENU PREVIEW ═══════════════════════════ -->
+  <section style="background:#FAF3EE;padding:100px 24px;">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div style="text-align:center;margin-bottom:60px;">
+        <p class="section-tag" style="margin-bottom:12px;">Our Menu</p>
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;color:#1C0608;letter-spacing:-0.02em;">
+          Every Bite Tells a Story
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+        <!-- Milk Cake Bento -->
+        <a href="milk-cake-bento.html" class="card group" style="text-decoration:none;">
+          <div class="card-img-wrap">
+            <img src="images/2026_02_03_Edible_0294.jpg" alt="Milk Cake Bento" />
+          </div>
+          <div style="padding:18px;">
+            <h3 style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:#1C0608;margin-bottom:4px;">Milk Cake Bento</h3>
+            <p style="font-size:0.78rem;color:#B8232F;font-weight:500;">Explore →</p>
+          </div>
+        </a>
+        <!-- Brownies -->
+        <a href="brownies.html" class="card group" style="text-decoration:none;">
+          <div class="card-img-wrap">
+            <img src="images/2026_02_03_Edible_0027.jpg" alt="Brownies" />
+          </div>
+          <div style="padding:18px;">
+            <h3 style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:#1C0608;margin-bottom:4px;">Brownies</h3>
+            <p style="font-size:0.78rem;color:#B8232F;font-weight:500;">Explore →</p>
+          </div>
+        </a>
+        <!-- Cream Buns -->
+        <a href="cream-buns.html" class="card group" style="text-decoration:none;">
+          <div class="card-img-wrap">
+            <img src="images/2026_02_03_Edible_0078.jpg" alt="Cream Buns" />
+          </div>
+          <div style="padding:18px;">
+            <h3 style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:#1C0608;margin-bottom:4px;">Cream Buns</h3>
+            <p style="font-size:0.78rem;color:#B8232F;font-weight:500;">Explore →</p>
+          </div>
+        </a>
+        <!-- Custom Cake -->
+        <a href="build-your-cake-chapter.html" class="card group" style="text-decoration:none;">
+          <div class="card-img-wrap">
+            <img src="images/2026_02_03_Edible_0566.jpg" alt="Build Your Cake Chapter" />
+          </div>
+          <div style="padding:18px;">
+            <h3 style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:#1C0608;margin-bottom:4px;">Custom Cakes</h3>
+            <p style="font-size:0.78rem;color:#B8232F;font-weight:500;">Order Now →</p>
+          </div>
+        </a>
+      </div>
+
+      <div style="text-align:center;margin-top:48px;">
+        <a href="build-your-dessert-chapter.html" class="btn-primary">Build Your Dessert Chapter</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ REVIEWS ═══════════════════════════ -->
+  <!-- ContainerScroll: scroll-driven 3D perspective animation -->
+  <section id="reviews-scroll-container" style="background:#FDF9F6;padding:60px 24px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;">
+    <div style="width:100%;max-width:1200px;position:relative;perspective:1000px;">
+
+      <!-- Title (translates up as you scroll) -->
+      <div id="reviews-header" style="text-align:center;margin-bottom:40px;will-change:transform;">
+        <p class="section-tag" style="margin-bottom:12px;">Client Love Chapters</p>
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;color:#1C0608;letter-spacing:-0.02em;">
+          Sweet Words from<br/><em style="color:#B8232F;">Our Customers</em>
+        </h2>
+      </div>
+
+      <!-- 3D Card frame (rotates from tilted to flat on scroll) -->
+      <div id="reviews-card-frame" style="will-change:transform;transform-origin:center top;transform:rotateX(20deg) scale(1.05);box-shadow:0 0 #0000004d,0 9px 20px #0000004a,0 37px 37px #00000042,0 84px 50px #00000026,0 149px 60px #0000000a;border-radius:24px;border:3px solid #6C6C6C;background:#222;padding:6px;overflow:hidden;">
+        <div style="background:#f1ece8;border-radius:18px;padding:28px 20px;overflow:hidden;max-height:500px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(184,35,47,0.3) transparent;">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;">
+
+            <!-- Review 1 -->
+            <div class="review-card"><div class="stars">★★★★★</div><p style="font-family:'Playfair Display',serif;font-size:0.92rem;font-style:italic;color:#1C0608;line-height:1.7;margin:12px 0;">"Absolutely incredible! The milk cake was the most beautiful and delicious thing I've ever tasted. Affi puts so much love into every single dessert."</p><div style="display:flex;align-items:center;gap:10px;margin-top:16px;padding-top:12px;border-top:1px solid rgba(184,35,47,0.1);"><div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#B8232F,#D42535);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:0.8rem;flex-shrink:0;">S</div><div><div style="font-weight:600;font-size:0.82rem;color:#1C0608;">Sarah M.</div><div style="font-size:0.68rem;color:#B8232F;">Google Review</div></div></div></div>
+
+            <!-- Review 2 -->
+            <div class="review-card"><div class="stars">★★★★★</div><p style="font-family:'Playfair Display',serif;font-size:0.92rem;font-style:italic;color:#1C0608;line-height:1.7;margin:12px 0;">"Ordered a custom cake for my daughter's birthday — it was beyond gorgeous. Everyone at the party couldn't stop talking about how stunning and delicious it was!"</p><div style="display:flex;align-items:center;gap:10px;margin-top:16px;padding-top:12px;border-top:1px solid rgba(184,35,47,0.1);"><div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#C4973A,#D4A740);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:0.8rem;flex-shrink:0;">N</div><div><div style="font-weight:600;font-size:0.82rem;color:#1C0608;">Nadia K.</div><div style="font-size:0.68rem;color:#B8232F;">Google Review</div></div></div></div>
+
+            <!-- Review 3 -->
+            <div class="review-card"><div class="stars">★★★★★</div><p style="font-family:'Playfair Display',serif;font-size:0.92rem;font-style:italic;color:#1C0608;line-height:1.7;margin:12px 0;">"The brownies are out of this world — rich, fudgy, and so beautifully decorated. The Dessert Chapter is truly special. Will definitely be ordering again and again!"</p><div style="display:flex;align-items:center;gap:10px;margin-top:16px;padding-top:12px;border-top:1px solid rgba(184,35,47,0.1);"><div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#4A1C20,#8B0016);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:0.8rem;flex-shrink:0;">L</div><div><div style="font-weight:600;font-size:0.82rem;color:#1C0608;">Layla H.</div><div style="font-size:0.68rem;color:#B8232F;">Google Review</div></div></div></div>
+
+            <!-- Review 4 -->
+            <div class="review-card"><div class="stars">★★★★★</div><p style="font-family:'Playfair Display',serif;font-size:0.92rem;font-style:italic;color:#1C0608;line-height:1.7;margin:12px 0;">"I ordered cream buns for my Eid gathering and the whole family was speechless. Perfectly spiced, beautifully presented. Affi truly captures the spirit of celebration!"</p><div style="display:flex;align-items:center;gap:10px;margin-top:16px;padding-top:12px;border-top:1px solid rgba(184,35,47,0.1);"><div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#B8232F,#8B0016);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:0.8rem;flex-shrink:0;">F</div><div><div style="font-weight:600;font-size:0.82rem;color:#1C0608;">Fatima A.</div><div style="font-size:0.68rem;color:#B8232F;">Google Review</div></div></div></div>
+
+            <!-- Review 5 -->
+            <div class="review-card"><div class="stars">★★★★★</div><p style="font-family:'Playfair Display',serif;font-size:0.92rem;font-style:italic;color:#1C0608;line-height:1.7;margin:12px 0;">"The saffron milk cake is unlike anything I've ever had. You can taste the love and heritage in every bite. My new favourite dessert in all of Ottawa!"</p><div style="display:flex;align-items:center;gap:10px;margin-top:16px;padding-top:12px;border-top:1px solid rgba(184,35,47,0.1);"><div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#C4973A,#B8232F);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:0.8rem;flex-shrink:0;">R</div><div><div style="font-weight:600;font-size:0.82rem;color:#1C0608;">Rachel T.</div><div style="font-size:0.68rem;color:#B8232F;">Google Review</div></div></div></div>
+
+            <!-- Review 6 -->
+            <div class="review-card"><div class="stars">★★★★★</div><p style="font-family:'Playfair Display',serif;font-size:0.92rem;font-style:italic;color:#1C0608;line-height:1.7;margin:12px 0;">"Catered our corporate event with the brownie trays — 40 people and every single one came back for seconds. Professional, delicious, and gorgeous presentation."</p><div style="display:flex;align-items:center;gap:10px;margin-top:16px;padding-top:12px;border-top:1px solid rgba(184,35,47,0.1);"><div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#4A1C20,#B8232F);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:0.8rem;flex-shrink:0;">M</div><div><div style="font-weight:600;font-size:0.82rem;color:#1C0608;">Michael P.</div><div style="font-size:0.68rem;color:#B8232F;">Google Review</div></div></div></div>
+
+            <!-- Review 7 -->
+            <div class="review-card"><div class="stars">★★★★★</div><p style="font-family:'Playfair Display',serif;font-size:0.92rem;font-style:italic;color:#1C0608;line-height:1.7;margin:12px 0;">"Affi made my wedding dessert table and I cried happy tears when I saw it. Every single item was perfection. My guests are still talking about those milk cakes months later."</p><div style="display:flex;align-items:center;gap:10px;margin-top:16px;padding-top:12px;border-top:1px solid rgba(184,35,47,0.1);"><div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#D42535,#C4973A);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:0.8rem;flex-shrink:0;">Z</div><div><div style="font-weight:600;font-size:0.82rem;color:#1C0608;">Zara H.</div><div style="font-size:0.68rem;color:#B8232F;">Google Review</div></div></div></div>
+
+            <!-- Review 8 -->
+            <div class="review-card"><div class="stars">★★★★★</div><p style="font-family:'Playfair Display',serif;font-size:0.92rem;font-style:italic;color:#1C0608;line-height:1.7;margin:12px 0;">"Just discovered The Dessert Chapter and already placed three orders. The packaging is so beautiful, the flavours are unique — this is not your average bakery. Truly special."</p><div style="display:flex;align-items:center;gap:10px;margin-top:16px;padding-top:12px;border-top:1px solid rgba(184,35,47,0.1);"><div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#8B0016,#D42535);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:0.8rem;flex-shrink:0;">A</div><div><div style="font-weight:600;font-size:0.82rem;color:#1C0608;">Amira S.</div><div style="font-size:0.68rem;color:#B8232F;">Google Review</div></div></div></div>
+
+            <!-- Review 9 -->
+            <div class="review-card"><div class="stars">★★★★★</div><p style="font-family:'Playfair Display',serif;font-size:0.92rem;font-style:italic;color:#1C0608;line-height:1.7;margin:12px 0;">"The cardamom brownie box was a gift for my mum and she called me crying it was so good. I've never seen a dessert make someone emotional before. 10/10 would order again."</p><div style="display:flex;align-items:center;gap:10px;margin-top:16px;padding-top:12px;border-top:1px solid rgba(184,35,47,0.1);"><div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#C4973A,#4A1C20);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:0.8rem;flex-shrink:0;">D</div><div><div style="font-weight:600;font-size:0.82rem;color:#1C0608;">Dalia W.</div><div style="font-size:0.68rem;color:#B8232F;">Google Review</div></div></div></div>
+
+            <!-- Review 10 -->
+            <div class="review-card"><div class="stars">★★★★★</div><p style="font-family:'Playfair Display',serif;font-size:0.92rem;font-style:italic;color:#1C0608;line-height:1.7;margin:12px 0;">"Brought the bento cakes to a baby shower and everyone wanted to know where they were from. The presentation is so stunning it almost feels wrong to eat them. Almost."</p><div style="display:flex;align-items:center;gap:10px;margin-top:16px;padding-top:12px;border-top:1px solid rgba(184,35,47,0.1);"><div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#B8232F,#C4973A);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:0.8rem;flex-shrink:0;">K</div><div><div style="font-weight:600;font-size:0.82rem;color:#1C0608;">Karim N.</div><div style="font-size:0.68rem;color:#B8232F;">Google Review</div></div></div></div>
+
+            <!-- Review 11 -->
+            <div class="review-card"><div class="stars">★★★★★</div><p style="font-family:'Playfair Display',serif;font-size:0.92rem;font-style:italic;color:#1C0608;line-height:1.7;margin:12px 0;">"The rose water cream buns transported me back to my grandmother's kitchen. I don't know how Affi does it, but every dessert feels like a warm hug."</p><div style="display:flex;align-items:center;gap:10px;margin-top:16px;padding-top:12px;border-top:1px solid rgba(184,35,47,0.1);"><div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#D42535,#4A1C20);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:0.8rem;flex-shrink:0;">Y</div><div><div style="font-weight:600;font-size:0.82rem;color:#1C0608;">Yasmin B.</div><div style="font-size:0.68rem;color:#B8232F;">Google Review</div></div></div></div>
+
+            <!-- Review 12 -->
+            <div class="review-card"><div class="stars">★★★★★</div><p style="font-family:'Playfair Display',serif;font-size:0.92rem;font-style:italic;color:#1C0608;line-height:1.7;margin:12px 0;">"Communication was perfect, the order arrived on time, and most importantly — the taste was extraordinary. This is what a small business with real passion looks like."</p><div style="display:flex;align-items:center;gap:10px;margin-top:16px;padding-top:12px;border-top:1px solid rgba(184,35,47,0.1);"><div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#8B0016,#C4973A);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:0.8rem;flex-shrink:0;">T</div><div><div style="font-weight:600;font-size:0.82rem;color:#1C0608;">Tom L.</div><div style="font-size:0.68rem;color:#B8232F;">Google Review</div></div></div></div>
+
+            <!-- Review 13 -->
+            <div class="review-card"><div class="stars">★★★★★</div><p style="font-family:'Playfair Display',serif;font-size:0.92rem;font-style:italic;color:#1C0608;line-height:1.7;margin:12px 0;">"My kids have been asking for 'the special milk cake' every week since we first tried it. It's become a family tradition. Affi has spoiled us for all other desserts!"</p><div style="display:flex;align-items:center;gap:10px;margin-top:16px;padding-top:12px;border-top:1px solid rgba(184,35,47,0.1);"><div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#B8232F,#4A1C20);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:0.8rem;flex-shrink:0;">H</div><div><div style="font-weight:600;font-size:0.82rem;color:#1C0608;">Hana R.</div><div style="font-size:0.68rem;color:#B8232F;">Google Review</div></div></div></div>
+
+            <!-- Review 14 -->
+            <div class="review-card"><div class="stars">★★★★★</div><p style="font-family:'Playfair Display',serif;font-size:0.92rem;font-style:italic;color:#1C0608;line-height:1.7;margin:12px 0;">"Got the mixed brownie box as an office gift and my entire team was blown away. The presentation, the flavours, the thoughtful packaging — absolutely first class."</p><div style="display:flex;align-items:center;gap:10px;margin-top:16px;padding-top:12px;border-top:1px solid rgba(184,35,47,0.1);"><div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#C4973A,#D42535);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:0.8rem;flex-shrink:0;">O</div><div><div style="font-weight:600;font-size:0.82rem;color:#1C0608;">Omar J.</div><div style="font-size:0.68rem;color:#B8232F;">Google Review</div></div></div></div>
+
+            <!-- Review 15 -->
+            <div class="review-card"><div class="stars">★★★★★</div><p style="font-family:'Playfair Display',serif;font-size:0.92rem;font-style:italic;color:#1C0608;line-height:1.7;margin:12px 0;">"Ottawa honestly does not deserve The Dessert Chapter — this level of quality should be in every city. I dragged my entire extended family to try these and now we're all obsessed."</p><div style="display:flex;align-items:center;gap:10px;margin-top:16px;padding-top:12px;border-top:1px solid rgba(184,35,47,0.1);"><div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#4A1C20,#D42535);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:0.8rem;flex-shrink:0;">P</div><div><div style="font-weight:600;font-size:0.82rem;color:#1C0608;">Priya V.</div><div style="font-size:0.68rem;color:#B8232F;">Google Review</div></div></div></div>
+
+            <!-- Review 16 -->
+            <div class="review-card"><div class="stars">★★★★★</div><p style="font-family:'Playfair Display',serif;font-size:0.92rem;font-style:italic;color:#1C0608;line-height:1.7;margin:12px 0;">"Affi catered my daughter's graduation party and she made the whole experience magical. The dessert table looked like a work of art. Guests kept asking for the card!"</p><div style="display:flex;align-items:center;gap:10px;margin-top:16px;padding-top:12px;border-top:1px solid rgba(184,35,47,0.1);"><div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#B8232F,#8B0016);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:0.8rem;flex-shrink:0;">C</div><div><div style="font-weight:600;font-size:0.82rem;color:#1C0608;">Christine O.</div><div style="font-size:0.68rem;color:#B8232F;">Google Review</div></div></div></div>
+
+            <!-- Review 17 -->
+            <div class="review-card"><div class="stars">★★★★★</div><p style="font-family:'Playfair Display',serif;font-size:0.92rem;font-style:italic;color:#1C0608;line-height:1.7;margin:12px 0;">"The pistachio bento cake is a dream. Light, fragrant, and so beautifully decorated with edible flowers. I genuinely couldn't stop taking photos before eating it."</p><div style="display:flex;align-items:center;gap:10px;margin-top:16px;padding-top:12px;border-top:1px solid rgba(184,35,47,0.1);"><div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#C4973A,#8B0016);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:0.8rem;flex-shrink:0;">I</div><div><div style="font-weight:600;font-size:0.82rem;color:#1C0608;">Iman Z.</div><div style="font-size:0.68rem;color:#B8232F;">Google Review</div></div></div></div>
+
+            <!-- Review 18 -->
+            <div class="review-card"><div class="stars">★★★★★</div><p style="font-family:'Playfair Display',serif;font-size:0.92rem;font-style:italic;color:#1C0608;line-height:1.7;margin:12px 0;">"Saw The Dessert Chapter on CTV and had to order immediately. The feature did not do it justice — in person these desserts are even more spectacular. Absolutely worth every penny."</p><div style="display:flex;align-items:center;gap:10px;margin-top:16px;padding-top:12px;border-top:1px solid rgba(184,35,47,0.1);"><div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#D42535,#C4973A);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:0.8rem;flex-shrink:0;">J</div><div><div style="font-weight:600;font-size:0.82rem;color:#1C0608;">Jessica W.</div><div style="font-size:0.68rem;color:#B8232F;">Google Review</div></div></div></div>
+
+            <!-- Review 19 -->
+            <div class="review-card"><div class="stars">★★★★★</div><p style="font-family:'Playfair Display',serif;font-size:0.92rem;font-style:italic;color:#1C0608;line-height:1.7;margin:12px 0;">"Every time I introduce someone new to The Dessert Chapter it becomes their favourite too. I've made about a dozen converts so far. The rose milk cake is pure magic."</p><div style="display:flex;align-items:center;gap:10px;margin-top:16px;padding-top:12px;border-top:1px solid rgba(184,35,47,0.1);"><div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#8B0016,#B8232F);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:0.8rem;flex-shrink:0;">G</div><div><div style="font-weight:600;font-size:0.82rem;color:#1C0608;">Grace M.</div><div style="font-size:0.68rem;color:#B8232F;">Google Review</div></div></div></div>
+
+            <!-- Review 20 -->
+            <div class="review-card"><div class="stars">★★★★★</div><p style="font-family:'Playfair Display',serif;font-size:0.92rem;font-style:italic;color:#1C0608;line-height:1.7;margin:12px 0;">"Ordered for my parents' anniversary — a custom milk cake with their names and a message in Arabic script. Affi nailed every detail. It was the most personal, thoughtful dessert I've ever seen."</p><div style="display:flex;align-items:center;gap:10px;margin-top:16px;padding-top:12px;border-top:1px solid rgba(184,35,47,0.1);"><div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#4A1C20,#C4973A);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:0.8rem;flex-shrink:0;">B</div><div><div style="font-weight:600;font-size:0.82rem;color:#1C0608;">Bilal Q.</div><div style="font-size:0.68rem;color:#B8232F;">Google Review</div></div></div></div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+  (function() {
+    var container = document.getElementById('reviews-scroll-container');
+    var card = document.getElementById('reviews-card-frame');
+    var header = document.getElementById('reviews-header');
+    if (!container || !card || !header) return;
+
+    function lerp(a, b, t) { return a + (b - a) * t; }
+
+    function onScroll() {
+      var rect = container.getBoundingClientRect();
+      var viewH = window.innerHeight;
+      // progress: 0 when top of section hits bottom of viewport, 1 when top hits top
+      var progress = 1 - Math.max(0, Math.min(1, rect.top / viewH));
+
+      var rotateX = lerp(20, 0, progress);
+      var scale = lerp(1.05, 1.0, progress);
+      var translateY = lerp(0, -60, progress);
+
+      card.style.transform = 'rotateX(' + rotateX + 'deg) scale(' + scale + ')';
+      header.style.transform = 'translateY(' + translateY + 'px)';
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+  </script>
+
+  <!-- ═══════════════════════════ AS SEEN IN PRESS ═══════════════════════════ -->
+  <style>
+    @keyframes kenBurns { from { transform: scale(1) translate(0,0); } to { transform: scale(1.08) translate(-2%,-1%); } }
+    @keyframes scanline { 0%,100%{opacity:0.04} 50%{opacity:0.08} }
+    @keyframes livePulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    @keyframes badgeIn { from{opacity:0;transform:translateY(-8px) scale(0.9)} to{opacity:1;transform:translateY(0) scale(1)} }
+    .reveal { opacity:0; transform:translateY(32px); transition:opacity 0.7s ease, transform 0.7s cubic-bezier(0.34,1.56,0.64,1); }
+    .reveal.in { opacity:1; transform:translateY(0); }
+    .reveal-left { opacity:0; transform:translateX(-44px); transition:opacity 0.7s ease, transform 0.7s cubic-bezier(0.34,1.56,0.64,1); }
+    .reveal-left.in { opacity:1; transform:translateX(0); }
+    .reveal-right { opacity:0; transform:translateX(44px); transition:opacity 0.7s ease, transform 0.7s cubic-bezier(0.34,1.56,0.64,1); }
+    .reveal-right.in { opacity:1; transform:translateX(0); }
+    .reveal-scale { opacity:0; transform:scale(0.93); transition:opacity 0.7s ease, transform 0.7s cubic-bezier(0.34,1.56,0.64,1); }
+    .reveal-scale.in { opacity:1; transform:scale(1); }
+    .delay-reveal-1 { transition-delay:0.1s; }
+    .delay-reveal-2 { transition-delay:0.2s; }
+    .delay-reveal-3 { transition-delay:0.3s; }
+    .press-badge {
+      position:absolute; top:14px; right:14px;
+      display:inline-flex; align-items:center; gap:6px;
+      padding:5px 12px; border-radius:100px;
+      font-family:'DM Sans',sans-serif; font-size:0.6rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase;
+      backdrop-filter:blur(8px);
+      animation: badgeIn 0.4s cubic-bezier(0.34,1.56,0.64,1) 0.2s both;
+    }
+  </style>
+
+  <!-- ── EDIBLES OTTAWA: Scroll Expansion Feature ── -->
+  <div id="press" style="height:280vh;position:relative;">
+    <div style="position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#1C0608;">
+
+      <!-- Blurred background (fades out as image expands) -->
+      <div id="edible-bg" style="position:absolute;inset:0;will-change:opacity;">
+        <div style="position:absolute;inset:-10%;background-image:url('images/ottedible1.png');background-size:cover;background-position:top center;filter:blur(28px) brightness(0.22);transform:scale(1.05);"></div>
+        <div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(28,6,8,0.78) 0%,rgba(184,35,47,0.32) 55%,rgba(28,6,8,0.88) 100%);"></div>
+      </div>
+
+      <!-- Section label (fades out) -->
+      <div id="edible-label" style="position:absolute;top:9%;left:50%;transform:translateX(-50%);z-index:3;text-align:center;will-change:opacity;white-space:nowrap;">
+        <p style="font-family:'DM Sans',sans-serif;font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(196,151,58,0.9);font-weight:600;margin-bottom:8px;">As Seen In</p>
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;color:#FDF9F6;letter-spacing:-0.02em;margin:0;">We've Been <em style="color:#F5A5AF;">Featured!</em></h2>
+      </div>
+
+      <!-- Split title (slides apart) -->
+      <div style="position:absolute;top:50%;left:0;right:0;z-index:3;display:flex;justify-content:space-between;align-items:center;padding:0 6%;transform:translateY(-50%);pointer-events:none;">
+        <p id="edible-word-left" style="font-family:'Playfair Display',serif;font-size:clamp(1.4rem,3.2vw,2.8rem);color:rgba(255,255,255,0.9);font-weight:700;line-height:1.2;will-change:transform,opacity;margin:0;">Edible<br/><em style="color:#F5A5AF;font-size:0.8em;">Ottawa</em></p>
+        <p id="edible-word-right" style="font-family:'DM Sans',sans-serif;font-size:0.7rem;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.45);font-weight:500;text-align:right;line-height:1.9;will-change:transform,opacity;margin:0;">Magazine<br/>Feature · 2025<br/><span style="color:rgba(196,151,58,0.75);">Ottawa's Premier<br/>Food Publication</span></p>
+      </div>
+
+      <!-- Expanding image (center piece) -->
+      <div id="edible-media" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);overflow:hidden;box-shadow:0 32px 96px rgba(28,6,8,0.85);z-index:2;width:300px;height:420px;border-radius:20px;will-change:width,height,border-radius;">
+        <img src="images/ottedible1.png" alt="Edible Ottawa Magazine Feature" style="width:100%;height:100%;object-fit:contain;background:#1C0608;display:block;" />
+        <div id="edible-overlay" style="position:absolute;inset:0;background:rgba(28,6,8,0.12);will-change:opacity;"></div>
+        <!-- Magazine badge -->
+        <div class="press-badge" style="background:rgba(28,6,8,0.82);color:rgba(196,151,58,0.95);border:1px solid rgba(196,151,58,0.35);">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M19 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2z" stroke="currentColor" stroke-width="2"/><path d="M16 8h-3.5M8 8h.5M16 12h-8M16 16h-8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          Magazine
+        </div>
+      </div>
+
+      <!-- Scroll cue -->
+      <div id="edible-hint" style="position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;z-index:4;will-change:opacity;">
+        <span style="font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.4);font-family:'DM Sans',sans-serif;">Scroll to explore</span>
+        <div style="width:1px;height:32px;background:linear-gradient(to bottom,rgba(255,255,255,0.4),transparent);"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CTV + Culinary Cohort cards ── -->
+  <section style="background:#FAF3EE;padding:80px 24px 100px;">
+    <div style="max-width:900px;margin:0 auto;">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px;text-align:left;">
+
+        <!-- CTV News Feature — Live video card -->
+        <a href="https://www.ctvnews.ca/ottawa/video/2026/01/05/tasty-treats-with-the-dessert-chapter/" target="_blank" rel="noopener" class="reveal delay-reveal-1"
+          style="display:flex;flex-direction:column;background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 2px 12px rgba(184,35,47,0.08),0 8px 32px rgba(28,6,8,0.08);text-decoration:none;border:1px solid rgba(184,35,47,0.08);transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.3s ease;"
+          onmouseover="this.style.transform='translateY(-8px)';this.style.boxShadow='0 16px 40px rgba(184,35,47,0.18),0 32px 64px rgba(28,6,8,0.14)'"
+          onmouseout="this.style.transform='';this.style.boxShadow='0 2px 12px rgba(184,35,47,0.08),0 8px 32px rgba(28,6,8,0.08)'">
+          <div style="position:relative;height:220px;overflow:hidden;flex-shrink:0;">
+            <!-- Actual video clip -->
+            <video autoplay muted loop playsinline poster="images/ctvnew.jpg"
+              style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+              <source src="images/CTVIDEO.mp4" type="video/mp4" />
+            </video>
+            <!-- TV scanlines overlay -->
+            <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.04) 3px,rgba(0,0,0,0.04) 4px);pointer-events:none;animation:scanline 4s ease infinite;"></div>
+            <!-- Dark gradient -->
+            <div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(28,6,8,0.18) 0%,rgba(28,6,8,0.65) 100%);"></div>
+            <!-- LIVE badge -->
+            <div class="press-badge" style="background:rgba(184,35,47,0.92);color:#fff;">
+              <span style="width:6px;height:6px;border-radius:50%;background:#fff;flex-shrink:0;animation:livePulse 1.4s ease infinite;"></span>
+              TV Feature
+            </div>
+            <!-- CTV Logo bottom-left — no invert filter -->
+            <div style="position:absolute;bottom:14px;left:16px;right:16px;">
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+                <img src="images/CTVLAST.png" alt="CTV" style="height:28px;width:auto;object-fit:contain;flex-shrink:0;background:#fff;border-radius:5px;padding:2px 4px;" />
+              </div>
+              <div style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:#FDF9F6;line-height:1.3;">"Tasty Treats with The Dessert Chapter"</div>
+            </div>
+          </div>
+          <div style="padding:20px 24px 24px;flex:1;">
+            <div style="font-size:0.66rem;letter-spacing:0.14em;text-transform:uppercase;color:#B8232F;font-weight:600;font-family:'DM Sans',sans-serif;margin-bottom:8px;">January 2026 · CTV News Ottawa</div>
+            <div style="font-size:0.82rem;color:#5A2428;margin-bottom:16px;line-height:1.65;">Featured on CTV News Ottawa for our unique desserts and the story behind The Dessert Chapter.</div>
+            <div style="display:inline-flex;align-items:center;gap:6px;font-size:0.8rem;font-weight:600;color:#B8232F;">
+              Watch the segment
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7V17" stroke="#B8232F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+        </a>
+
+        <!-- Culinary Cohort 2025 Award -->
+        <div class="reveal delay-reveal-2"
+          style="display:flex;flex-direction:column;background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 2px 12px rgba(184,35,47,0.08),0 8px 32px rgba(28,6,8,0.08);border:1px solid rgba(184,35,47,0.08);transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.3s ease;"
+          onmouseover="this.style.transform='translateY(-8px)';this.style.boxShadow='0 16px 40px rgba(184,35,47,0.18),0 32px 64px rgba(28,6,8,0.14)'"
+          onmouseout="this.style.transform='';this.style.boxShadow='0 2px 12px rgba(184,35,47,0.08),0 8px 32px rgba(28,6,8,0.08)'">
+          <div style="position:relative;height:220px;overflow:hidden;flex-shrink:0;">
+            <div style="position:absolute;inset:-5%;width:110%;height:110%;background-image:url('images/CulinaryCoghort.jpeg');background-size:cover;background-position:50% 15%;animation:kenBurns 14s ease-in-out 4s infinite alternate;will-change:transform;"></div>
+            <div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(28,6,8,0.1) 0%,rgba(28,6,8,0.72) 100%);"></div>
+            <div class="press-badge" style="background:rgba(196,151,58,0.95);color:#1C0608;">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+              Award 2025
+            </div>
+            <div style="position:absolute;bottom:14px;left:16px;right:16px;">
+              <div style="font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:#C4973A;text-shadow:0 1px 6px rgba(28,6,8,0.6);">Culinary Cohort 2025</div>
+            </div>
+          </div>
+          <div style="padding:20px 24px 24px;flex:1;">
+            <div style="font-size:0.66rem;letter-spacing:0.14em;text-transform:uppercase;color:#C4973A;font-weight:600;font-family:'DM Sans',sans-serif;margin-bottom:8px;">Award Recognition · 2025</div>
+            <div style="font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:600;color:#1C0608;line-height:1.4;margin-bottom:10px;">Culinary Cohort Award Winner</div>
+            <div style="font-size:0.82rem;color:#5A2428;line-height:1.65;">Honoured by the Culinary Cohort for outstanding artisan dessert craftsmanship and cultural storytelling through food.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ CATERING ═══════════════════════════ -->
+  <section style="background:#1C0608;padding:100px 24px;position:relative;overflow:hidden;">
+    <div style="position:absolute;top:-100px;right:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(184,35,47,0.2) 0%,transparent 70%);pointer-events:none;"></div>
+    <div style="position:absolute;bottom:-80px;left:-60px;width:350px;height:350px;border-radius:50%;background:radial-gradient(circle,rgba(196,151,58,0.08) 0%,transparent 70%);pointer-events:none;"></div>
+    <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;" class="grid-cols-1 md:grid-cols-2">
+      <!-- Image side -->
+      <div style="position:relative;">
+        <div style="border-radius:20px;overflow:hidden;box-shadow:0 12px 48px rgba(28,6,8,0.5);">
+          <img src="images/2026_02_03_Edible_0118.jpg" alt="Catering spread" style="width:100%;height:400px;object-fit:cover;display:block;" />
+          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(28,6,8,0.4) 0%,transparent 60%);border-radius:20px;"></div>
+        </div>
+        <div style="position:absolute;bottom:-20px;left:20px;background:#B8232F;color:#fff;padding:14px 20px;border-radius:12px;box-shadow:0 8px 24px rgba(184,35,47,0.4);">
+          <div style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;">Party Trays</div>
+          <div style="font-size:0.72rem;font-family:'DM Sans',sans-serif;opacity:0.85;margin-top:2px;">Serving 6 or 12 people</div>
+        </div>
+      </div>
+      <!-- Text side -->
+      <div>
+        <p style="font-family:'DM Sans',sans-serif;font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(196,151,58,0.9);font-weight:600;margin-bottom:14px;">Events & Gatherings</p>
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;color:#FDF9F6;letter-spacing:-0.02em;line-height:1.15;margin-bottom:20px;">
+          We Cater Your<br/><em style="color:#F5A5AF;">Sweet Moments</em>
+        </h2>
+        <p style="color:rgba(250,243,238,0.75);font-size:0.95rem;line-height:1.8;margin-bottom:28px;">From intimate gatherings to large corporate events, weddings, baby showers, and Eid celebrations — we bring our full menu to your table with party trays that serve 6 or 12.</p>
+        <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:32px;">
+          <div style="display:flex;align-items:center;gap:12px;color:rgba(250,243,238,0.85);font-size:0.88rem;">
+            <span style="width:24px;height:24px;border-radius:50%;background:rgba(184,35,47,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:0.75rem;">✓</span>
+            Milk Cake Trays — $65 (serves 12)
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;color:rgba(250,243,238,0.85);font-size:0.88rem;">
+            <span style="width:24px;height:24px;border-radius:50%;background:rgba(184,35,47,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:0.75rem;">✓</span>
+            Cinnamon Bun Trays — from $72 (serves 12)
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;color:rgba(250,243,238,0.85);font-size:0.88rem;">
+            <span style="width:24px;height:24px;border-radius:50%;background:rgba(184,35,47,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:0.75rem;">✓</span>
+            Brownie Party Trays — from $50 (serves 12)
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;color:rgba(250,243,238,0.85);font-size:0.88rem;">
+            <span style="width:24px;height:24px;border-radius:50%;background:rgba(184,35,47,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:0.75rem;">✓</span>
+            Custom mixed trays available on request
+          </div>
+        </div>
+        <a href="catering.html" style="display:inline-flex;align-items:center;gap:8px;background:#B8232F;color:#fff;padding:14px 32px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:600;text-decoration:none;box-shadow:0 4px 16px rgba(184,35,47,0.35);transition:transform 0.2s cubic-bezier(0.34,1.56,0.64,1);"
+          onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">
+          View Catering Menu
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ INSTAGRAM CTA ═══════════════════════════ -->
+  <section style="background:#B8232F;padding:80px 24px;text-align:center;position:relative;overflow:hidden;">
+    <div style="position:absolute;top:-100px;left:-100px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,0.08) 0%,transparent 70%);pointer-events:none;"></div>
+    <div style="position:absolute;bottom:-80px;right:-80px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,0.06) 0%,transparent 70%);pointer-events:none;"></div>
+    <div style="position:relative;z-index:1;">
+      <p style="font-family:'DM Sans',sans-serif;font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-bottom:12px;">Follow Our Journey</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:700;color:#fff;letter-spacing:-0.02em;margin-bottom:16px;">
+        @thedessertchapter
+      </h2>
+      <p style="color:rgba(255,255,255,0.8);font-size:0.95rem;margin-bottom:32px;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.7;">
+        Share your dessert chapters with us on Instagram. Tag us and we'll feature your moment!
+      </p>
+      <a href="https://instagram.com/thedessertchapter" target="_blank" rel="noopener"
+        style="display:inline-flex;align-items:center;gap:10px;background:#fff;color:#B8232F;padding:14px 32px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:700;text-decoration:none;box-shadow:0 4px 20px rgba(28,6,8,0.25);transition:transform 0.2s cubic-bezier(0.34,1.56,0.64,1);"
+        onmouseover="this.style.transform='translateY(-3px)'" onmouseout="this.style.transform='translateY(0)'">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="2" width="20" height="20" rx="5" stroke="#B8232F" stroke-width="2"/>
+          <circle cx="12" cy="12" r="4" stroke="#B8232F" stroke-width="2"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="#B8232F"/>
+        </svg>
+        Follow on Instagram
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ FOOTER ═══════════════════════════ -->
+  <footer style="background:#1C0608;color:#FAF3EE;padding:80px 24px 40px;">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div style="text-align:center;margin-bottom:64px;">
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:600;color:#FDF9F6;letter-spacing:-0.02em;margin-bottom:10px;">
+          Let us be in your chapters of life!
+        </h2>
+        <p style="color:rgba(250,243,238,0.6);font-size:0.9rem;margin-bottom:40px;">We'd love to hear from you. Send us a message below.</p>
+
+        <!-- Contact form -->
+        <form style="max-width:520px;margin:0 auto;display:flex;flex-direction:column;gap:14px;" onsubmit="handleFooterForm(event)">
+          <input type="text" placeholder="Your Name" required style="background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.12);color:#FAF3EE;" />
+          <input type="email" placeholder="Your Email" required style="background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.12);color:#FAF3EE;" />
+          <textarea rows="4" placeholder="Your message…" style="background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.12);color:#FAF3EE;resize:vertical;"></textarea>
+          <button type="submit" class="btn-primary" style="justify-content:center;">Send Message</button>
+        </form>
+      </div>
+
+      <div style="border-top:1px solid rgba(255,255,255,0.1);padding-top:40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:40px;">
+        <!-- Brand -->
+        <div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:#FDF9F6;margin-bottom:10px;">The Dessert Chapter</h3>
+          <p style="font-size:0.83rem;color:rgba(250,243,238,0.6);line-height:1.7;">Crafting sweetness that connects hearts and cultures, one chapter at a time.</p>
+        </div>
+        <!-- Menu -->
+        <div>
+          <h4 style="font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(250,243,238,0.5);margin-bottom:16px;font-family:'DM Sans',sans-serif;">Menu</h4>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <a href="milk-cake-bento.html" style="color:rgba(250,243,238,0.75);font-size:0.85rem;text-decoration:none;" onmouseover="this.style.color='#F5A5AF'" onmouseout="this.style.color='rgba(250,243,238,0.75)'">Milk Cake Bento</a>
+            <a href="brownies.html" style="color:rgba(250,243,238,0.75);font-size:0.85rem;text-decoration:none;" onmouseover="this.style.color='#F5A5AF'" onmouseout="this.style.color='rgba(250,243,238,0.75)'">Brownies</a>
+            <a href="cream-buns.html" style="color:rgba(250,243,238,0.75);font-size:0.85rem;text-decoration:none;" onmouseover="this.style.color='#F5A5AF'" onmouseout="this.style.color='rgba(250,243,238,0.75)'">Cream Buns</a>
+            <a href="build-your-cake-chapter.html" style="color:rgba(250,243,238,0.75);font-size:0.85rem;text-decoration:none;" onmouseover="this.style.color='#F5A5AF'" onmouseout="this.style.color='rgba(250,243,238,0.75)'">Custom Cakes</a>
+            <a href="misc-items.html" style="color:rgba(250,243,238,0.75);font-size:0.85rem;text-decoration:none;" onmouseover="this.style.color='#F5A5AF'" onmouseout="this.style.color='rgba(250,243,238,0.75)'">Misc Items</a>
+          </div>
+        </div>
+        <!-- Contact -->
+        <div>
+          <h4 style="font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(250,243,238,0.5);margin-bottom:16px;font-family:'DM Sans',sans-serif;">Contact</h4>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <a href="mailto:thedessertchapter2025@gmail.com" style="color:rgba(250,243,238,0.75);font-size:0.83rem;text-decoration:none;word-break:break-all;" onmouseover="this.style.color='#F5A5AF'" onmouseout="this.style.color='rgba(250,243,238,0.75)'">thedessertchapter2025@gmail.com</a>
+            <a href="https://instagram.com/thedessertchapter" target="_blank" rel="noopener" style="color:rgba(250,243,238,0.75);font-size:0.83rem;text-decoration:none;" onmouseover="this.style.color='#F5A5AF'" onmouseout="this.style.color='rgba(250,243,238,0.75)'">@thedessertchapter</a>
+            <span style="color:rgba(250,243,238,0.75);font-size:0.83rem;">Ottawa, Canada</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-top:48px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.06);">
+        <p style="font-size:0.75rem;color:rgba(250,243,238,0.35);">© 2025 The Dessert Chapter. All rights reserved. · <a href="faq.html" style="color:rgba(250,243,238,0.35);text-decoration:none;">FAQ</a> · <a href="gallery.html" style="color:rgba(250,243,238,0.35);text-decoration:none;">Gallery</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Nav scroll effect
+    const navbar = document.getElementById('navbar');
+    const navLogoText = document.getElementById('nav-logo-text');
+    const navLogoSub = document.getElementById('nav-logo-sub');
+    function updateNav() {
+      const scrolled = window.scrollY > 60;
+      navbar.classList.toggle('nav-scrolled', scrolled);
+      if (navLogoText) navLogoText.style.color = scrolled ? '#1C0608' : '#FDF9F6';
+      if (navLogoSub) navLogoSub.style.color = scrolled ? '#B8232F' : 'rgba(196,151,58,0.9)';
+      document.querySelectorAll('#navbar .nav-bar').forEach(b => {
+        b.style.background = scrolled ? '#1C0608' : '#FDF9F6';
+      });
+    }
+    window.addEventListener('scroll', updateNav);
+    updateNav();
+
+    // Mobile menu
+    const toggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const bar1 = document.getElementById('bar1');
+    const bar2 = document.getElementById('bar2');
+    const bar3 = document.getElementById('bar3');
+    let open = false;
+    toggle.addEventListener('click', () => {
+      open = !open;
+      mobileMenu.style.display = open ? 'flex' : 'none';
+      bar1.style.transform = open ? 'translateY(7px) rotate(45deg)' : '';
+      bar2.style.opacity = open ? '0' : '1';
+      bar3.style.transform = open ? 'translateY(-7px) rotate(-45deg)' : '';
+    });
+
+    // Edible Ottawa — scroll expansion
+    (function() {
+      const outer = document.getElementById('press');
+      const media = document.getElementById('edible-media');
+      const bg = document.getElementById('edible-bg');
+      const overlay = document.getElementById('edible-overlay');
+      const hint = document.getElementById('edible-hint');
+      const wLeft = document.getElementById('edible-word-left');
+      const wRight = document.getElementById('edible-word-right');
+      const label = document.getElementById('edible-label');
+      if (!outer || !media) return;
+
+      function updateExpansion() {
+        const outerTop = outer.getBoundingClientRect().top + window.scrollY;
+        const scrollable = outer.offsetHeight - window.innerHeight;
+        const progress = Math.max(0, Math.min(1, (window.scrollY - outerTop) / scrollable));
+
+        const isMobile = window.innerWidth < 768;
+        const sw = isMobile ? 220 : 300, sh = isMobile ? 320 : 420;
+        const tw = window.innerWidth, th = window.innerHeight;
+        const w = sw + progress * (tw - sw);
+        const h = sh + progress * (th - sh);
+        const r = Math.max(0, 20 * (1 - progress * 1.6));
+
+        media.style.width = w + 'px';
+        media.style.height = h + 'px';
+        media.style.borderRadius = r + 'px';
+
+        if (bg) bg.style.opacity = Math.max(0, 1 - progress * 1.4);
+        if (overlay) overlay.style.opacity = Math.max(0, 0.12 - progress * 0.12);
+        if (hint) hint.style.opacity = Math.max(0, 1 - progress * 6);
+
+        const tx = progress * (isMobile ? 35 : 22);
+        const tOpacity = Math.max(0, 1 - progress * 2.5);
+        if (wLeft) { wLeft.style.transform = `translateX(-${tx}vw)`; wLeft.style.opacity = tOpacity; }
+        if (wRight) { wRight.style.transform = `translateX(${tx}vw)`; wRight.style.opacity = tOpacity; }
+        if (label) label.style.opacity = Math.max(0, 1 - progress * 3);
+      }
+
+      window.addEventListener('scroll', updateExpansion, { passive: true });
+      window.addEventListener('resize', updateExpansion);
+      updateExpansion();
+    })();
+
+    // Scroll reveal animations
+    const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+    if (revealEls.length) {
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      revealEls.forEach(el => revealObserver.observe(el));
+    }
+
+    // Footer form
+    function handleFooterForm(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button');
+      btn.textContent = 'Message Sent! ✓';
+      btn.style.background = '#2D7A47';
+      setTimeout(() => { btn.textContent = 'Send Message'; btn.style.background = ''; e.target.reset(); }, 3000);
+    }
+  </script>
+</body>
+</html>

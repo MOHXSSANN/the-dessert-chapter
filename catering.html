@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Catering – The Dessert Chapter</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    *{box-sizing:border-box;}body{font-family:'DM Sans',system-ui,sans-serif;background:#FDF9F6;color:#1C0608;margin:0;}h1,h2,h3,h4{font-family:'Playfair Display',Georgia,serif;}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:background 0.3s ease;}
+    .nav-scrolled{background:rgba(253,249,246,0.97);backdrop-filter:blur(12px);box-shadow:0 1px 0 rgba(184,35,47,0.12);}
+    .nav-link{position:relative;font-size:0.8rem;letter-spacing:0.06em;font-weight:500;color:rgba(255,255,255,0.88);text-decoration:none;padding:4px 0;}
+    .nav-link::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1.5px;background:#B8232F;transition:width 0.25s ease;}
+    .nav-link:hover::after{width:100%;}.nav-link:hover{color:#F5A5AF;}
+    .nav-scrolled .nav-link{color:#1C0608;}.nav-scrolled .nav-link:hover{color:#B8232F;}
+    .btn-primary{display:inline-flex;align-items:center;gap:8px;background:#B8232F;color:#fff;padding:14px 32px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:600;text-decoration:none;border:none;cursor:pointer;box-shadow:0 4px 16px rgba(184,35,47,0.3);transition:transform 0.2s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.2s ease;}
+    .btn-primary:hover{background:#D42535;transform:translateY(-2px);}
+    .section-tag{font-family:'DM Sans',sans-serif;font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:#B8232F;font-weight:600;}
+    .tray-card{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 2px 8px rgba(184,35,47,0.06),0 8px 32px rgba(28,6,8,0.08);transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.3s ease;}
+    .tray-card:hover{transform:translateY(-6px);box-shadow:0 6px 20px rgba(184,35,47,0.12),0 16px 48px rgba(28,6,8,0.1);}
+    .tray-card img{width:100%;height:240px;object-fit:cover;display:block;}
+    .flavor-tag{display:inline-block;background:rgba(184,35,47,0.08);color:#B8232F;padding:4px 12px;border-radius:100px;font-size:0.75rem;font-weight:600;border:1px solid rgba(184,35,47,0.15);}
+    .price-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(184,35,47,0.08);}
+    .price-row:last-child{border-bottom:none;}
+    .price-amount{font-weight:700;color:#B8232F;font-size:0.95rem;}
+    footer{background:#1C0608;color:#FAF3EE;}#mobile-menu{display:none;}
+  </style>
+</head>
+<body>
+  <nav id="navbar" style="padding:16px 24px;">
+    <div style="max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;">
+      <a href="index.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+        <img src="images/logo.jpg" alt="The Dessert Chapter" style="width:54px;height:54px;border-radius:50%;object-fit:cover;flex-shrink:0;box-shadow:0 2px 12px rgba(184,35,47,0.4);" />
+        <div>
+          <div id="nav-logo-text" style="font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:700;color:#FDF9F6;line-height:1.1;">The Dessert Chapter</div>
+          <div style="font-size:0.6rem;color:rgba(196,151,58,0.9);letter-spacing:0.12em;text-transform:uppercase;font-weight:500;">est. 2025 · Ottawa, CA</div>
+        </div>
+      </a>
+      <div id="desktop-nav" style="display:flex;align-items:center;gap:22px;" class="hidden lg:flex">
+        <a href="milk-cake-bento.html" class="nav-link">Milk Cake</a>
+        <a href="brownies.html" class="nav-link">Brownies</a>
+        <a href="cream-buns.html" class="nav-link">Cinnamon Buns</a>
+        <a href="build-your-dessert-chapter.html" class="nav-link">Build Your Chapter</a>
+        <a href="catering.html" class="nav-link" style="color:#B8232F;">Catering</a>
+        <a href="misc-items.html" class="nav-link">Misc Items</a>
+        <a href="faq.html" class="nav-link">FAQ</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="gallery.html" class="nav-link">Gallery</a>
+        <a href="build-your-cake-chapter.html" class="btn-primary" style="padding:10px 22px;font-size:0.78rem;">Order a Cake</a>
+      </div>
+      <button id="menu-toggle" style="display:flex;flex-direction:column;gap:6px;padding:8px;background:none;border:none;cursor:pointer;" class="lg:hidden">
+        <span class="nav-bar" style="display:block;width:22px;height:2px;background:#FDF9F6;border-radius:2px;"></span>
+        <span class="nav-bar" style="display:block;width:22px;height:2px;background:#FDF9F6;border-radius:2px;"></span>
+        <span class="nav-bar" style="display:block;width:22px;height:2px;background:#FDF9F6;border-radius:2px;"></span>
+      </button>
+    </div>
+        <div id="mobile-menu" style="flex-direction:column;gap:4px;padding:16px;background:#fff;border-radius:16px;margin-top:8px;box-shadow:0 8px 32px rgba(28,6,8,0.12);">
+      <a href="index.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">← Home</a>
+      <a href="milk-cake-bento.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Milk Cake Bento</a>
+      <a href="brownies.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Brownies</a>
+      <a href="cream-buns.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Cream Buns</a>
+      <a href="build-your-dessert-chapter.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Build Your Chapter</a>
+      <a href="misc-items.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Misc Items</a>
+      <a href="catering.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#B8232F;text-decoration:none;border-radius:8px;background:rgba(184,35,47,0.06);">Catering</a>
+      <a href="faq.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">FAQ</a>
+      <a href="about.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">About</a>
+      <a href="gallery.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Gallery</a>
+      <a href="build-your-cake-chapter.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:600;color:#B8232F;text-decoration:none;border-radius:8px;border:1.5px solid rgba(184,35,47,0.3);margin-top:4px;text-align:center;">Order a Cake</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div style="min-height:60vh;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;">
+    <div style="position:absolute;inset:0;"><img src="images/2026_02_03_Edible_0564.jpg" alt="Catering" style="width:100%;height:100%;object-fit:cover;"/></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(28,6,8,0.82) 0%,rgba(184,35,47,0.5) 50%,rgba(28,6,8,0.85) 100%);"></div>
+    <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(184,35,47,0.2) 0%,transparent 70%);pointer-events:none;"></div>
+    <div style="position:relative;z-index:2;text-align:center;padding:160px 24px 80px;">
+      <p class="section-tag" style="color:rgba(196,151,58,0.9);margin-bottom:12px;">Events & Gatherings</p>
+      <h1 style="font-size:clamp(2.5rem,6vw,5rem);font-weight:700;color:#FDF9F6;letter-spacing:-0.03em;margin-bottom:16px;">Sweet<br/><em style="color:#F5A5AF;">Catering</em></h1>
+      <p style="color:rgba(255,255,255,0.8);max-width:520px;margin:0 auto;font-size:1rem;line-height:1.8;">From intimate family gatherings to large corporate celebrations — we bring our handcrafted desserts to your event with party trays made fresh for every occasion.</p>
+    </div>
+  </div>
+
+  <!-- OCCASIONS -->
+  <section style="background:#FAF3EE;padding:72px 24px;">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div style="text-align:center;margin-bottom:48px;">
+        <p class="section-tag" style="margin-bottom:10px;">Perfect For</p>
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;color:#1C0608;letter-spacing:-0.02em;">Every Chapter of Celebration</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px;">
+        <div style="background:#fff;border-radius:16px;padding:24px 16px;text-align:center;box-shadow:0 2px 8px rgba(184,35,47,0.05);border:1px solid rgba(184,35,47,0.08);">
+          <div style="font-size:2rem;margin-bottom:10px;">🎉</div>
+          <div style="font-family:'Playfair Display',serif;font-size:0.9rem;font-weight:600;color:#1C0608;">Birthdays</div>
+        </div>
+        <div style="background:#fff;border-radius:16px;padding:24px 16px;text-align:center;box-shadow:0 2px 8px rgba(184,35,47,0.05);border:1px solid rgba(184,35,47,0.08);">
+          <div style="font-size:2rem;margin-bottom:10px;">💍</div>
+          <div style="font-family:'Playfair Display',serif;font-size:0.9rem;font-weight:600;color:#1C0608;">Weddings</div>
+        </div>
+        <div style="background:#fff;border-radius:16px;padding:24px 16px;text-align:center;box-shadow:0 2px 8px rgba(184,35,47,0.05);border:1px solid rgba(184,35,47,0.08);">
+          <div style="font-size:2rem;margin-bottom:10px;">👶</div>
+          <div style="font-family:'Playfair Display',serif;font-size:0.9rem;font-weight:600;color:#1C0608;">Baby Showers</div>
+        </div>
+        <div style="background:#fff;border-radius:16px;padding:24px 16px;text-align:center;box-shadow:0 2px 8px rgba(184,35,47,0.05);border:1px solid rgba(184,35,47,0.08);">
+          <div style="font-size:2rem;margin-bottom:10px;">🌙</div>
+          <div style="font-family:'Playfair Display',serif;font-size:0.9rem;font-weight:600;color:#1C0608;">Eid Celebrations</div>
+        </div>
+        <div style="background:#fff;border-radius:16px;padding:24px 16px;text-align:center;box-shadow:0 2px 8px rgba(184,35,47,0.05);border:1px solid rgba(184,35,47,0.08);">
+          <div style="font-size:2rem;margin-bottom:10px;">🎓</div>
+          <div style="font-family:'Playfair Display',serif;font-size:0.9rem;font-weight:600;color:#1C0608;">Graduations</div>
+        </div>
+        <div style="background:#fff;border-radius:16px;padding:24px 16px;text-align:center;box-shadow:0 2px 8px rgba(184,35,47,0.05);border:1px solid rgba(184,35,47,0.08);">
+          <div style="font-size:2rem;margin-bottom:10px;">🏢</div>
+          <div style="font-family:'Playfair Display',serif;font-size:0.9rem;font-weight:600;color:#1C0608;">Corporate Events</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTY TRAYS MENU -->
+  <section style="padding:80px 24px 100px;background:#FDF9F6;">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div style="text-align:center;margin-bottom:60px;">
+        <p class="section-tag" style="margin-bottom:10px;">Party Tray Pricing</p>
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;color:#1C0608;letter-spacing:-0.02em;margin-bottom:12px;">Feed a Crowd, Beautifully</h2>
+        <p style="color:#5A2428;font-size:0.9rem;max-width:480px;margin:0 auto;line-height:1.7;">All party trays serve 12 people. Mini trays serve 6. Minimum order quantities apply. Orders must be placed at least 48 hours in advance.</p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:28px;">
+
+        <!-- Milk Cakes -->
+        <div class="tray-card">
+          <img src="images/2026_02_03_Edible_0302.jpg" alt="Milk Cake Party Tray" />
+          <div style="padding:24px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+              <h3 style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:#1C0608;">Milk Cake Trays</h3>
+              <span style="font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:#B8232F;font-weight:600;">Serves 6 or 12</span>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;">
+              <span class="flavor-tag">Saffron</span>
+              <span class="flavor-tag">Biscoff</span>
+              <span class="flavor-tag">Coconut</span>
+              <span class="flavor-tag">Strawberry Cream</span>
+            </div>
+            <div style="background:#FDF9F6;border-radius:12px;padding:16px;">
+              <div class="price-row">
+                <span style="font-size:0.88rem;color:#1C0608;">Mini Party Cake Shot (each)</span>
+                <span class="price-amount">$5.00</span>
+              </div>
+              <div class="price-row">
+                <span style="font-size:0.88rem;color:#1C0608;">Single Party Cake Tub (each)</span>
+                <span class="price-amount">$8.50</span>
+              </div>
+              <div class="price-row">
+                <span style="font-size:0.88rem;color:#1C0608;font-weight:600;">Party Cake Tray (serves 12)</span>
+                <span class="price-amount">$65.00</span>
+              </div>
+            </div>
+            <p style="font-size:0.75rem;color:#8B3A3A;margin-top:10px;">Min. order: 6 individual / 1 tray</p>
+          </div>
+        </div>
+
+        <!-- Cinnamon Buns -->
+        <div class="tray-card">
+          <img src="images/2026_02_03_Edible_0564.jpg" alt="Cinnamon Bun Party Tray" />
+          <div style="padding:24px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+              <h3 style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:#1C0608;">Cinnamon Bun Trays</h3>
+              <span style="font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:#B8232F;font-weight:600;">Serves 6 or 12</span>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;">
+              <span class="flavor-tag">Classic Cream Cheese</span>
+              <span class="flavor-tag">Chai Caramel</span>
+              <span class="flavor-tag">Biscoff</span>
+            </div>
+            <div style="background:#FDF9F6;border-radius:12px;padding:16px;">
+              <div class="price-row">
+                <span style="font-size:0.88rem;color:#1C0608;">Classic (single / mini tray / party tray)</span>
+                <span class="price-amount">$6.50 / $40 / $72</span>
+              </div>
+              <div class="price-row">
+                <span style="font-size:0.88rem;color:#1C0608;">Chai Caramel (single / mini / party)</span>
+                <span class="price-amount">$7.50 / $48 / $85</span>
+              </div>
+              <div class="price-row">
+                <span style="font-size:0.88rem;color:#1C0608;font-weight:600;">Biscoff (single / mini / party)</span>
+                <span class="price-amount">$8.50 / $54 / $96</span>
+              </div>
+            </div>
+            <p style="font-size:0.75rem;color:#8B3A3A;margin-top:10px;">Min. order: 6 single / 1 tray</p>
+          </div>
+        </div>
+
+        <!-- Brownies -->
+        <div class="tray-card">
+          <img src="images/2026_02_03_Edible_0027.jpg" alt="Brownie Party Tray" />
+          <div style="padding:24px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+              <h3 style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:#1C0608;">Brownie Trays</h3>
+              <span style="font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:#B8232F;font-weight:600;">Serves 12</span>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;">
+              <span class="flavor-tag">Red Velvet Nutella</span>
+              <span class="flavor-tag">Biscoff Crunch</span>
+              <span class="flavor-tag">Pistachio Crunch</span>
+            </div>
+            <div style="background:#FDF9F6;border-radius:12px;padding:16px;">
+              <div class="price-row">
+                <span style="font-size:0.88rem;color:#1C0608;">Single Serve (each)</span>
+                <span class="price-amount">$3.50</span>
+              </div>
+              <div class="price-row">
+                <span style="font-size:0.88rem;color:#1C0608;">Mini Tub (Nutella / Red Velvet)</span>
+                <span class="price-amount">$5.00</span>
+              </div>
+              <div class="price-row">
+                <span style="font-size:0.88rem;color:#1C0608;">Mini Tub (Biscoff / Pistachio)</span>
+                <span class="price-amount">$5.50</span>
+              </div>
+              <div class="price-row">
+                <span style="font-size:0.88rem;color:#1C0608;font-weight:600;">Party Tray — Classic Nutella</span>
+                <span class="price-amount">$50.00</span>
+              </div>
+              <div class="price-row">
+                <span style="font-size:0.88rem;color:#1C0608;font-weight:600;">Party Tray — Red Velvet</span>
+                <span class="price-amount">$55.00</span>
+              </div>
+              <div class="price-row">
+                <span style="font-size:0.88rem;color:#1C0608;font-weight:600;">Party Tray — Biscoff / Pistachio</span>
+                <span class="price-amount">$60.00</span>
+              </div>
+            </div>
+            <p style="font-size:0.75rem;color:#8B3A3A;margin-top:10px;">Min. order: 6 single / 12 mini tubs / 1 tray</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Note about custom trays -->
+      <div style="background:linear-gradient(135deg,rgba(184,35,47,0.06),rgba(184,35,47,0.04));border:1px solid rgba(184,35,47,0.15);border-radius:16px;padding:28px;margin-top:40px;display:flex;align-items:flex-start;gap:16px;">
+        <span style="font-size:1.5rem;flex-shrink:0;">💬</span>
+        <div>
+          <p style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:#1C0608;margin-bottom:6px;">Custom Mixed Trays Available</p>
+          <p style="font-size:0.85rem;color:#5A2428;line-height:1.7;margin:0;">Want a mix of flavours or a combination of different desserts on one tray? We accommodate custom requests — just let us know when ordering. All catering orders must be placed at least 48 hours in advance.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section style="background:#1C0608;padding:80px 24px;">
+    <div style="max-width:900px;margin:0 auto;text-align:center;">
+      <p class="section-tag" style="color:rgba(196,151,58,0.9);margin-bottom:12px;">How to Book</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:700;color:#FDF9F6;letter-spacing:-0.02em;margin-bottom:48px;">Simple 3-Step Process</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:32px;margin-bottom:48px;">
+        <div style="text-align:center;">
+          <div style="width:56px;height:56px;border-radius:50%;background:#B8232F;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;box-shadow:0 4px 16px rgba(184,35,47,0.4);">
+            <span style="color:#fff;font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;">1</span>
+          </div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;color:#FDF9F6;margin-bottom:8px;">Reach Out</h3>
+          <p style="color:rgba(250,243,238,0.65);font-size:0.85rem;line-height:1.7;">Email or DM us on Instagram with your event date, number of guests, and dessert preferences.</p>
+        </div>
+        <div style="text-align:center;">
+          <div style="width:56px;height:56px;border-radius:50%;background:#B8232F;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;box-shadow:0 4px 16px rgba(184,35,47,0.4);">
+            <span style="color:#fff;font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;">2</span>
+          </div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;color:#FDF9F6;margin-bottom:8px;">Confirm & Pay</h3>
+          <p style="color:rgba(250,243,238,0.65);font-size:0.85rem;line-height:1.7;">We'll confirm availability and send your invoice. Full payment is required to secure the order.</p>
+        </div>
+        <div style="text-align:center;">
+          <div style="width:56px;height:56px;border-radius:50%;background:#B8232F;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;box-shadow:0 4px 16px rgba(184,35,47,0.4);">
+            <span style="color:#fff;font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;">3</span>
+          </div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;color:#FDF9F6;margin-bottom:8px;">Enjoy!</h3>
+          <p style="color:rgba(250,243,238,0.65);font-size:0.85rem;line-height:1.7;">Pick up your freshly made trays or have them delivered (within 10km, fee applies).</p>
+        </div>
+      </div>
+
+      <!-- Payment info -->
+      <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:24px 32px;margin-bottom:36px;display:flex;flex-wrap:wrap;justify-content:center;gap:24px;">
+        <div style="text-align:center;">
+          <div style="font-size:1.2rem;margin-bottom:6px;">💳</div>
+          <div style="font-size:0.8rem;color:rgba(250,243,238,0.7);">Cash · e-Transfer · Card</div>
+        </div>
+        <div style="width:1px;background:rgba(255,255,255,0.1);"></div>
+        <div style="text-align:center;">
+          <div style="font-size:1.2rem;margin-bottom:6px;">📅</div>
+          <div style="font-size:0.8rem;color:rgba(250,243,238,0.7);">48hr advance notice required</div>
+        </div>
+        <div style="width:1px;background:rgba(255,255,255,0.1);"></div>
+        <div style="text-align:center;">
+          <div style="font-size:1.2rem;margin-bottom:6px;">🚗</div>
+          <div style="font-size:0.8rem;color:rgba(250,243,238,0.7);">Delivery within 10km (fee applies)</div>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;">
+        <a href="mailto:thedessertchapter2025@gmail.com" class="btn-primary">Email to Book</a>
+        <a href="https://instagram.com/thedessertchapter" target="_blank" rel="noopener"
+          style="display:inline-flex;align-items:center;background:transparent;color:#fff;padding:14px 28px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:700;text-decoration:none;border:2px solid rgba(255,255,255,0.4);transition:transform 0.2s ease;"
+          onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">DM on Instagram</a>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background:#1C0608;color:#FAF3EE;padding:60px 24px 32px;border-top:1px solid rgba(255,255,255,0.06);">
+    <div style="max-width:1200px;margin:0 auto;text-align:center;">
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:600;color:#FDF9F6;margin-bottom:8px;">Let us be in your chapters of life!</h3>
+      <p style="color:rgba(250,243,238,0.6);font-size:0.85rem;margin-bottom:24px;">thedessertchapter2025@gmail.com · @thedessertchapter · Ottawa, Canada</p>
+      <div style="display:flex;justify-content:center;gap:20px;flex-wrap:wrap;font-size:0.82rem;">
+        <a href="index.html" style="color:rgba(250,243,238,0.6);text-decoration:none;">Home</a>
+        <a href="gallery.html" style="color:rgba(250,243,238,0.6);text-decoration:none;">Gallery</a>
+        <a href="faq.html" style="color:rgba(250,243,238,0.6);text-decoration:none;">FAQ</a>
+        <a href="build-your-cake-chapter.html" style="color:rgba(250,243,238,0.6);text-decoration:none;">Order a Cake</a>
+      </div>
+      <p style="font-size:0.72rem;color:rgba(250,243,238,0.3);margin-top:32px;">© 2025 The Dessert Chapter. All rights reserved.</p>
+    </div>
+  </footer>
+  <script>
+    const navbar = document.getElementById('navbar');
+    function updateNav() {
+      var scrolled = window.scrollY > 60;
+      navbar.classList.toggle('nav-scrolled', scrolled);
+      var logoText = document.getElementById('nav-logo-text');
+      if (logoText) logoText.style.color = scrolled ? '#1C0608' : '#FDF9F6';
+      var bars = document.querySelectorAll('#navbar .nav-bar');
+      bars.forEach(function(b){ b.style.background = scrolled ? '#1C0608' : '#FDF9F6'; });
+    }
+    window.addEventListener('scroll', updateNav);
+    updateNav();
+    const toggle = document.getElementById('menu-toggle'); const menu = document.getElementById('mobile-menu'); let open = false;
+    toggle.addEventListener('click', () => { open = !open; menu.style.display = open ? 'flex' : 'none'; });
+  </script>
+</body>
+</html>
