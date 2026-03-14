@@ -110,10 +110,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const cartLink = document.createElement('a');
     cartLink.href = 'checkout.html';
     cartLink.style.cssText = 'position:relative;display:flex;align-items:center;gap:6px;color:rgba(255,255,255,0.88);text-decoration:none;padding:8px 16px;border:1px solid rgba(255,255,255,0.25);border-radius:100px;font-family:\'DM Sans\',sans-serif;font-size:0.82rem;font-weight:600;letter-spacing:0.04em;transition:background 0.2s,border-color 0.2s;';
-    cartLink.innerHTML = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>Order<span class="cart-badge" style="display:none;position:absolute;top:-6px;right:-6px;background:#B8232F;color:#fff;border-radius:50%;width:18px;height:18px;font-size:0.65rem;font-weight:700;align-items:center;justify-content:center;">0</span>`;
-    cartLink.addEventListener('mouseover', () => { cartLink.style.background = 'rgba(255,255,255,0.1)'; cartLink.style.borderColor = 'rgba(255,255,255,0.5)'; });
-    cartLink.addEventListener('mouseout', () => { cartLink.style.background = ''; cartLink.style.borderColor = 'rgba(255,255,255,0.25)'; });
+    cartLink.innerHTML = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>Cart<span class="cart-badge" style="display:none;position:absolute;top:-6px;right:-6px;background:#B8232F;color:#fff;border-radius:50%;width:18px;height:18px;font-size:0.65rem;font-weight:700;align-items:center;justify-content:center;">0</span>`;
+    cartLink.id = 'nav-cart-btn';
+    cartLink.addEventListener('mouseover', () => { cartLink.style.background = 'rgba(255,255,255,0.1)'; });
+    cartLink.addEventListener('mouseout', () => { cartLink.style.background = ''; });
     desktopNav.appendChild(cartLink);
+
+    // Update cart button color when nav scrolls (matches updateNav() on each page)
+    const navbar = document.getElementById('navbar');
+    if (navbar) {
+      new MutationObserver(() => {
+        const scrolled = navbar.classList.contains('nav-scrolled');
+        cartLink.style.color = scrolled ? '#1C0608' : 'rgba(255,255,255,0.88)';
+        cartLink.style.borderColor = scrolled ? 'rgba(28,6,8,0.25)' : 'rgba(255,255,255,0.25)';
+      }).observe(navbar, { attributes: true, attributeFilter: ['class'] });
+    }
   }
   updateCartBadge();
 });
