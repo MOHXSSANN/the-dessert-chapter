@@ -91,17 +91,26 @@
         <div style="background:#fff;border-radius:14px;padding:18px 16px;text-align:center;box-shadow:0 2px 8px rgba(184,35,47,0.06),0 8px 24px rgba(28,6,8,0.07);">
           <p style="font-family:'Playfair Display',serif;font-size:0.9rem;font-weight:600;color:#1C0608;margin-bottom:4px;">Single Brownie</p>
           <p style="font-size:1.5rem;font-weight:700;color:#B8232F;margin-bottom:2px;">$3.50</p>
-          <p style="font-size:0.73rem;color:#5A2428;">each · min. 6</p>
+          <p style="font-size:0.73rem;color:#5A2428;margin-bottom:10px;">each · min. 6</p>
+          <button onclick="TDC.addToCart('brownie-regular',6)" style="background:#B8232F;color:#fff;border:none;border-radius:100px;padding:7px 16px;font-size:0.75rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.2s;" onmouseover="this.style.background='#D42535'" onmouseout="this.style.background='#B8232F'">+ Add 6 to Cart</button>
         </div>
         <div style="background:#fff;border-radius:14px;padding:18px 16px;text-align:center;box-shadow:0 2px 8px rgba(184,35,47,0.06),0 8px 24px rgba(28,6,8,0.07);">
-          <p style="font-family:'Playfair Display',serif;font-size:0.9rem;font-weight:600;color:#1C0608;margin-bottom:4px;">Mini Tub</p>
-          <p style="font-size:1.5rem;font-weight:700;color:#B8232F;margin-bottom:2px;">$5 – $5.50</p>
-          <p style="font-size:0.73rem;color:#5A2428;">Nutella/RV $5 · Biscoff/Pist. $5.50</p>
+          <p style="font-family:'Playfair Display',serif;font-size:0.9rem;font-weight:600;color:#1C0608;margin-bottom:4px;">Mini Tub (Nutella/RV)</p>
+          <p style="font-size:1.5rem;font-weight:700;color:#B8232F;margin-bottom:2px;">$5.00</p>
+          <p style="font-size:0.73rem;color:#5A2428;margin-bottom:10px;">Nutella or Red Velvet</p>
+          <button onclick="TDC.addToCart('brownie-nutella-rv',1)" style="background:#B8232F;color:#fff;border:none;border-radius:100px;padding:7px 16px;font-size:0.75rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.2s;" onmouseover="this.style.background='#D42535'" onmouseout="this.style.background='#B8232F'">+ Add to Cart</button>
+        </div>
+        <div style="background:#fff;border-radius:14px;padding:18px 16px;text-align:center;box-shadow:0 2px 8px rgba(184,35,47,0.06),0 8px 24px rgba(28,6,8,0.07);">
+          <p style="font-family:'Playfair Display',serif;font-size:0.9rem;font-weight:600;color:#1C0608;margin-bottom:4px;">Mini Tub (Biscoff/Pist.)</p>
+          <p style="font-size:1.5rem;font-weight:700;color:#B8232F;margin-bottom:2px;">$5.50</p>
+          <p style="font-size:0.73rem;color:#5A2428;margin-bottom:10px;">Biscoff or Pistachio</p>
+          <button onclick="TDC.addToCart('brownie-biscoff',1)" style="background:#B8232F;color:#fff;border:none;border-radius:100px;padding:7px 16px;font-size:0.75rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.2s;" onmouseover="this.style.background='#D42535'" onmouseout="this.style.background='#B8232F'">+ Add to Cart</button>
         </div>
         <div style="background:linear-gradient(135deg,#B8232F,#8B0016);border-radius:14px;padding:18px 16px;text-align:center;box-shadow:0 4px 16px rgba(184,35,47,0.3);">
-          <p style="font-family:'Playfair Display',serif;font-size:0.9rem;font-weight:600;color:#FDF9F6;margin-bottom:4px;">Party Tray</p>
-          <p style="font-size:1.5rem;font-weight:700;color:#fff;margin-bottom:2px;">$50 – $60</p>
-          <p style="font-size:0.73rem;color:rgba(255,255,255,0.8);">Nutella $50 · RV $55 · Biscoff/Pist. $60</p>
+          <p style="font-family:'Playfair Display',serif;font-size:0.9rem;font-weight:600;color:#FDF9F6;margin-bottom:4px;">Brownie Box (6 pcs)</p>
+          <p style="font-size:1.5rem;font-weight:700;color:#fff;margin-bottom:2px;">$8.50</p>
+          <p style="font-size:0.73rem;color:rgba(255,255,255,0.8);margin-bottom:10px;">Assorted · gift-ready</p>
+          <button onclick="TDC.addToCart('brownie-box-6',1)" style="background:rgba(255,255,255,0.2);color:#fff;border:1px solid rgba(255,255,255,0.5);border-radius:100px;padding:7px 16px;font-size:0.75rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.3)'" onmouseout="this.style.background='rgba(255,255,255,0.2)'">+ Add to Cart</button>
         </div>
       </div>
 
@@ -198,5 +207,6 @@
     let open = false;
     toggle.addEventListener('click', () => { open = !open; menu.style.display = open ? 'flex' : 'none'; });
   </script>
+  <script src="cart.js"></script>
 </body>
 </html>

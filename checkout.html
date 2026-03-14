@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout – The Dessert Chapter</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    *{box-sizing:border-box;}body{font-family:'DM Sans',system-ui,sans-serif;background:#FAF3EE;color:#1C0608;margin:0;}h1,h2,h3{font-family:'Playfair Display',Georgia,serif;}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:background 0.3s ease;}
+    .nav-scrolled{background:rgba(253,249,246,0.97);backdrop-filter:blur(12px);box-shadow:0 1px 0 rgba(184,35,47,0.12);}
+    .nav-link{position:relative;font-size:0.8rem;letter-spacing:0.06em;font-weight:500;color:rgba(255,255,255,0.88);text-decoration:none;padding:4px 0;}
+    .nav-link::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1.5px;background:#B8232F;transition:width 0.25s ease;}
+    .nav-link:hover::after{width:100%;}.nav-link:hover{color:#F5A5AF;}
+    .nav-scrolled .nav-link{color:#1C0608;}.nav-scrolled .nav-link:hover{color:#B8232F;}
+    .btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#B8232F;color:#fff;padding:16px 36px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:600;letter-spacing:0.05em;text-decoration:none;border:none;cursor:pointer;box-shadow:0 4px 16px rgba(184,35,47,0.35);transition:transform 0.2s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.2s ease;width:100%;}
+    .btn-primary:hover:not(:disabled){background:#D42535;transform:translateY(-2px);box-shadow:0 8px 24px rgba(184,35,47,0.45);}
+    .btn-primary:disabled{opacity:0.55;cursor:not-allowed;transform:none;}
+    .section-tag{font-family:'DM Sans',sans-serif;font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:#B8232F;font-weight:600;}
+    .card{background:#fff;border-radius:20px;padding:32px;box-shadow:0 2px 8px rgba(184,35,47,0.06),0 8px 32px rgba(28,6,8,0.08);}
+    .form-label{display:block;font-size:0.78rem;font-weight:600;letter-spacing:0.05em;color:#5A2428;margin-bottom:6px;font-family:'DM Sans',sans-serif;}
+    .form-input{width:100%;padding:12px 16px;border:1.5px solid rgba(184,35,47,0.18);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:0.9rem;color:#1C0608;background:#FDF9F6;outline:none;transition:border-color 0.2s;}
+    .form-input:focus{border-color:#B8232F;box-shadow:0 0 0 3px rgba(184,35,47,0.1);}
+    .form-input::placeholder{color:#B8A09A;}
+    .qty-btn{width:32px;height:32px;border-radius:50%;border:1.5px solid rgba(184,35,47,0.3);background:transparent;color:#B8232F;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s,border-color 0.2s;}
+    .qty-btn:hover{background:#B8232F;color:#fff;border-color:#B8232F;}
+    /* Square card form */
+    #square-card{min-height:90px;background:#FDF9F6;border:1.5px solid rgba(184,35,47,0.18);border-radius:10px;padding:12px 16px;}
+    #square-card.sq-focused{border-color:#B8232F;box-shadow:0 0 0 3px rgba(184,35,47,0.1);}
+    .sq-card-message{font-size:0.78rem;color:#B8232F;margin-top:8px;}
+    footer{background:#1C0608;color:#FAF3EE;}
+    #mobile-menu{display:none;}
+    @media(max-width:900px){.checkout-grid{grid-template-columns:1fr!important;}}
+    @media(max-width:600px){.card{padding:20px;}}
+    /* Success overlay */
+    #order-success{display:none;position:fixed;inset:0;background:rgba(28,6,8,0.92);z-index:200;align-items:center;justify-content:center;padding:24px;}
+    .success-box{background:#FDF9F6;border-radius:28px;padding:48px 40px;text-align:center;max-width:480px;width:100%;box-shadow:0 32px 96px rgba(28,6,8,0.5);}
+    /* Loading spinner */
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .spinner{width:18px;height:18px;border:2.5px solid rgba(255,255,255,0.4);border-top-color:#fff;border-radius:50%;animation:spin 0.7s linear infinite;flex-shrink:0;}
+  </style>
+</head>
+<body>
+
+  <!-- ═══ NAV ═══════════════════════════════════════════════════════════════ -->
+  <nav id="navbar" style="padding:16px 24px;">
+    <div style="max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;">
+      <a href="index.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+        <img src="images/logo.jpg" alt="The Dessert Chapter" style="width:54px;height:54px;border-radius:50%;object-fit:cover;flex-shrink:0;box-shadow:0 2px 12px rgba(184,35,47,0.4);" />
+        <div>
+          <div id="nav-logo-text" style="font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:700;color:#FDF9F6;line-height:1.1;">The Dessert Chapter</div>
+          <div id="nav-logo-sub" style="font-size:0.6rem;color:rgba(196,151,58,0.9);letter-spacing:0.12em;text-transform:uppercase;font-weight:500;">est. 2025 · Ottawa, CA</div>
+        </div>
+      </a>
+      <div id="desktop-nav" style="display:flex;align-items:center;gap:24px;" class="hidden lg:flex">
+        <a href="milk-cake-bento.html" class="nav-link">Milk Cake Bento</a>
+        <a href="brownies.html" class="nav-link">Brownies</a>
+        <a href="cream-buns.html" class="nav-link">Cream Buns</a>
+        <a href="build-your-dessert-chapter.html" class="nav-link">Build Your Chapter</a>
+        <a href="catering.html" class="nav-link">Catering</a>
+        <a href="misc-items.html" class="nav-link">Misc Items</a>
+        <a href="faq.html" class="nav-link">FAQ</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="gallery.html" class="nav-link">Gallery</a>
+      </div>
+      <button id="menu-toggle" style="display:flex;flex-direction:column;gap:6px;padding:8px;background:none;border:none;cursor:pointer;" class="lg:hidden">
+        <span class="nav-bar" style="display:block;width:22px;height:2px;background:#FDF9F6;border-radius:2px;"></span>
+        <span class="nav-bar" style="display:block;width:22px;height:2px;background:#FDF9F6;border-radius:2px;"></span>
+        <span class="nav-bar" style="display:block;width:22px;height:2px;background:#FDF9F6;border-radius:2px;"></span>
+      </button>
+    </div>
+    <div id="mobile-menu" style="flex-direction:column;gap:4px;padding:16px;background:#fff;border-radius:16px;margin-top:8px;box-shadow:0 8px 32px rgba(28,6,8,0.12);">
+      <a href="index.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">← Home</a>
+      <a href="milk-cake-bento.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Milk Cake Bento</a>
+      <a href="brownies.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Brownies</a>
+      <a href="cream-buns.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Cream Buns</a>
+      <a href="catering.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Catering</a>
+      <a href="faq.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">FAQ</a>
+      <a href="about.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">About</a>
+    </div>
+  </nav>
+
+  <!-- ═══ HERO ═══════════════════════════════════════════════════════════════ -->
+  <div style="background:linear-gradient(135deg,#1C0608,#3A0C10,#1C0608);padding:160px 24px 72px;text-align:center;position:relative;overflow:hidden;">
+    <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(184,35,47,0.25) 0%,transparent 70%);pointer-events:none;"></div>
+    <div style="position:relative;z-index:1;">
+      <p class="section-tag" style="color:rgba(196,151,58,0.9);margin-bottom:12px;">Almost There</p>
+      <h1 style="font-size:clamp(2.2rem,5vw,3.8rem);font-weight:700;color:#FDF9F6;letter-spacing:-0.03em;margin-bottom:14px;">Your <em style="color:#F5A5AF;">Order</em></h1>
+      <p style="color:rgba(255,255,255,0.6);font-size:0.92rem;max-width:400px;margin:0 auto;line-height:1.7;">Secure checkout · All prices in CAD · Powered by Square</p>
+    </div>
+  </div>
+
+  <!-- ═══ EMPTY CART STATE ══════════════════════════════════════════════════ -->
+  <div id="empty-cart" style="display:none;padding:80px 24px;text-align:center;">
+    <div style="font-size:3rem;margin-bottom:20px;">🛒</div>
+    <h2 style="font-family:'Playfair Display',serif;font-size:1.8rem;color:#1C0608;margin-bottom:12px;">Your cart is empty</h2>
+    <p style="color:#5A2428;margin-bottom:32px;font-size:0.95rem;">Add some desserts and come back!</p>
+    <a href="index.html" class="btn-primary" style="width:auto;display:inline-flex;">Browse Our Menu</a>
+  </div>
+
+  <!-- ═══ CHECKOUT GRID ════════════════════════════════════════════════════ -->
+  <section id="checkout-section" style="padding:48px 24px 120px;">
+    <div style="max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1fr 420px;gap:32px;align-items:start;" class="checkout-grid">
+
+      <!-- LEFT: Cart + Contact Info ─────────────────────────────────────── -->
+      <div style="display:flex;flex-direction:column;gap:28px;">
+
+        <!-- Cart Items -->
+        <div class="card">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
+            <h2 style="font-size:1.3rem;font-weight:700;color:#1C0608;margin:0;">Your Items</h2>
+            <button onclick="if(confirm('Clear cart?')){TDC.clearCart();location.reload();}" style="font-size:0.78rem;color:#B8232F;background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:500;padding:0;">Clear all</button>
+          </div>
+          <div id="cart-items-list" style="display:flex;flex-direction:column;gap:14px;"></div>
+
+          <!-- Add more items -->
+          <div style="margin-top:24px;padding-top:20px;border-top:1px solid rgba(184,35,47,0.1);display:flex;flex-wrap:wrap;gap:8px;">
+            <span style="font-size:0.75rem;color:#5A2428;font-weight:600;width:100%;margin-bottom:4px;">Add more:</span>
+            <a href="brownies.html" style="font-size:0.75rem;padding:6px 14px;border:1px solid rgba(184,35,47,0.25);border-radius:100px;color:#B8232F;text-decoration:none;font-family:'DM Sans',sans-serif;transition:background 0.2s;" onmouseover="this.style.background='rgba(184,35,47,0.06)'" onmouseout="this.style.background=''">Brownies</a>
+            <a href="cream-buns.html" style="font-size:0.75rem;padding:6px 14px;border:1px solid rgba(184,35,47,0.25);border-radius:100px;color:#B8232F;text-decoration:none;font-family:'DM Sans',sans-serif;transition:background 0.2s;" onmouseover="this.style.background='rgba(184,35,47,0.06)'" onmouseout="this.style.background=''">Cream Buns</a>
+            <a href="milk-cake-bento.html" style="font-size:0.75rem;padding:6px 14px;border:1px solid rgba(184,35,47,0.25);border-radius:100px;color:#B8232F;text-decoration:none;font-family:'DM Sans',sans-serif;transition:background 0.2s;" onmouseover="this.style.background='rgba(184,35,47,0.06)'" onmouseout="this.style.background=''">Milk Cake Bento</a>
+          </div>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="card">
+          <h2 style="font-size:1.3rem;font-weight:700;color:#1C0608;margin-bottom:24px;">Contact Details</h2>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+            <div>
+              <label class="form-label" for="buyer-name">Full Name *</label>
+              <input class="form-input" id="buyer-name" type="text" placeholder="Affi" autocomplete="name" required />
+            </div>
+            <div>
+              <label class="form-label" for="buyer-email">Email *</label>
+              <input class="form-input" id="buyer-email" type="email" placeholder="you@email.com" autocomplete="email" required />
+            </div>
+            <div>
+              <label class="form-label" for="buyer-phone">Phone *</label>
+              <input class="form-input" id="buyer-phone" type="tel" placeholder="613-555-0100" autocomplete="tel" required />
+            </div>
+            <div>
+              <label class="form-label" for="delivery-date">Pickup / Delivery Date</label>
+              <input class="form-input" id="delivery-date" type="date" />
+            </div>
+            <div style="grid-column:span 2;">
+              <label class="form-label" for="order-notes">Special Instructions</label>
+              <textarea class="form-input" id="order-notes" rows="3" placeholder="Flavours, allergies, occasion details, custom message on box…" style="resize:vertical;"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Order Summary + Payment ───────────────────────────────────── -->
+      <div style="display:flex;flex-direction:column;gap:24px;position:sticky;top:96px;">
+
+        <!-- Order Summary -->
+        <div class="card">
+          <h2 style="font-size:1.15rem;font-weight:700;color:#1C0608;margin-bottom:20px;">Order Summary</h2>
+          <div id="summary-lines" style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px;"></div>
+          <div style="border-top:1.5px solid rgba(184,35,47,0.15);padding-top:14px;margin-top:4px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+              <span style="font-size:0.82rem;color:#5A2428;">Subtotal</span>
+              <span id="subtotal-val" style="font-size:0.92rem;font-weight:600;color:#1C0608;">$0.00</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+              <span style="font-size:0.82rem;color:#5A2428;">HST (13%)</span>
+              <span id="tax-val" style="font-size:0.92rem;font-weight:600;color:#1C0608;">$0.00</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;padding-top:10px;border-top:1px dashed rgba(184,35,47,0.2);">
+              <span style="font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:#1C0608;">Total</span>
+              <span id="total-val" style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#B8232F;">$0.00</span>
+            </div>
+          </div>
+          <p style="font-size:0.72rem;color:#B8A09A;margin-top:12px;line-height:1.5;">All prices in CAD. After payment, Affi will confirm your order within 24 hours via email or phone.</p>
+        </div>
+
+        <!-- Square Payment -->
+        <div class="card">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+            <h2 style="font-size:1.15rem;font-weight:700;color:#1C0608;margin:0;">Payment</h2>
+            <div style="display:flex;align-items:center;gap:6px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B8A09A" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <span style="font-size:0.7rem;color:#B8A09A;font-weight:500;">SSL Secured · Square</span>
+            </div>
+          </div>
+
+          <!-- Square card form renders here -->
+          <div id="square-card"></div>
+          <div id="payment-status" style="display:none;font-size:0.82rem;color:#B8232F;margin-top:10px;padding:10px 14px;border-radius:8px;background:rgba(184,35,47,0.06);"></div>
+
+          <div style="margin-top:20px;">
+            <button id="pay-btn" class="btn-primary" disabled>
+              <span id="pay-btn-text">Initialising…</span>
+            </button>
+          </div>
+          <div style="display:flex;justify-content:center;gap:14px;margin-top:14px;flex-wrap:wrap;">
+            <img src="https://placehold.co/38x24/FDF9F6/B8A09A?text=VISA" alt="Visa" style="height:20px;border-radius:3px;opacity:0.6;" />
+            <img src="https://placehold.co/38x24/FDF9F6/B8A09A?text=MC" alt="Mastercard" style="height:20px;border-radius:3px;opacity:0.6;" />
+            <img src="https://placehold.co/38x24/FDF9F6/B8A09A?text=AMEX" alt="Amex" style="height:20px;border-radius:3px;opacity:0.6;" />
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SUCCESS OVERLAY ════════════════════════════════════════════════════ -->
+  <div id="order-success">
+    <div class="success-box">
+      <div style="width:72px;height:72px;border-radius:50%;background:rgba(196,151,58,0.12);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:2rem;">🎉</div>
+      <p class="section-tag" style="margin-bottom:10px;">Order Confirmed!</p>
+      <h2 style="font-size:1.8rem;color:#1C0608;margin-bottom:12px;">Your chapter begins!</h2>
+      <p style="color:#5A2428;font-size:0.9rem;line-height:1.7;margin-bottom:8px;">Payment received. <strong>Affi will confirm your order within 24 hours</strong> via the email & phone you provided.</p>
+      <p id="success-receipt" style="font-size:0.8rem;color:#B8A09A;margin-bottom:28px;"></p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
+        <a href="index.html" style="padding:12px 28px;background:#B8232F;color:#fff;border-radius:100px;text-decoration:none;font-size:0.85rem;font-weight:600;font-family:'DM Sans',sans-serif;">← Back Home</a>
+        <a id="receipt-link" href="#" target="_blank" style="display:none;padding:12px 28px;border:1.5px solid rgba(184,35,47,0.3);color:#B8232F;border-radius:100px;text-decoration:none;font-size:0.85rem;font-weight:600;font-family:'DM Sans',sans-serif;">View Receipt</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ FOOTER ══════════════════════════════════════════════════════════ -->
+  <footer style="background:#1C0608;color:#FAF3EE;padding:48px 24px 28px;">
+    <div style="max-width:1200px;margin:0 auto;text-align:center;">
+      <p style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;color:#FDF9F6;margin-bottom:6px;">The Dessert Chapter</p>
+      <p style="color:rgba(250,243,238,0.55);font-size:0.8rem;">thedessertchapter2025@gmail.com · @thedessertchapter · Ottawa, Canada</p>
+    </div>
+  </footer>
+
+  <!-- ═══ SCRIPTS ════════════════════════════════════════════════════════════ -->
+  <script src="cart.js"></script>
+  <script>
+  // ── Nav ──────────────────────────────────────────────────────────────────
+  const navbar = document.getElementById('navbar');
+  const navLogoText = document.getElementById('nav-logo-text');
+  const navLogoSub = document.getElementById('nav-logo-sub');
+  function updateNav() {
+    const scrolled = window.scrollY > 60;
+    navbar.classList.toggle('nav-scrolled', scrolled);
+    if (navLogoText) navLogoText.style.color = scrolled ? '#1C0608' : '#FDF9F6';
+    if (navLogoSub) navLogoSub.style.color = scrolled ? '#B8232F' : 'rgba(196,151,58,0.9)';
+    document.querySelectorAll('#navbar .nav-bar').forEach(b => { b.style.background = scrolled ? '#1C0608' : '#FDF9F6'; });
+  }
+  window.addEventListener('scroll', updateNav); updateNav();
+  document.getElementById('menu-toggle').addEventListener('click', () => {
+    const m = document.getElementById('mobile-menu');
+    m.style.display = m.style.display === 'flex' ? 'none' : 'flex';
+  });
+
+  // ── Render Cart ─────────────────────────────────────────────────────────
+  const TAX_RATE = 0.13;
+  const cart = TDC.getCart();
+
+  if (!cart.items.length) {
+    document.getElementById('empty-cart').style.display = 'block';
+    document.getElementById('checkout-section').style.display = 'none';
+  } else {
+    renderCart();
+    initSquare();
+  }
+
+  function renderCart() {
+    const list = document.getElementById('cart-items-list');
+    const summaryLines = document.getElementById('summary-lines');
+    list.innerHTML = '';
+    summaryLines.innerHTML = '';
+    let subtotal = 0;
+
+    cart.items.forEach(item => {
+      subtotal += item.price * item.qty;
+
+      // Cart item row
+      const row = document.createElement('div');
+      row.style.cssText = 'display:flex;align-items:center;gap:12px;padding:14px;background:#FAF3EE;border-radius:12px;';
+      row.innerHTML = `
+        <div style="flex:1;min-width:0;">
+          <p style="font-weight:600;font-size:0.9rem;color:#1C0608;margin:0 0 2px;">${item.name}</p>
+          <p style="font-size:0.78rem;color:#5A2428;margin:0;">$${item.price.toFixed(2)} each</p>
+          ${item.note ? `<p style="font-size:0.72rem;color:#B8A09A;margin:2px 0 0;font-style:italic;">${item.note}</p>` : ''}
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
+          <button class="qty-btn" onclick="changeQty('${item.id}', ${item.qty - 1})">−</button>
+          <span style="font-size:0.9rem;font-weight:600;min-width:20px;text-align:center;">${item.qty}</span>
+          <button class="qty-btn" onclick="changeQty('${item.id}', ${item.qty + 1})">+</button>
+        </div>
+        <div style="text-align:right;flex-shrink:0;min-width:60px;">
+          <p style="font-weight:700;color:#B8232F;margin:0;font-size:0.95rem;">$${(item.price * item.qty).toFixed(2)}</p>
+          <button onclick="TDC.removeFromCart('${item.id}');location.reload();" style="font-size:0.7rem;color:#B8A09A;background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;padding:0;margin-top:2px;">Remove</button>
+        </div>`;
+      list.appendChild(row);
+
+      // Summary line
+      const sLine = document.createElement('div');
+      sLine.style.cssText = 'display:flex;justify-content:space-between;font-size:0.82rem;color:#5A2428;';
+      sLine.innerHTML = `<span>${item.name} ×${item.qty}</span><span>$${(item.price * item.qty).toFixed(2)}</span>`;
+      summaryLines.appendChild(sLine);
+    });
+
+    const tax = subtotal * TAX_RATE;
+    const total = subtotal + tax;
+    document.getElementById('subtotal-val').textContent = `$${subtotal.toFixed(2)}`;
+    document.getElementById('tax-val').textContent = `$${tax.toFixed(2)}`;
+    document.getElementById('total-val').textContent = `$${total.toFixed(2)}`;
+  }
+
+  function changeQty(id, newQty) {
+    TDC.updateQty(id, newQty);
+    location.reload();
+  }
+
+  // ── Square Initialisation ────────────────────────────────────────────────
+  let squareCard = null;
+
+  async function initSquare() {
+    const payBtn = document.getElementById('pay-btn');
+    const payBtnText = document.getElementById('pay-btn-text');
+    const statusEl = document.getElementById('payment-status');
+
+    try {
+      // Fetch public config from Vercel env
+      const configRes = await fetch('/api/square-config');
+      const config = await configRes.json();
+
+      if (!config.appId || !config.locationId) {
+        statusEl.textContent = '⚠️ Payment not yet configured. Please contact us to order.';
+        statusEl.style.display = 'block';
+        payBtn.style.display = 'none';
+        return;
+      }
+
+      // Load Square SDK dynamically based on environment
+      const sdkUrl = config.environment === 'production'
+        ? 'https://web.squarecdn.com/v1/square.js'
+        : 'https://sandbox.web.squarecdn.com/v1/square.js';
+
+      await loadScript(sdkUrl);
+
+      const payments = window.Square.payments(config.appId, config.locationId);
+      squareCard = await payments.card({
+        style: {
+          '.input-container': { borderRadius: '10px', borderColor: 'rgba(184,35,47,0.18)', backgroundColor: '#FDF9F6' },
+          '.input-container.is-focus': { borderColor: '#B8232F' },
+          '.input-container.is-error': { borderColor: '#B8232F' },
+          '.message-text': { color: '#B8232F' },
+          '.message-icon': { color: '#B8232F' },
+          'input': { color: '#1C0608', fontFamily: 'DM Sans, sans-serif', fontSize: '15px' },
+          '::placeholder': { color: '#B8A09A' },
+        }
+      });
+      await squareCard.attach('#square-card');
+
+      payBtnText.textContent = `Pay $${(TDC.cartTotal() * 1.13).toFixed(2)} CAD`;
+      payBtn.disabled = false;
+
+    } catch (err) {
+      console.error('Square init error:', err);
+      statusEl.textContent = 'Unable to load payment form. Please refresh the page.';
+      statusEl.style.display = 'block';
+    }
+  }
+
+  function loadScript(src) {
+    return new Promise((resolve, reject) => {
+      if (document.querySelector(`script[src="${src}"]`)) { resolve(); return; }
+      const s = document.createElement('script');
+      s.src = src; s.onload = resolve; s.onerror = reject;
+      document.head.appendChild(s);
+    });
+  }
+
+  // ── Pay Button ───────────────────────────────────────────────────────────
+  document.getElementById('pay-btn').addEventListener('click', async () => {
+    const payBtn = document.getElementById('pay-btn');
+    const payBtnText = document.getElementById('pay-btn-text');
+    const statusEl = document.getElementById('payment-status');
+
+    // Validate contact fields
+    const name = document.getElementById('buyer-name').value.trim();
+    const email = document.getElementById('buyer-email').value.trim();
+    const phone = document.getElementById('buyer-phone').value.trim();
+    const deliveryDate = document.getElementById('delivery-date').value;
+    const notes = document.getElementById('order-notes').value.trim();
+
+    if (!name || !email || !phone) {
+      statusEl.textContent = '⚠️ Please fill in your name, email, and phone number.';
+      statusEl.style.display = 'block';
+      statusEl.style.background = 'rgba(184,35,47,0.06)';
+      document.getElementById('buyer-name').focus();
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      statusEl.textContent = '⚠️ Please enter a valid email address.';
+      statusEl.style.display = 'block';
+      return;
+    }
+
+    // Set loading state
+    payBtn.disabled = true;
+    payBtnText.innerHTML = '<span class="spinner"></span> Processing…';
+    statusEl.style.display = 'none';
+
+    try {
+      // Tokenize card
+      const tokenResult = await squareCard.tokenize();
+      if (tokenResult.status !== 'OK') {
+        const errs = tokenResult.errors?.map(e => e.message).join(', ') || 'Card error.';
+        throw new Error(errs);
+      }
+
+      // Send to server
+      const res = await fetch('/api/create-payment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          sourceId: tokenResult.token,
+          cartItems: TDC.getCart().items,
+          buyerInfo: { name, email, phone, deliveryDate, notes },
+        }),
+      });
+      const data = await res.json();
+
+      if (!res.ok || !data.success) throw new Error(data.error || 'Payment failed.');
+
+      // Success!
+      TDC.clearCart();
+      document.getElementById('success-receipt').textContent = `Payment ID: ${data.paymentId}`;
+      if (data.receiptUrl) {
+        const rl = document.getElementById('receipt-link');
+        rl.href = data.receiptUrl;
+        rl.style.display = 'inline-flex';
+      }
+      document.getElementById('order-success').style.display = 'flex';
+
+    } catch (err) {
+      statusEl.textContent = `⚠️ ${err.message}`;
+      statusEl.style.display = 'block';
+      payBtn.disabled = false;
+      const total = (TDC.cartTotal() * 1.13).toFixed(2);
+      payBtnText.textContent = `Pay $${total} CAD`;
+    }
+  });
+  </script>
+</body>
+</html>
