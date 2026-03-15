@@ -44,3 +44,62 @@
 - Do not stop after one screenshot pass
 - Do not use `transition-all`
 - Do not use default Tailwind blue/indigo as primary color
+
+---
+
+# Security Rules
+
+## Never Do
+- Never expose `SQUARE_ACCESS_TOKEN` or any secret env var in frontend HTML, JS, or console logs
+- Never trust amounts or prices sent from the client — always recalculate server-side in `api/create-payment.js`
+- Never commit `.env` files — only `.env.example` with placeholder values
+- Never use `innerHTML` with user-supplied data — use `textContent` or sanitise first
+- Never allow `*` as `ALLOWED_ORIGIN` in production — set it to the actual Vercel domain
+- Never add `eval()`, `document.write()`, or dynamic `<script>` injection
+
+## Always Do
+- All payment logic lives in `api/` serverless functions only — never in the browser
+- Validate and sanitise all user inputs (name, email, phone, notes) before using them
+- Keep `vercel.json` security headers in place: `X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`
+- Use `rel="noopener noreferrer"` on all `target="_blank"` links
+- Use `https://` URLs only — never `http://` for external resources
+
+## Environment Variables
+- Secret vars (prefixed with nothing special): `SQUARE_ACCESS_TOKEN` — server-side only, never in HTML
+- Public vars safe for frontend: `SQUARE_APP_ID`, `SQUARE_LOCATION_ID`, `SQUARE_ENVIRONMENT`
+- All env vars are set in Vercel dashboard → Settings → Environment Variables
+- Local testing: copy `.env.example` to `.env` and fill in sandbox values (`.env` is gitignored)
+
+## Price Catalogue (`api/create-payment.js`)
+- The `PRICES` object is the single source of truth for all prices in cents (CAD)
+- If a product is added to the site, its SKU and price MUST be added here before payments go live
+- Current SKUs must match exactly what `cart.js` sends as `item.id`
+
+---
+
+# Testing Checklist
+
+## Before Every Deploy
+- [ ] Open checkout page — add items to cart, verify correct items and totals show
+- [ ] Submit checkout form with missing fields — confirm validation errors appear
+- [ ] Submit with invalid email — confirm error appears
+- [ ] Test on mobile (375px) — nav hamburger works, cart items readable, form usable
+- [ ] Test on desktop (1280px) — layout correct, no overlapping nav links
+
+## Payment Testing (Sandbox)
+- Use Square sandbox card: `4111 1111 1111 1111`, any future expiry, any CVV
+- Confirm success state shows receipt URL
+- Test declined card: `4000 0000 0000 0002` — confirm error message shown to user
+- Check Vercel function logs for any Square API errors after a test payment
+
+## Security Spot Checks
+- Open browser DevTools → Network tab → confirm `SQUARE_ACCESS_TOKEN` never appears in any request or response
+- Confirm `SQUARE_APP_ID` and `SQUARE_LOCATION_ID` are the only Square values visible in page source
+- Check all external links have `rel="noopener noreferrer"`
+- Confirm no sensitive data in `localStorage` or `sessionStorage`
+
+## API Endpoint Tests
+- `GET /api/square-config` → should return `{ appId, locationId, environment }` only
+- `POST /api/create-payment` with empty body → should return 400 error, not 500
+- `POST /api/create-payment` with a fake SKU → should return "Unknown item" error
+- `POST /api/create-payment` with tampered low price → server should recalculate and charge correct amount
