@@ -4,23 +4,78 @@
 
 const { randomUUID } = require('crypto');
 
-// ⚠️  This MUST match cart.js CATALOGUE prices (in CENTS)
+// ⚠️  This MUST match all SKUs used in the HTML pages (in CENTS, CAD)
 const PRICES = {
-  'brownie-regular':    350,
-  'brownie-nutella-rv': 500,
-  'brownie-biscoff':    550,
-  'brownie-box-6':      850,
-  'cream-bun-regular':  650,
-  'cream-bun-nutella':  750,
-  'cream-bun-biscoff':  850,
-  'milk-cake-bento':    850,
-  'milk-cake-half':    6500,
-  'cream-bento-cup':   850,
+  // ── Single serve brownies (mix to 6) ──────────────────────────────────────
+  'brownie-classic-nutella':     350,
+  'brownie-rv-nutella':          350,
+  'brownie-biscoff-single':      350,
+  'brownie-pistachio-single':    350,
+  // ── Brownie mini tubs (min 12) ────────────────────────────────────────────
+  'brownie-tub-classic-nutella': 500,
+  'brownie-tub-rv':              500,
+  'brownie-tub-biscoff':         550,
+  'brownie-tub-pistachio':       550,
+  // ── Party brownie trays ───────────────────────────────────────────────────
+  'brownie-tray-classic-nutella': 5000,
+  'brownie-tray-rv':              5500,
+  'brownie-tray-biscoff':         6000,
+  'brownie-tray-pistachio':       6000,
+  // ── Milk cake shots (mix to 6) ────────────────────────────────────────────
+  'milk-cake-shot-saffron':      500,
+  'milk-cake-shot-biscoff':      500,
+  'milk-cake-shot-coconut':      500,
+  'milk-cake-shot-strawberry':   500,
+  // ── Single party cake tubs (min 6) ───────────────────────────────────────
+  'milk-cake-tub-saffron':       850,
+  'milk-cake-tub-biscoff':       850,
+  'milk-cake-tub-coconut':       850,
+  'milk-cake-tub-strawberry':    850,
+  // ── Party cake trays ──────────────────────────────────────────────────────
+  'milk-cake-tray-saffron':      6500,
+  'milk-cake-tray-biscoff':      6500,
+  'milk-cake-tray-coconut':      6500,
+  'milk-cake-tray-strawberry':   6500,
+  // ── Cream buns individual (min 12) ───────────────────────────────────────
+  'cream-bun-classic':           450,
+  'cream-bun-chai':              500,
+  'cream-bun-biscoff':           550,
+  // ── Bun trays ─────────────────────────────────────────────────────────────
+  'bun-tray-classic':            3500,
+  'bun-tray-chai':               3500,
+  'bun-tray-biscoff':            4000,
+  // ── Cream bento cups (min 6) ─────────────────────────────────────────────
+  'cream-bento-cup':             850,
+  // ── Misc ─────────────────────────────────────────────────────────────────
+  'milk-cake-bento':             850,
+  'milk-cake-half':             6500,
+  // ── Legacy SKUs (kept for safety) ────────────────────────────────────────
+  'brownie-regular':             350,
+  'brownie-nutella-rv':          500,
+  'brownie-biscoff':             550,
+  'brownie-box-6':               850,
+  'cream-bun-regular':           650,
+  'cream-bun-nutella':           750,
 };
 
 const MIN_QUANTITIES = {
-  'milk-cake-bento': 6,
-  'cream-bento-cup': 6,
+  // Brownie tubs
+  'brownie-tub-classic-nutella': 12,
+  'brownie-tub-rv':              12,
+  'brownie-tub-biscoff':         12,
+  'brownie-tub-pistachio':       12,
+  // Milk cake tubs
+  'milk-cake-tub-saffron':       6,
+  'milk-cake-tub-biscoff':       6,
+  'milk-cake-tub-coconut':       6,
+  'milk-cake-tub-strawberry':    6,
+  // Cream buns
+  'cream-bun-classic':           12,
+  'cream-bun-chai':              12,
+  'cream-bun-biscoff':           12,
+  // Legacy
+  'milk-cake-bento':             6,
+  'cream-bento-cup':             6,
 };
 
 module.exports = async function handler(req, res) {

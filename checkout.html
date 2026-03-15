@@ -215,7 +215,7 @@
       <p id="success-receipt" style="font-size:0.8rem;color:#B8A09A;margin-bottom:28px;"></p>
       <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
         <a href="index.html" style="padding:12px 28px;background:#B8232F;color:#fff;border-radius:100px;text-decoration:none;font-size:0.85rem;font-weight:600;font-family:'DM Sans',sans-serif;">← Back Home</a>
-        <a id="receipt-link" href="#" target="_blank" style="display:none;padding:12px 28px;border:1.5px solid rgba(184,35,47,0.3);color:#B8232F;border-radius:100px;text-decoration:none;font-size:0.85rem;font-weight:600;font-family:'DM Sans',sans-serif;">View Receipt</a>
+        <a id="receipt-link" href="#" target="_blank" rel="noopener noreferrer" style="display:none;padding:12px 28px;border:1.5px solid rgba(184,35,47,0.3);color:#B8232F;border-radius:100px;text-decoration:none;font-size:0.85rem;font-weight:600;font-family:'DM Sans',sans-serif;">View Receipt</a>
       </div>
     </div>
   </div>
@@ -270,30 +270,73 @@
     cart.items.forEach(item => {
       subtotal += item.price * item.qty;
 
-      // Cart item row
+      // Cart item row — use textContent for user-derived strings to prevent XSS
       const row = document.createElement('div');
       row.style.cssText = 'display:flex;align-items:center;gap:12px;padding:14px;background:#FAF3EE;border-radius:12px;';
-      row.innerHTML = `
-        <div style="flex:1;min-width:0;">
-          <p style="font-weight:600;font-size:0.9rem;color:#1C0608;margin:0 0 2px;">${item.name}</p>
-          <p style="font-size:0.78rem;color:#5A2428;margin:0;">$${item.price.toFixed(2)} each</p>
-          ${item.note ? `<p style="font-size:0.72rem;color:#B8A09A;margin:2px 0 0;font-style:italic;">${item.note}</p>` : ''}
-        </div>
-        <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
-          ${(TDC.CATALOGUE[item.id]?.minQty || 1) >= item.qty ? '' : `<button class="qty-btn" onclick="changeQty('${item.id}', ${item.qty - 1})">−</button>`}
-          <span style="font-size:0.9rem;font-weight:600;min-width:20px;text-align:center;">${item.qty}</span>
-          <button class="qty-btn" onclick="changeQty('${item.id}', ${item.qty + 1})">+</button>
-        </div>
-        <div style="text-align:right;flex-shrink:0;min-width:60px;">
-          <p style="font-weight:700;color:#B8232F;margin:0;font-size:0.95rem;">$${(item.price * item.qty).toFixed(2)}</p>
-          <button onclick="TDC.removeFromCart('${item.id}');location.reload();" style="font-size:0.7rem;color:#B8A09A;background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;padding:0;margin-top:2px;">Remove</button>
-        </div>`;
+
+      const infoDiv = document.createElement('div');
+      infoDiv.style.cssText = 'flex:1;min-width:0;';
+      const nameP = document.createElement('p');
+      nameP.style.cssText = 'font-weight:600;font-size:0.9rem;color:#1C0608;margin:0 0 2px;';
+      nameP.textContent = item.name;
+      const priceP = document.createElement('p');
+      priceP.style.cssText = 'font-size:0.78rem;color:#5A2428;margin:0;';
+      priceP.textContent = `$${item.price.toFixed(2)} each`;
+      infoDiv.appendChild(nameP);
+      infoDiv.appendChild(priceP);
+      if (item.note) {
+        const noteP = document.createElement('p');
+        noteP.style.cssText = 'font-size:0.72rem;color:#B8A09A;margin:2px 0 0;font-style:italic;';
+        noteP.textContent = item.note;
+        infoDiv.appendChild(noteP);
+      }
+
+      const qtyDiv = document.createElement('div');
+      qtyDiv.style.cssText = 'display:flex;align-items:center;gap:8px;flex-shrink:0;';
+      const minQty = TDC.CATALOGUE[item.id]?.minQty || 1;
+      if (minQty < item.qty) {
+        const minusBtn = document.createElement('button');
+        minusBtn.className = 'qty-btn';
+        minusBtn.textContent = '−';
+        minusBtn.onclick = () => changeQty(item.id, item.qty - 1);
+        qtyDiv.appendChild(minusBtn);
+      }
+      const qtySpan = document.createElement('span');
+      qtySpan.style.cssText = 'font-size:0.9rem;font-weight:600;min-width:20px;text-align:center;';
+      qtySpan.textContent = item.qty;
+      const plusBtn = document.createElement('button');
+      plusBtn.className = 'qty-btn';
+      plusBtn.textContent = '+';
+      plusBtn.onclick = () => changeQty(item.id, item.qty + 1);
+      qtyDiv.appendChild(qtySpan);
+      qtyDiv.appendChild(plusBtn);
+
+      const totalDiv = document.createElement('div');
+      totalDiv.style.cssText = 'text-align:right;flex-shrink:0;min-width:60px;';
+      const totalP = document.createElement('p');
+      totalP.style.cssText = 'font-weight:700;color:#B8232F;margin:0;font-size:0.95rem;';
+      totalP.textContent = `$${(item.price * item.qty).toFixed(2)}`;
+      const removeBtn = document.createElement('button');
+      removeBtn.style.cssText = 'font-size:0.7rem;color:#B8A09A;background:none;border:none;cursor:pointer;font-family:\'DM Sans\',sans-serif;padding:0;margin-top:2px;';
+      removeBtn.textContent = 'Remove';
+      removeBtn.onclick = () => { TDC.removeFromCart(item.id); location.reload(); };
+      totalDiv.appendChild(totalP);
+      totalDiv.appendChild(removeBtn);
+
+      row.appendChild(infoDiv);
+      row.appendChild(qtyDiv);
+      row.appendChild(totalDiv);
       list.appendChild(row);
 
       // Summary line
       const sLine = document.createElement('div');
       sLine.style.cssText = 'display:flex;justify-content:space-between;font-size:0.82rem;color:#5A2428;';
-      sLine.innerHTML = `<span>${item.name} ×${item.qty}</span><span>$${(item.price * item.qty).toFixed(2)}</span>`;
+      const sName = document.createElement('span');
+      sName.textContent = `${item.name} ×${item.qty}`;
+      const sAmt = document.createElement('span');
+      sAmt.textContent = `$${(item.price * item.qty).toFixed(2)}`;
+      sLine.appendChild(sName);
+      sLine.appendChild(sAmt);
       summaryLines.appendChild(sLine);
     });
 
@@ -391,6 +434,11 @@
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       statusEl.textContent = '⚠️ Please enter a valid email address.';
+      statusEl.style.display = 'block';
+      return;
+    }
+    if (!/^[\d\s\(\)\-\+]{7,20}$/.test(phone)) {
+      statusEl.textContent = '⚠️ Please enter a valid phone number.';
       statusEl.style.display = 'block';
       return;
     }
