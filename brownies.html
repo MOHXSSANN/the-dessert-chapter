@@ -22,6 +22,23 @@
     .product-card img{width:100%;height:360px;object-fit:cover;display:block;}
     .price-tag{display:inline-block;background:#B8232F;color:#fff;padding:4px 14px;border-radius:100px;font-size:0.85rem;font-weight:600;}
     footer{background:#1C0608;color:#FAF3EE;}#mobile-menu{display:none;}
+    .carousel-track{display:flex;transition:transform 0.4s cubic-bezier(0.4,0,0.2,1);}
+    .carousel-track img{flex:0 0 100%;width:100%;height:280px;object-fit:cover;display:block;}
+    .c-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(28,6,8,0.55);color:#fff;border:none;border-radius:50%;width:32px;height:32px;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:3;transition:background 0.2s;}
+    .c-btn:hover{background:rgba(184,35,47,0.85);}
+    .c-dots{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);display:flex;gap:5px;z-index:3;}
+    .c-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.45);cursor:pointer;transition:background 0.2s;}
+    .c-dot.on{background:#fff;}
+    .add-panel{border-top:1px solid rgba(184,35,47,0.1);padding:16px 20px;background:#FBF5F2;}
+    .qty-btn{background:rgba(184,35,47,0.12);color:#B8232F;border:none;border-radius:50%;width:28px;height:28px;font-size:1.1rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-weight:700;transition:background 0.2s;line-height:1;}
+    .qty-btn:hover{background:rgba(184,35,47,0.28);}
+    .fl-select{width:100%;padding:9px 12px;border:1.5px solid rgba(184,35,47,0.25);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:0.85rem;color:#1C0608;background:#fff;outline:none;cursor:pointer;margin-bottom:10px;}
+    .fl-select:focus{border-color:#B8232F;}
+    .panel-btn{width:100%;background:#B8232F;color:#fff;border:none;border-radius:100px;padding:10px 20px;font-size:0.82rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.2s;}
+    .panel-btn:hover{background:#D42535;}
+    .panel-btn:disabled{background:#c8b0b2;cursor:not-allowed;}
+    .toggle-btn{background:#B8232F;color:#fff;border:none;border-radius:100px;padding:7px 16px;font-size:0.75rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.2s;}
+    .toggle-btn:hover{background:#D42535;}
   </style>
 </head>
 <body>
@@ -34,7 +51,7 @@
           <div style="font-size:0.6rem;color:rgba(196,151,58,0.9);letter-spacing:0.12em;text-transform:uppercase;font-weight:500;">est. 2025 · Ottawa, CA</div>
         </div>
       </a>
-      <div id="desktop-nav" style="display:flex;align-items:center;gap:24px;" class="hidden lg:flex">
+      <div id="desktop-nav" style="align-items:center;gap:24px;" class="hidden lg:flex">
         <a href="milk-cake-bento.html" class="nav-link">Milk Cake Bento</a>
         <a href="brownies.html" class="nav-link" style="color:#B8232F;">Brownies</a>
         <a href="cream-buns.html" class="nav-link">Cream Buns</a>
@@ -81,11 +98,6 @@
   <section style="padding:80px 24px 120px;">
     <div style="max-width:900px;margin:0 auto;">
 
-      <div style="background:rgba(184,35,47,0.06);border:1px solid rgba(184,35,47,0.15);border-radius:12px;padding:16px 20px;margin-bottom:48px;display:flex;align-items:center;gap:12px;">
-        <span style="font-size:1.1rem;">💬</span>
-        <p style="font-size:0.85rem;color:#4A1C20;margin:0;">DM us on Instagram <strong>@thedessertchapter</strong> or email <strong>thedessertchapter2025@gmail.com</strong> to order.</p>
-      </div>
-
       <!-- Pricing Tiers -->
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:48px;">
         <div style="background:#fff;border-radius:14px;padding:18px 16px;text-align:center;box-shadow:0 2px 8px rgba(184,35,47,0.06),0 8px 24px rgba(28,6,8,0.07);">
@@ -97,70 +109,155 @@
         <div style="background:#fff;border-radius:14px;padding:18px 16px;text-align:center;box-shadow:0 2px 8px rgba(184,35,47,0.06),0 8px 24px rgba(28,6,8,0.07);">
           <p style="font-family:'Playfair Display',serif;font-size:0.9rem;font-weight:600;color:#1C0608;margin-bottom:4px;">Mini Tub (Nutella/RV)</p>
           <p style="font-size:1.5rem;font-weight:700;color:#B8232F;margin-bottom:2px;">$5.00</p>
-          <p style="font-size:0.73rem;color:#5A2428;margin-bottom:10px;">Nutella or Red Velvet</p>
+          <p style="font-size:0.73rem;color:#5A2428;margin-bottom:10px;">min. 12 · Nutella or Red Velvet</p>
           <button onclick="TDC.addToCart('brownie-nutella-rv',1)" style="background:#B8232F;color:#fff;border:none;border-radius:100px;padding:7px 16px;font-size:0.75rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.2s;" onmouseover="this.style.background='#D42535'" onmouseout="this.style.background='#B8232F'">+ Add to Cart</button>
         </div>
         <div style="background:#fff;border-radius:14px;padding:18px 16px;text-align:center;box-shadow:0 2px 8px rgba(184,35,47,0.06),0 8px 24px rgba(28,6,8,0.07);">
           <p style="font-family:'Playfair Display',serif;font-size:0.9rem;font-weight:600;color:#1C0608;margin-bottom:4px;">Mini Tub (Biscoff/Pist.)</p>
           <p style="font-size:1.5rem;font-weight:700;color:#B8232F;margin-bottom:2px;">$5.50</p>
-          <p style="font-size:0.73rem;color:#5A2428;margin-bottom:10px;">Biscoff or Pistachio</p>
+          <p style="font-size:0.73rem;color:#5A2428;margin-bottom:10px;">min. 12 · Biscoff or Pistachio</p>
           <button onclick="TDC.addToCart('brownie-biscoff',1)" style="background:#B8232F;color:#fff;border:none;border-radius:100px;padding:7px 16px;font-size:0.75rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.2s;" onmouseover="this.style.background='#D42535'" onmouseout="this.style.background='#B8232F'">+ Add to Cart</button>
         </div>
         <div style="background:linear-gradient(135deg,#B8232F,#8B0016);border-radius:14px;padding:18px 16px;text-align:center;box-shadow:0 4px 16px rgba(184,35,47,0.3);">
-          <p style="font-family:'Playfair Display',serif;font-size:0.9rem;font-weight:600;color:#FDF9F6;margin-bottom:4px;">Brownie Box (6 pcs)</p>
-          <p style="font-size:1.5rem;font-weight:700;color:#fff;margin-bottom:2px;">$8.50</p>
-          <p style="font-size:0.73rem;color:rgba(255,255,255,0.8);margin-bottom:10px;">Assorted · gift-ready</p>
-          <button onclick="TDC.addToCart('brownie-box-6',1)" style="background:rgba(255,255,255,0.2);color:#fff;border:1px solid rgba(255,255,255,0.5);border-radius:100px;padding:7px 16px;font-size:0.75rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.3)'" onmouseout="this.style.background='rgba(255,255,255,0.2)'">+ Add to Cart</button>
+          <p style="font-family:'Playfair Display',serif;font-size:0.9rem;font-weight:600;color:#FDF9F6;margin-bottom:4px;">Party Tray</p>
+          <div style="display:flex;flex-direction:column;gap:3px;text-align:left;">
+            <div style="display:flex;justify-content:space-between;font-size:0.75rem;color:rgba(255,255,255,0.9);"><span>Classic Nutella</span><strong>$50</strong></div>
+            <div style="display:flex;justify-content:space-between;font-size:0.75rem;color:rgba(255,255,255,0.9);"><span>Red Velvet</span><strong>$55</strong></div>
+            <div style="display:flex;justify-content:space-between;font-size:0.75rem;color:rgba(255,255,255,0.9);"><span>Biscoff Crunch</span><strong>$60</strong></div>
+            <div style="display:flex;justify-content:space-between;font-size:0.75rem;color:rgba(255,255,255,0.9);"><span>Pistachio Crunch</span><strong>$60</strong></div>
+          </div>
+          <p style="font-size:0.7rem;color:rgba(255,255,255,0.7);margin-top:6px;">min. 1 · serves 12</p>
         </div>
       </div>
 
-      <p class="section-tag" style="margin-bottom:8px;">Brownie Flavours</p>
-      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3vw,2rem);font-weight:700;color:#1C0608;margin-bottom:36px;">Pick Your Flavour</h2>
+      <p class="section-tag" style="margin-bottom:8px;">Brownie Collection</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3vw,2rem);font-weight:700;color:#1C0608;margin-bottom:36px;">Choose Your Brownie</h2>
 
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:32px;">
 
+        <!-- ── Card 1: Single Serve Brownies ── -->
         <div class="product-card">
-          <div style="position:relative;overflow:hidden;">
-            <img src="images/2026_02_03_Edible_0027.jpg" alt="Red Velvet Nutella Brownie" />
-            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(28,6,8,0.5) 0%,transparent 50%);"></div>
+          <div data-carousel style="position:relative;overflow:hidden;border-radius:20px 20px 0 0;">
+            <div class="carousel-track">
+              <img src="images/MENUNEW/brownieop.png" alt="Single Serve Brownies assorted" style="flex:0 0 100%;width:100%;height:280px;object-fit:cover;" />
+              <img src="images/MENUNEW/singleservebrownies.jpeg" alt="Single Serve Brownies" style="flex:0 0 100%;width:100%;height:280px;object-fit:cover;" />
+            </div>
+            <button class="c-btn" style="left:8px;" data-dir="-1">‹</button>
+            <button class="c-btn" style="right:8px;" data-dir="1">›</button>
+            <div class="c-dots"><span class="c-dot on"></span><span class="c-dot"></span></div>
+            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(28,6,8,0.5) 0%,transparent 55%);pointer-events:none;"></div>
           </div>
-          <div style="padding:24px;">
-            <h3 style="font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:600;color:#1C0608;margin-bottom:8px;">Red Velvet Nutella</h3>
-            <p style="font-size:0.85rem;color:#5A2428;line-height:1.7;margin-bottom:20px;">Rich red velvet brownie swirled with Nutella fudge — deep chocolate flavour with a velvety finish and a gorgeous crimson crumb.</p>
-            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
-              <span class="price-tag">$3.50 each · min. 6</span>
-              <a href="mailto:thedessertchapter2025@gmail.com" style="font-size:0.82rem;color:#B8232F;font-weight:600;text-decoration:none;">Order →</a>
+          <div style="padding:22px;">
+            <h3 style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:600;color:#1C0608;margin-bottom:6px;">Single Serve Brownies</h3>
+            <p style="font-size:0.83rem;color:#5A2428;line-height:1.65;margin-bottom:16px;">Rich fudgy brownies — mix and match flavours. Total must be 6.</p>
+            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">
+              <span class="price-tag">$3.50 · mix to 6</span>
+              <button class="toggle-btn" onclick="togglePanel(this)">Choose Flavours</button>
+            </div>
+          </div>
+          <!-- Mix panel -->
+          <div class="add-panel" style="display:none;" data-required="6">
+            <p style="font-size:0.78rem;font-weight:600;color:#1C0608;margin-bottom:10px;">Pick flavours — total must be 6:</p>
+            <div style="display:flex;flex-direction:column;gap:9px;margin-bottom:14px;">
+              <div class="mix-row" data-sku="brownie-classic-nutella" style="display:flex;align-items:center;justify-content:space-between;">
+                <span style="font-size:0.82rem;color:#5A2428;">Classic Nutella</span>
+                <div style="display:flex;align-items:center;gap:8px;"><button class="qty-btn" onclick="adjMix(this,-1)">−</button><span class="mix-qty" style="min-width:22px;text-align:center;font-size:0.9rem;font-weight:600;">0</span><button class="qty-btn" onclick="adjMix(this,1)">+</button></div>
+              </div>
+              <div class="mix-row" data-sku="brownie-rv-nutella" style="display:flex;align-items:center;justify-content:space-between;">
+                <span style="font-size:0.82rem;color:#5A2428;">Red Velvet</span>
+                <div style="display:flex;align-items:center;gap:8px;"><button class="qty-btn" onclick="adjMix(this,-1)">−</button><span class="mix-qty" style="min-width:22px;text-align:center;font-size:0.9rem;font-weight:600;">0</span><button class="qty-btn" onclick="adjMix(this,1)">+</button></div>
+              </div>
+              <div class="mix-row" data-sku="brownie-biscoff-single" style="display:flex;align-items:center;justify-content:space-between;">
+                <span style="font-size:0.82rem;color:#5A2428;">Biscoff Crunch</span>
+                <div style="display:flex;align-items:center;gap:8px;"><button class="qty-btn" onclick="adjMix(this,-1)">−</button><span class="mix-qty" style="min-width:22px;text-align:center;font-size:0.9rem;font-weight:600;">0</span><button class="qty-btn" onclick="adjMix(this,1)">+</button></div>
+              </div>
+              <div class="mix-row" data-sku="brownie-pistachio-single" style="display:flex;align-items:center;justify-content:space-between;">
+                <span style="font-size:0.82rem;color:#5A2428;">Pistachio Crunch</span>
+                <div style="display:flex;align-items:center;gap:8px;"><button class="qty-btn" onclick="adjMix(this,-1)">−</button><span class="mix-qty" style="min-width:22px;text-align:center;font-size:0.9rem;font-weight:600;">0</span><button class="qty-btn" onclick="adjMix(this,1)">+</button></div>
+              </div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span class="mix-total-label" style="font-size:0.8rem;font-weight:600;color:#B8232F;">0 / 6</span>
+              <button class="panel-btn mix-add-btn" disabled onclick="addMixToCart(this)" style="width:auto;padding:8px 22px;">Add to Cart</button>
             </div>
           </div>
         </div>
 
+        <!-- ── Card 2: Mini Tubs / Round Mini Tray ── -->
         <div class="product-card">
-          <div style="position:relative;overflow:hidden;">
-            <img src="images/2026_02_03_Edible_0027.jpg" alt="Biscoff Crunch Brownie" />
-            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(28,6,8,0.5) 0%,transparent 50%);"></div>
-          </div>
-          <div style="padding:24px;">
-            <h3 style="font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:600;color:#1C0608;margin-bottom:8px;">Biscoff Crunch</h3>
-            <p style="font-size:0.85rem;color:#5A2428;line-height:1.7;margin-bottom:20px;">Fudgy brownie topped with a generous swirl of Biscoff spread and crushed Lotus biscuit crumble — warmly spiced and irresistible.</p>
-            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
-              <span class="price-tag">$3.50 each · min. 6</span>
-              <a href="mailto:thedessertchapter2025@gmail.com" style="font-size:0.82rem;color:#B8232F;font-weight:600;text-decoration:none;">Order →</a>
+          <div data-carousel style="position:relative;overflow:hidden;border-radius:20px 20px 0 0;">
+            <div class="carousel-track">
+              <img src="images/MENUNEW/minitubsnutellaredvelvet.jpeg" alt="Mini Tubs Nutella Red Velvet" style="flex:0 0 100%;width:100%;height:280px;object-fit:cover;" />
+              <img src="images/MENUNEW/biscofforpistachio.jpeg" alt="Mini Tubs Biscoff Pistachio" style="flex:0 0 100%;width:100%;height:280px;object-fit:cover;" />
             </div>
+            <button class="c-btn" style="left:8px;" data-dir="-1">‹</button>
+            <button class="c-btn" style="right:8px;" data-dir="1">›</button>
+            <div class="c-dots"><span class="c-dot on"></span><span class="c-dot"></span></div>
+            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(28,6,8,0.5) 0%,transparent 55%);pointer-events:none;"></div>
+          </div>
+          <div style="padding:22px;">
+            <h3 style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:600;color:#1C0608;margin-bottom:6px;">Brownie Mini Tubs</h3>
+            <p style="font-size:0.83rem;color:#5A2428;line-height:1.65;margin-bottom:16px;">Individual brownie tubs in your choice of flavour. Nutella &amp; Red Velvet $5 · Biscoff &amp; Pistachio $5.50 — min. 12.</p>
+            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">
+              <span class="price-tag">From $5 · min. 12</span>
+              <button class="toggle-btn" onclick="togglePanel(this)">Choose Flavour</button>
+            </div>
+          </div>
+          <!-- Single-select panel -->
+          <div class="add-panel" style="display:none;">
+            <label style="font-size:0.78rem;font-weight:600;color:#1C0608;display:block;margin-bottom:6px;">Flavour:</label>
+            <select class="fl-select">
+              <option value="brownie-tub-classic-nutella">Classic Nutella — $5.00 ea</option>
+              <option value="brownie-tub-rv">Red Velvet — $5.00 ea</option>
+              <option value="brownie-tub-biscoff">Biscoff Crunch — $5.50 ea</option>
+              <option value="brownie-tub-pistachio">Pistachio Crunch — $5.50 ea</option>
+            </select>
+            <label style="font-size:0.78rem;font-weight:600;color:#1C0608;display:block;margin-bottom:6px;">Quantity (min 12):</label>
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
+              <button class="qty-btn" onclick="adjQty(this,-1,12)">−</button>
+              <span class="qty-display" style="min-width:30px;text-align:center;font-size:1rem;font-weight:600;">12</span>
+              <button class="qty-btn" onclick="adjQty(this,1,12)">+</button>
+            </div>
+            <button class="panel-btn" onclick="addSingleToCart(this)">Add to Cart</button>
           </div>
         </div>
 
+        <!-- ── Card 3: Party Brownie Tray ── -->
         <div class="product-card">
-          <div style="position:relative;overflow:hidden;">
-            <img src="images/2026_02_03_Edible_0027.jpg" alt="Pistachio Crunch Brownie" />
-            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(28,6,8,0.5) 0%,transparent 50%);"></div>
-          </div>
-          <div style="padding:24px;">
-            <h3 style="font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:600;color:#1C0608;margin-bottom:8px;">Pistachio Crunch</h3>
-            <p style="font-size:0.85rem;color:#5A2428;line-height:1.7;margin-bottom:20px;">Decadent fudgy brownie finished with pistachio cream and crushed pistachios — a sophisticated Middle Eastern–inspired treat.</p>
-            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
-              <span class="price-tag">$3.50 each · min. 6</span>
-              <a href="mailto:thedessertchapter2025@gmail.com" style="font-size:0.82rem;color:#B8232F;font-weight:600;text-decoration:none;">Order →</a>
+          <div data-carousel style="position:relative;overflow:hidden;border-radius:20px 20px 0 0;">
+            <div class="carousel-track">
+              <img src="images/MENUNEW/nutellabrown.png" alt="Party Brownie Tray" style="flex:0 0 100%;width:100%;height:280px;object-fit:cover;" />
+              <img src="images/MENUNEW/nutellabrown2.png" alt="Party Brownie Tray 2" style="flex:0 0 100%;width:100%;height:280px;object-fit:cover;" />
             </div>
+            <button class="c-btn" style="left:8px;" data-dir="-1">‹</button>
+            <button class="c-btn" style="right:8px;" data-dir="1">›</button>
+            <div class="c-dots"><span class="c-dot on"></span><span class="c-dot"></span></div>
+            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(28,6,8,0.5) 0%,transparent 55%);pointer-events:none;"></div>
+          </div>
+          <div style="padding:22px;">
+            <h3 style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:600;color:#1C0608;margin-bottom:6px;">Party Brownie Tray</h3>
+            <p style="font-size:0.83rem;color:#5A2428;line-height:1.65;margin-bottom:16px;">Full brownie party tray — perfect for events and celebrations. Serves 12. Choose your flavour.</p>
+            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">
+              <span class="price-tag">From $50 · serves 12</span>
+              <button class="toggle-btn" onclick="togglePanel(this)">Choose Flavour</button>
+            </div>
+          </div>
+          <!-- Single-select panel -->
+          <div class="add-panel" style="display:none;">
+            <label style="font-size:0.78rem;font-weight:600;color:#1C0608;display:block;margin-bottom:6px;">Flavour:</label>
+            <select class="fl-select">
+              <option value="brownie-tray-classic-nutella">Classic Nutella — $50</option>
+              <option value="brownie-tray-rv">Red Velvet — $55</option>
+              <option value="brownie-tray-biscoff">Biscoff Crunch — $60</option>
+              <option value="brownie-tray-pistachio">Pistachio Crunch — $60</option>
+            </select>
+            <label style="font-size:0.78rem;font-weight:600;color:#1C0608;display:block;margin-bottom:6px;">Quantity:</label>
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
+              <button class="qty-btn" onclick="adjQty(this,-1,1)">−</button>
+              <span class="qty-display" style="min-width:30px;text-align:center;font-size:1rem;font-weight:600;">1</span>
+              <button class="qty-btn" onclick="adjQty(this,1,1)">+</button>
+            </div>
+            <button class="panel-btn" onclick="addSingleToCart(this)">Add to Cart</button>
           </div>
         </div>
 
@@ -178,7 +275,7 @@
 
   <footer style="background:#1C0608;color:#FAF3EE;padding:60px 24px 32px;">
     <div style="max-width:1200px;margin:0 auto;text-align:center;">
-      <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:600;color:#FDF9F6;margin-bottom:8px;">Let us be in your chapters of life!</h3>
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:600;color:#FDF9F6;margin-bottom:8px;"><a href="mailto:thedessertchapter2025@gmail.com?subject=Enquiry%20from%20The%20Dessert%20Chapter%20Website" style="color:inherit;text-decoration:none;">Let us be in your chapters of life!</a></h3>
       <p style="color:rgba(250,243,238,0.6);font-size:0.85rem;margin-bottom:24px;">thedessertchapter2025@gmail.com · @thedessertchapter · Ottawa, Canada</p>
       <div style="display:flex;justify-content:center;gap:20px;flex-wrap:wrap;font-size:0.82rem;">
         <a href="index.html" style="color:rgba(250,243,238,0.6);text-decoration:none;">Home</a>
@@ -206,7 +303,74 @@
     const menu = document.getElementById('mobile-menu');
     let open = false;
     toggle.addEventListener('click', () => { open = !open; menu.style.display = open ? 'flex' : 'none'; });
-  </script>
+
+    // ── Carousels ──
+    document.querySelectorAll('[data-carousel]').forEach(function(wrap) {
+      var track = wrap.querySelector('.carousel-track');
+      var imgs = track.querySelectorAll('img');
+      var total = imgs.length; if (total <= 1) return;
+      var dots = wrap.querySelectorAll('.c-dot'); var cur = 0;
+      function goTo(n) {
+        cur = (n + total) % total;
+        track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+        dots.forEach(function(d,i){ d.classList.toggle('on', i===cur); });
+      }
+      wrap.querySelectorAll('.c-btn').forEach(function(btn) {
+        btn.addEventListener('click', function(){ goTo(cur + parseInt(this.dataset.dir)); });
+      });
+      dots.forEach(function(d,i){ d.addEventListener('click', function(){ goTo(i); }); });
+    });
+
+    // ── Panel toggle ──
+    function togglePanel(btn) {
+      var card = btn.closest('.product-card');
+      var panel = card.querySelector('.add-panel');
+      var vis = panel.style.display !== 'none';
+      panel.style.display = vis ? 'none' : 'block';
+      btn.textContent = vis ? 'Choose Flavours' : '✕ Cancel';
+    }
+
+    // ── Qty adjust (single-select panels) ──
+    function adjQty(btn, delta, mn) {
+      var panel = btn.closest('.add-panel');
+      var disp = panel.querySelector('.qty-display');
+      disp.textContent = Math.max(mn, parseInt(disp.textContent) + delta);
+    }
+    function addSingleToCart(btn) {
+      var panel = btn.closest('.add-panel');
+      var sku = panel.querySelector('.fl-select').value;
+      var qty = parseInt(panel.querySelector('.qty-display').textContent);
+      TDC.addToCart(sku, qty);
+      panel.style.display = 'none';
+      var tb = panel.closest('.product-card').querySelector('.toggle-btn');
+      if (tb) tb.textContent = 'Choose Flavour';
+    }
+
+    // ── Mix panels (total must equal required) ──
+    function adjMix(btn, delta) {
+      var row = btn.closest('.mix-row');
+      var disp = row.querySelector('.mix-qty');
+      disp.textContent = Math.max(0, parseInt(disp.textContent) + delta);
+      updateMixTotal(btn.closest('.add-panel'));
+    }
+    function updateMixTotal(panel) {
+      var req = parseInt(panel.dataset.required);
+      var total = 0;
+      panel.querySelectorAll('.mix-qty').forEach(function(s){ total += parseInt(s.textContent); });
+      panel.querySelector('.mix-total-label').textContent = total + ' / ' + req;
+      panel.querySelector('.mix-add-btn').disabled = (total !== req);
+    }
+    function addMixToCart(btn) {
+      var panel = btn.closest('.add-panel');
+      panel.querySelectorAll('.mix-row').forEach(function(row) {
+        var qty = parseInt(row.querySelector('.mix-qty').textContent);
+        if (qty > 0) TDC.addToCart(row.dataset.sku, qty);
+      });
+      panel.style.display = 'none';
+      var tb = panel.closest('.product-card').querySelector('.toggle-btn');
+      if (tb) tb.textContent = 'Choose Flavours';
+    }
+</script>
   <script src="cart.js"></script>
 </body>
 </html>

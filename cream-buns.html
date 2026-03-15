@@ -21,6 +21,22 @@
     .product-card img{width:100%;height:320px;object-fit:cover;display:block;}
     .price-tag{display:inline-block;background:#B8232F;color:#fff;padding:4px 14px;border-radius:100px;font-size:0.85rem;font-weight:600;}
     footer{background:#1C0608;color:#FAF3EE;}#mobile-menu{display:none;}
+    .carousel-track{display:flex;transition:transform 0.4s cubic-bezier(0.4,0,0.2,1);}
+    .carousel-track img{flex:0 0 100%;width:100%;height:280px;object-fit:cover;display:block;}
+    .c-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(28,6,8,0.55);color:#fff;border:none;border-radius:50%;width:32px;height:32px;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:3;transition:background 0.2s;}
+    .c-btn:hover{background:rgba(184,35,47,0.85);}
+    .c-dots{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);display:flex;gap:5px;z-index:3;}
+    .c-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.45);cursor:pointer;transition:background 0.2s;}
+    .c-dot.on{background:#fff;}
+    .add-panel{border-top:1px solid rgba(184,35,47,0.1);padding:16px 20px;background:#FBF5F2;}
+    .qty-btn{background:rgba(184,35,47,0.12);color:#B8232F;border:none;border-radius:50%;width:28px;height:28px;font-size:1.1rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-weight:700;transition:background 0.2s;line-height:1;}
+    .qty-btn:hover{background:rgba(184,35,47,0.28);}
+    .fl-select{width:100%;padding:9px 12px;border:1.5px solid rgba(184,35,47,0.25);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:0.85rem;color:#1C0608;background:#fff;outline:none;cursor:pointer;margin-bottom:10px;}
+    .fl-select:focus{border-color:#B8232F;}
+    .panel-btn{width:100%;background:#B8232F;color:#fff;border:none;border-radius:100px;padding:10px 20px;font-size:0.82rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.2s;}
+    .panel-btn:hover{background:#D42535;}
+    .toggle-btn{background:#B8232F;color:#fff;border:none;border-radius:100px;padding:7px 16px;font-size:0.75rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.2s;}
+    .toggle-btn:hover{background:#D42535;}
   </style>
 </head>
 <body>
@@ -77,89 +93,164 @@
 
   <section style="padding:80px 24px 120px;">
     <div style="max-width:1100px;margin:0 auto;">
-      <div style="background:rgba(184,35,47,0.06);border:1px solid rgba(184,35,47,0.15);border-radius:12px;padding:16px 20px;margin-bottom:32px;display:flex;align-items:center;gap:12px;">
-        <span style="font-size:1.1rem;">💬</span>
-        <p style="font-size:0.85rem;color:#4A1C20;margin:0;">DM us on Instagram <strong>@thedessertchapter</strong> or email to order. Minimum 6 per flavour.</p>
-      </div>
-
       <!-- Pricing Tiers -->
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:20px;">
         <div style="background:#fff;border-radius:14px;padding:20px;text-align:center;box-shadow:0 2px 8px rgba(184,35,47,0.06),0 8px 24px rgba(28,6,8,0.07);">
           <p style="font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:600;color:#1C0608;margin-bottom:8px;">Single Bun</p>
           <div style="display:flex;flex-direction:column;gap:4px;">
-            <div style="display:flex;justify-content:space-between;font-size:0.8rem;color:#4A1C20;"><span>Classic Cream Cheese</span><strong>$6.50</strong></div>
-            <div style="display:flex;justify-content:space-between;font-size:0.8rem;color:#4A1C20;"><span>Chai Caramel</span><strong>$7.50</strong></div>
-            <div style="display:flex;justify-content:space-between;font-size:0.8rem;color:#4A1C20;"><span>Biscoff</span><strong>$8.50</strong></div>
+            <div style="display:flex;justify-content:space-between;font-size:0.8rem;color:#4A1C20;"><span>Classic Cream Cheese</span><strong>$4.50</strong></div>
+            <div style="display:flex;justify-content:space-between;font-size:0.8rem;color:#4A1C20;"><span>Chai Caramel</span><strong>$5.00</strong></div>
+            <div style="display:flex;justify-content:space-between;font-size:0.8rem;color:#4A1C20;"><span>Biscoff</span><strong>$5.50</strong></div>
           </div>
         </div>
         <div style="background:#fff;border-radius:14px;padding:20px;text-align:center;box-shadow:0 2px 8px rgba(184,35,47,0.06),0 8px 24px rgba(28,6,8,0.07);">
-          <p style="font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:600;color:#1C0608;margin-bottom:8px;">Mini Tray</p>
+          <p style="font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:600;color:#1C0608;margin-bottom:8px;">Mini Order (6/flavor)</p>
           <div style="display:flex;flex-direction:column;gap:4px;">
-            <div style="display:flex;justify-content:space-between;font-size:0.8rem;color:#4A1C20;"><span>Classic</span><strong>$40</strong></div>
-            <div style="display:flex;justify-content:space-between;font-size:0.8rem;color:#4A1C20;"><span>Chai Caramel</span><strong>$48</strong></div>
-            <div style="display:flex;justify-content:space-between;font-size:0.8rem;color:#4A1C20;"><span>Biscoff</span><strong>$54</strong></div>
+            <div style="display:flex;justify-content:space-between;font-size:0.8rem;color:#4A1C20;"><span>Classic</span><strong>$4.50 ea</strong></div>
+            <div style="display:flex;justify-content:space-between;font-size:0.8rem;color:#4A1C20;"><span>Chai Caramel</span><strong>$5.00 ea</strong></div>
+            <div style="display:flex;justify-content:space-between;font-size:0.8rem;color:#4A1C20;"><span>Biscoff</span><strong>$5.50 ea</strong></div>
           </div>
         </div>
         <div style="background:linear-gradient(135deg,#B8232F,#8B0016);border-radius:14px;padding:20px;text-align:center;box-shadow:0 4px 16px rgba(184,35,47,0.3);">
-          <p style="font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:600;color:#FDF9F6;margin-bottom:8px;">Party Tray</p>
+          <p style="font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:600;color:#FDF9F6;margin-bottom:8px;">Party Bun Tray</p>
           <div style="display:flex;flex-direction:column;gap:4px;">
-            <div style="display:flex;justify-content:space-between;font-size:0.8rem;color:rgba(255,255,255,0.9);"><span>Classic</span><strong>$72</strong></div>
-            <div style="display:flex;justify-content:space-between;font-size:0.8rem;color:rgba(255,255,255,0.9);"><span>Chai Caramel</span><strong>$85</strong></div>
-            <div style="display:flex;justify-content:space-between;font-size:0.8rem;color:rgba(255,255,255,0.9);"><span>Biscoff</span><strong>$96</strong></div>
+            <div style="display:flex;justify-content:space-between;font-size:0.8rem;color:rgba(255,255,255,0.9);"><span>Classic</span><strong>$35</strong></div>
+            <div style="display:flex;justify-content:space-between;font-size:0.8rem;color:rgba(255,255,255,0.9);"><span>Chai Caramel</span><strong>$35</strong></div>
+            <div style="display:flex;justify-content:space-between;font-size:0.8rem;color:rgba(255,255,255,0.9);"><span>Biscoff</span><strong>$40</strong></div>
           </div>
         </div>
       </div>
-      <p style="font-size:0.78rem;color:#5A2428;margin-bottom:48px;text-align:center;">All prices in CAD · Perfect for gifting, events & celebrations</p>
+      <p style="font-size:0.78rem;color:#5A2428;margin-bottom:48px;text-align:center;">All prices in CAD · Perfect for gifting, events &amp; celebrations</p>
 
       <!-- Cinnamon Bun Flavours -->
       <p class="section-tag" style="margin-bottom:8px;">Cinnamon Bun Flavours</p>
       <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3vw,2rem);font-weight:700;color:#1C0608;margin-bottom:36px;">Choose Your Flavour</h2>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:28px;margin-bottom:60px;">
 
+        <!-- Classic Cream Cheese (slider) -->
         <div class="product-card">
-          <div style="position:relative;overflow:hidden;">
-            <img src="images/2026_02_03_Edible_0078.jpg" alt="Classic Cream Cheese Bun" />
-            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(28,6,8,0.4) 0%,transparent 50%);"></div>
+          <div data-carousel style="position:relative;overflow:hidden;border-radius:20px 20px 0 0;">
+            <div class="carousel-track">
+              <img src="images/MENUNEW/classiccreamcheese.jpeg" alt="Classic Cream Cheese Bun" style="flex:0 0 100%;width:100%;height:280px;object-fit:cover;" />
+              <img src="images/MENUNEW/classiccreamcheese2.jpeg" alt="Classic Cream Cheese Bun 2" style="flex:0 0 100%;width:100%;height:280px;object-fit:cover;" />
+            </div>
+            <button class="c-btn" style="left:8px;" data-dir="-1">‹</button>
+            <button class="c-btn" style="right:8px;" data-dir="1">›</button>
+            <div class="c-dots"><span class="c-dot on"></span><span class="c-dot"></span></div>
+            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(28,6,8,0.4) 0%,transparent 55%);pointer-events:none;"></div>
           </div>
           <div style="padding:22px;">
             <h3 style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:600;color:#1C0608;margin-bottom:6px;">Classic Cream Cheese</h3>
             <p style="font-size:0.83rem;color:#5A2428;line-height:1.6;margin-bottom:16px;">Our original soft cinnamon bun with a generous swirl of tangy cream cheese frosting — warmly spiced and beautifully piped.</p>
-            <div style="display:flex;align-items:center;justify-content:space-between;">
-              <span class="price-tag">From $6.50</span>
-              <a href="mailto:thedessertchapter2025@gmail.com" style="font-size:0.78rem;color:#B8232F;font-weight:600;text-decoration:none;">Order →</a>
+            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">
+              <span class="price-tag">$4.50 · min. 12</span>
+              <button class="toggle-btn" onclick="togglePanel(this)">Choose Qty</button>
             </div>
+          </div>
+          <div class="add-panel" style="display:none;">
+            <label style="font-size:0.78rem;font-weight:600;color:#1C0608;display:block;margin-bottom:6px;">Quantity (min 12):</label>
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
+              <button class="qty-btn" onclick="adjQty(this,-1,12)">−</button>
+              <span class="qty-display" style="min-width:30px;text-align:center;font-size:1rem;font-weight:600;">12</span>
+              <button class="qty-btn" onclick="adjQty(this,1,12)">+</button>
+            </div>
+            <button class="panel-btn" onclick="TDC.addToCart('cream-bun-classic',parseInt(this.closest('.add-panel').querySelector('.qty-display').textContent));this.closest('.add-panel').style.display='none';">Add to Cart</button>
           </div>
         </div>
 
+        <!-- Chai Caramel -->
         <div class="product-card">
-          <div style="position:relative;overflow:hidden;">
-            <img src="images/2026_02_03_Edible_0346.jpg" alt="Chai Caramel Bun" />
-            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(28,6,8,0.4) 0%,transparent 50%);"></div>
+          <div style="position:relative;overflow:hidden;border-radius:20px 20px 0 0;">
+            <img src="images/MENUNEW/partybuntraychaicaramel.jpeg" alt="Chai Caramel Bun" style="width:100%;height:280px;object-fit:cover;display:block;" />
+            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(28,6,8,0.4) 0%,transparent 55%);pointer-events:none;"></div>
           </div>
           <div style="padding:22px;">
             <h3 style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:600;color:#1C0608;margin-bottom:6px;">Chai Caramel</h3>
             <p style="font-size:0.83rem;color:#5A2428;line-height:1.6;margin-bottom:16px;">Warm chai-spiced cinnamon bun drizzled with silky caramel and topped with aromatic spices — cozy and indulgent.</p>
-            <div style="display:flex;align-items:center;justify-content:space-between;">
-              <span class="price-tag">From $7.50</span>
-              <a href="mailto:thedessertchapter2025@gmail.com" style="font-size:0.78rem;color:#B8232F;font-weight:600;text-decoration:none;">Order →</a>
+            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">
+              <span class="price-tag">$5.00 · min. 12</span>
+              <button class="toggle-btn" onclick="togglePanel(this)">Choose Qty</button>
             </div>
+          </div>
+          <div class="add-panel" style="display:none;">
+            <label style="font-size:0.78rem;font-weight:600;color:#1C0608;display:block;margin-bottom:6px;">Quantity (min 12):</label>
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
+              <button class="qty-btn" onclick="adjQty(this,-1,12)">−</button>
+              <span class="qty-display" style="min-width:30px;text-align:center;font-size:1rem;font-weight:600;">12</span>
+              <button class="qty-btn" onclick="adjQty(this,1,12)">+</button>
+            </div>
+            <button class="panel-btn" onclick="TDC.addToCart('cream-bun-chai',parseInt(this.closest('.add-panel').querySelector('.qty-display').textContent));this.closest('.add-panel').style.display='none';">Add to Cart</button>
           </div>
         </div>
 
+        <!-- Biscoff -->
         <div class="product-card">
-          <div style="position:relative;overflow:hidden;">
-            <img src="images/2026_02_03_Edible_0529.jpg" alt="Biscoff Bun" />
-            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(28,6,8,0.4) 0%,transparent 50%);"></div>
+          <div style="position:relative;overflow:hidden;border-radius:20px 20px 0 0;">
+            <img src="images/MENUNEW/partybuntraybiscoff.jpeg" alt="Biscoff Bun" style="width:100%;height:280px;object-fit:cover;display:block;" />
+            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(28,6,8,0.4) 0%,transparent 55%);pointer-events:none;"></div>
           </div>
           <div style="padding:22px;">
             <h3 style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:600;color:#1C0608;margin-bottom:6px;">Biscoff</h3>
             <p style="font-size:0.83rem;color:#5A2428;line-height:1.6;margin-bottom:16px;">Pillowy cinnamon bun topped with Biscoff spread, crushed Lotus biscuit crumble, and caramelised spiced frosting. Our most indulgent bun.</p>
-            <div style="display:flex;align-items:center;justify-content:space-between;">
-              <span class="price-tag">From $8.50</span>
-              <a href="mailto:thedessertchapter2025@gmail.com" style="font-size:0.78rem;color:#B8232F;font-weight:600;text-decoration:none;">Order →</a>
+            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">
+              <span class="price-tag">$5.50 · min. 12</span>
+              <button class="toggle-btn" onclick="togglePanel(this)">Choose Qty</button>
             </div>
           </div>
+          <div class="add-panel" style="display:none;">
+            <label style="font-size:0.78rem;font-weight:600;color:#1C0608;display:block;margin-bottom:6px;">Quantity (min 12):</label>
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
+              <button class="qty-btn" onclick="adjQty(this,-1,12)">−</button>
+              <span class="qty-display" style="min-width:30px;text-align:center;font-size:1rem;font-weight:600;">12</span>
+              <button class="qty-btn" onclick="adjQty(this,1,12)">+</button>
+            </div>
+            <button class="panel-btn" onclick="TDC.addToCart('cream-bun-biscoff',parseInt(this.closest('.add-panel').querySelector('.qty-display').textContent));this.closest('.add-panel').style.display='none';">Add to Cart</button>
+          </div>
         </div>
+      </div>
+
+      <!-- Party Bun Trays -->
+      <p class="section-tag" style="margin-bottom:8px;">Party Bun Trays</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3vw,2rem);font-weight:700;color:#1C0608;margin-bottom:36px;">Order a Full Tray</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:28px;margin-bottom:60px;">
+
+        <div class="product-card">
+          <div data-carousel style="position:relative;overflow:hidden;border-radius:20px 20px 0 0;">
+            <div class="carousel-track">
+              <img src="images/MENUNEW/partybuntrayclassic.jpeg" alt="Classic Party Bun Tray" style="flex:0 0 100%;width:100%;height:280px;object-fit:cover;" />
+              <img src="images/MENUNEW/partybuntraychaicaramel.jpeg" alt="Chai Caramel Party Bun Tray" style="flex:0 0 100%;width:100%;height:280px;object-fit:cover;" />
+              <img src="images/MENUNEW/partybuntraybiscoff.jpeg" alt="Biscoff Party Bun Tray" style="flex:0 0 100%;width:100%;height:280px;object-fit:cover;" />
+            </div>
+            <button class="c-btn" style="left:8px;" data-dir="-1">‹</button>
+            <button class="c-btn" style="right:8px;" data-dir="1">›</button>
+            <div class="c-dots"><span class="c-dot on"></span><span class="c-dot"></span><span class="c-dot"></span></div>
+            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(28,6,8,0.4) 0%,transparent 55%);pointer-events:none;"></div>
+          </div>
+          <div style="padding:22px;">
+            <h3 style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:600;color:#1C0608;margin-bottom:6px;">Party Bun Tray</h3>
+            <p style="font-size:0.83rem;color:#5A2428;line-height:1.6;margin-bottom:16px;">A full tray of cinnamon buns in your choice of flavour — perfect for events, celebrations, and gifting. Classic &amp; Chai Caramel $35 · Biscoff $40.</p>
+            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">
+              <span class="price-tag">From $35</span>
+              <button class="toggle-btn" onclick="togglePanel(this)">Choose Flavour</button>
+            </div>
+          </div>
+          <div class="add-panel" style="display:none;">
+            <label style="font-size:0.78rem;font-weight:600;color:#1C0608;display:block;margin-bottom:6px;">Flavour:</label>
+            <select class="fl-select">
+              <option value="bun-tray-classic">Classic Cream Cheese — $35</option>
+              <option value="bun-tray-chai">Chai Caramel — $35</option>
+              <option value="bun-tray-biscoff">Biscoff — $40</option>
+            </select>
+            <label style="font-size:0.78rem;font-weight:600;color:#1C0608;display:block;margin-bottom:6px;">Quantity:</label>
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
+              <button class="qty-btn" onclick="adjQty(this,-1,1)">−</button>
+              <span class="qty-display" style="min-width:30px;text-align:center;font-size:1rem;font-weight:600;">1</span>
+              <button class="qty-btn" onclick="adjQty(this,1,1)">+</button>
+            </div>
+            <button class="panel-btn" onclick="addSingleToCart(this)">Add to Cart</button>
+          </div>
+        </div>
+
       </div>
 
       <!-- Cream Bento Cups -->
@@ -174,7 +265,7 @@
             <p style="font-size:0.83rem;color:#5A2428;line-height:1.6;margin-bottom:16px;">Red velvet cake in a signature red container, crowned with star-piped cream cheese frosting and a dusting of red velvet crumbs.</p>
             <div style="display:flex;align-items:center;justify-content:space-between;">
               <span class="price-tag">$8.50 · min. 6</span>
-              <a href="mailto:thedessertchapter2025@gmail.com" style="font-size:0.78rem;color:#B8232F;font-weight:600;text-decoration:none;">Order →</a>
+              <button onclick="TDC.addToCart('cream-bento-cup',6)" style="background:#B8232F;color:#fff;border:none;border-radius:100px;padding:7px 16px;font-size:0.75rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.2s;" onmouseover="this.style.background='#D42535'" onmouseout="this.style.background='#B8232F'">+ Add 6 to Cart</button>
             </div>
           </div>
         </div>
@@ -186,7 +277,7 @@
             <p style="font-size:0.83rem;color:#5A2428;line-height:1.6;margin-bottom:16px;">Strawberry cake in a vibrant red bento cup with fluffy cream frosting and fresh berry notes — light and delightful.</p>
             <div style="display:flex;align-items:center;justify-content:space-between;">
               <span class="price-tag">$8.50 · min. 6</span>
-              <a href="mailto:thedessertchapter2025@gmail.com" style="font-size:0.78rem;color:#B8232F;font-weight:600;text-decoration:none;">Order →</a>
+              <button onclick="TDC.addToCart('cream-bento-cup',6)" style="background:#B8232F;color:#fff;border:none;border-radius:100px;padding:7px 16px;font-size:0.75rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.2s;" onmouseover="this.style.background='#D42535'" onmouseout="this.style.background='#B8232F'">+ Add 6 to Cart</button>
             </div>
           </div>
         </div>
@@ -198,7 +289,7 @@
             <p style="font-size:0.83rem;color:#5A2428;line-height:1.6;margin-bottom:16px;">A box of mixed cream bento cups and milk cakes — ideal for sharing, gifting, or treating yourself to a little of everything.</p>
             <div style="display:flex;align-items:center;justify-content:space-between;">
               <span class="price-tag">From $8.50</span>
-              <a href="mailto:thedessertchapter2025@gmail.com" style="font-size:0.78rem;color:#B8232F;font-weight:600;text-decoration:none;">Order →</a>
+              <button onclick="TDC.addToCart('cream-bento-cup',6)" style="background:#B8232F;color:#fff;border:none;border-radius:100px;padding:7px 16px;font-size:0.75rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.2s;" onmouseover="this.style.background='#D42535'" onmouseout="this.style.background='#B8232F'">+ Add 6 to Cart</button>
             </div>
           </div>
         </div>
@@ -206,15 +297,15 @@
 
       <div style="text-align:center;margin-top:72px;padding:56px 40px;background:linear-gradient(135deg,#1C0608,#3A0C10);border-radius:24px;">
         <h3 style="font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:#FDF9F6;margin-bottom:12px;">Ready to Order?</h3>
-        <p style="color:rgba(255,255,255,0.7);margin-bottom:28px;">Reach out and we'll create your perfect cream buns or bento box.</p>
-        <a href="mailto:thedessertchapter2025@gmail.com" class="btn-primary">Email Us to Order</a>
+        <p style="color:rgba(255,255,255,0.7);margin-bottom:28px;">Add your items to cart and checkout securely.</p>
+        <a href="checkout.html" class="btn-primary">View Cart &amp; Checkout</a>
       </div>
     </div>
   </section>
 
   <footer style="background:#1C0608;color:#FAF3EE;padding:60px 24px 32px;">
     <div style="max-width:1200px;margin:0 auto;text-align:center;">
-      <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:600;color:#FDF9F6;margin-bottom:8px;">Let us be in your chapters of life!</h3>
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:600;color:#FDF9F6;margin-bottom:8px;"><a href="mailto:thedessertchapter2025@gmail.com?subject=Enquiry%20from%20The%20Dessert%20Chapter%20Website" style="color:inherit;text-decoration:none;">Let us be in your chapters of life!</a></h3>
       <p style="color:rgba(250,243,238,0.6);font-size:0.85rem;margin-bottom:24px;">thedessertchapter2025@gmail.com · @thedessertchapter · Ottawa, Canada</p>
       <div style="display:flex;justify-content:center;gap:20px;flex-wrap:wrap;font-size:0.82rem;">
         <a href="index.html" style="color:rgba(250,243,238,0.6);text-decoration:none;">Home</a>
@@ -239,7 +330,46 @@
     updateNav();
     const toggle = document.getElementById('menu-toggle'); const menu = document.getElementById('mobile-menu'); let open = false;
     toggle.addEventListener('click', () => { open = !open; menu.style.display = open ? 'flex' : 'none'; });
-  </script>
+
+    // ── Carousels ──
+    document.querySelectorAll('[data-carousel]').forEach(function(wrap) {
+      var track = wrap.querySelector('.carousel-track');
+      var imgs = track.querySelectorAll('img');
+      var total = imgs.length; if (total <= 1) return;
+      var dots = wrap.querySelectorAll('.c-dot'); var cur = 0;
+      function goTo(n) {
+        cur = (n + total) % total;
+        track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+        dots.forEach(function(d,i){ d.classList.toggle('on', i===cur); });
+      }
+      wrap.querySelectorAll('.c-btn').forEach(function(btn) {
+        btn.addEventListener('click', function(){ goTo(cur + parseInt(this.dataset.dir)); });
+      });
+      dots.forEach(function(d,i){ d.addEventListener('click', function(){ goTo(i); }); });
+    });
+
+    function togglePanel(btn) {
+      var card = btn.closest('.product-card');
+      var panel = card.querySelector('.add-panel');
+      var vis = panel.style.display !== 'none';
+      panel.style.display = vis ? 'none' : 'block';
+      btn.textContent = vis ? 'Choose Flavour' : '✕ Cancel';
+    }
+    function adjQty(btn, delta, mn) {
+      var panel = btn.closest('.add-panel');
+      var disp = panel.querySelector('.qty-display');
+      disp.textContent = Math.max(mn, parseInt(disp.textContent) + delta);
+    }
+    function addSingleToCart(btn) {
+      var panel = btn.closest('.add-panel');
+      var sku = panel.querySelector('.fl-select').value;
+      var qty = parseInt(panel.querySelector('.qty-display').textContent);
+      TDC.addToCart(sku, qty);
+      panel.style.display = 'none';
+      var tb = panel.closest('.product-card').querySelector('.toggle-btn');
+      if (tb) tb.textContent = 'Choose Flavour';
+    }
+</script>
   <script src="cart.js"></script>
 </body>
 </html>

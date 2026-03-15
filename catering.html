@@ -22,6 +22,7 @@
     .flavor-tag{display:inline-block;background:rgba(184,35,47,0.08);color:#B8232F;padding:4px 12px;border-radius:100px;font-size:0.75rem;font-weight:600;border:1px solid rgba(184,35,47,0.15);}
     .price-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(184,35,47,0.08);}
     .price-row:last-child{border-bottom:none;}
+    @media(max-width:767px){.payment-info-grid{grid-template-columns:1fr!important;}.payment-info-mid{border-left:none!important;border-right:none!important;border-top:1px solid rgba(255,255,255,0.1);border-bottom:1px solid rgba(255,255,255,0.1);}}
     .price-amount{font-weight:700;color:#B8232F;font-size:0.95rem;}
     footer{background:#1C0608;color:#FAF3EE;}#mobile-menu{display:none;}
   </style>
@@ -36,7 +37,7 @@
           <div style="font-size:0.6rem;color:rgba(196,151,58,0.9);letter-spacing:0.12em;text-transform:uppercase;font-weight:500;">est. 2025 · Ottawa, CA</div>
         </div>
       </a>
-      <div id="desktop-nav" style="display:flex;align-items:center;gap:22px;" class="hidden lg:flex">
+      <div id="desktop-nav" style="align-items:center;gap:22px;" class="hidden lg:flex">
         <a href="milk-cake-bento.html" class="nav-link">Milk Cake</a>
         <a href="brownies.html" class="nav-link">Brownies</a>
         <a href="cream-buns.html" class="nav-link">Cinnamon Buns</a>
@@ -277,17 +278,15 @@
       </div>
 
       <!-- Payment info -->
-      <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:24px 32px;margin-bottom:36px;display:flex;flex-wrap:wrap;justify-content:center;gap:24px;">
+      <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:24px 32px;margin-bottom:36px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;" class="payment-info-grid">
         <div style="text-align:center;">
           <div style="font-size:1.2rem;margin-bottom:6px;">💳</div>
           <div style="font-size:0.8rem;color:rgba(250,243,238,0.7);">Cash · e-Transfer · Card</div>
         </div>
-        <div style="width:1px;background:rgba(255,255,255,0.1);"></div>
-        <div style="text-align:center;">
+        <div style="text-align:center;border-left:1px solid rgba(255,255,255,0.1);border-right:1px solid rgba(255,255,255,0.1);" class="payment-info-mid">
           <div style="font-size:1.2rem;margin-bottom:6px;">📅</div>
           <div style="font-size:0.8rem;color:rgba(250,243,238,0.7);">48hr advance notice required</div>
         </div>
-        <div style="width:1px;background:rgba(255,255,255,0.1);"></div>
         <div style="text-align:center;">
           <div style="font-size:1.2rem;margin-bottom:6px;">🚗</div>
           <div style="font-size:0.8rem;color:rgba(250,243,238,0.7);">Delivery within 10km (fee applies)</div>
@@ -305,7 +304,7 @@
 
   <footer style="background:#1C0608;color:#FAF3EE;padding:60px 24px 32px;border-top:1px solid rgba(255,255,255,0.06);">
     <div style="max-width:1200px;margin:0 auto;text-align:center;">
-      <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:600;color:#FDF9F6;margin-bottom:8px;">Let us be in your chapters of life!</h3>
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:600;color:#FDF9F6;margin-bottom:8px;"><a href="mailto:thedessertchapter2025@gmail.com?subject=Enquiry%20from%20The%20Dessert%20Chapter%20Website" style="color:inherit;text-decoration:none;">Let us be in your chapters of life!</a></h3>
       <p style="color:rgba(250,243,238,0.6);font-size:0.85rem;margin-bottom:24px;">thedessertchapter2025@gmail.com · @thedessertchapter · Ottawa, Canada</p>
       <div style="display:flex;justify-content:center;gap:20px;flex-wrap:wrap;font-size:0.82rem;">
         <a href="index.html" style="color:rgba(250,243,238,0.6);text-decoration:none;">Home</a>

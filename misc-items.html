@@ -77,11 +77,6 @@
 
   <section style="padding:80px 24px 120px;">
     <div style="max-width:900px;margin:0 auto;">
-      <div style="background:rgba(184,35,47,0.06);border:1px solid rgba(184,35,47,0.15);border-radius:12px;padding:16px 20px;margin-bottom:48px;display:flex;align-items:center;gap:12px;">
-        <span style="font-size:1.1rem;">💬</span>
-        <p style="font-size:0.85rem;color:#4A1C20;margin:0;">DM us on Instagram <strong>@thedessertchapter</strong> or email to order any of these items.</p>
-      </div>
-
       <p class="section-tag" style="margin-bottom:8px;">Sauces & Spreads</p>
       <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3vw,2rem);font-weight:700;color:#1C0608;margin-bottom:36px;">Artisan Caramel Sauce</h2>
 
@@ -94,10 +89,15 @@
           </div>
           <div style="padding:24px;">
             <h3 style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:600;color:#1C0608;margin-bottom:8px;">Classic Caramel Sauce</h3>
-            <p style="font-size:0.85rem;color:#5A2428;line-height:1.7;margin-bottom:20px;">Rich, velvety house-made caramel sauce. Perfect drizzled over our milk cakes, ice cream, or anything that needs a touch of golden sweetness.</p>
+            <p style="font-size:0.85rem;color:#5A2428;line-height:1.7;margin-bottom:16px;">Rich, velvety house-made caramel sauce. Perfect drizzled over our milk cakes, ice cream, or anything that needs a touch of golden sweetness.</p>
             <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
               <span class="price-tag">Contact for Price</span>
-              <a href="mailto:thedessertchapter2025@gmail.com" style="font-size:0.82rem;color:#B8232F;font-weight:600;text-decoration:none;">Order →</a>
+              <div style="display:flex;align-items:center;gap:8px;">
+                <button onclick="adjMiscQty(this,-1)" style="background:rgba(184,35,47,0.12);color:#B8232F;border:none;border-radius:50%;width:28px;height:28px;font-size:1.1rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-weight:700;">−</button>
+                <span class="misc-qty" style="min-width:20px;text-align:center;font-size:0.9rem;font-weight:600;">1</span>
+                <button onclick="adjMiscQty(this,1)" style="background:rgba(184,35,47,0.12);color:#B8232F;border:none;border-radius:50%;width:28px;height:28px;font-size:1.1rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-weight:700;">+</button>
+                <button onclick="addMiscToCart(this,'caramel-sauce-classic')" style="background:#B8232F;color:#fff;border:none;border-radius:100px;padding:7px 16px;font-size:0.75rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.2s;" onmouseover="this.style.background='#D42535'" onmouseout="this.style.background='#B8232F'">+ Add to Cart</button>
+              </div>
             </div>
           </div>
         </div>
@@ -109,10 +109,15 @@
           </div>
           <div style="padding:24px;">
             <h3 style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:600;color:#1C0608;margin-bottom:8px;">Rose & Pistachio Caramel</h3>
-            <p style="font-size:0.85rem;color:#5A2428;line-height:1.7;margin-bottom:20px;">Our signature caramel infused with rose water and topped with crushed pistachios and dried petals — a Middle Eastern twist on a classic.</p>
+            <p style="font-size:0.85rem;color:#5A2428;line-height:1.7;margin-bottom:16px;">Our signature caramel infused with rose water and topped with crushed pistachios and dried petals — a Middle Eastern twist on a classic.</p>
             <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
               <span class="price-tag">Contact for Price</span>
-              <a href="mailto:thedessertchapter2025@gmail.com" style="font-size:0.82rem;color:#B8232F;font-weight:600;text-decoration:none;">Order →</a>
+              <div style="display:flex;align-items:center;gap:8px;">
+                <button onclick="adjMiscQty(this,-1)" style="background:rgba(184,35,47,0.12);color:#B8232F;border:none;border-radius:50%;width:28px;height:28px;font-size:1.1rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-weight:700;">−</button>
+                <span class="misc-qty" style="min-width:20px;text-align:center;font-size:0.9rem;font-weight:600;">1</span>
+                <button onclick="adjMiscQty(this,1)" style="background:rgba(184,35,47,0.12);color:#B8232F;border:none;border-radius:50%;width:28px;height:28px;font-size:1.1rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-weight:700;">+</button>
+                <button onclick="addMiscToCart(this,'caramel-sauce-rose-pistachio')" style="background:#B8232F;color:#fff;border:none;border-radius:100px;padding:7px 16px;font-size:0.75rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.2s;" onmouseover="this.style.background='#D42535'" onmouseout="this.style.background='#B8232F'">+ Add to Cart</button>
+              </div>
             </div>
           </div>
         </div>
@@ -142,7 +147,7 @@
 
   <footer style="background:#1C0608;color:#FAF3EE;padding:60px 24px 32px;">
     <div style="max-width:1200px;margin:0 auto;text-align:center;">
-      <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:600;color:#FDF9F6;margin-bottom:8px;">Let us be in your chapters of life!</h3>
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:600;color:#FDF9F6;margin-bottom:8px;"><a href="mailto:thedessertchapter2025@gmail.com?subject=Enquiry%20from%20The%20Dessert%20Chapter%20Website" style="color:inherit;text-decoration:none;">Let us be in your chapters of life!</a></h3>
       <p style="color:rgba(250,243,238,0.6);font-size:0.85rem;margin-bottom:24px;">thedessertchapter2025@gmail.com · @thedessertchapter · Ottawa, Canada</p>
       <p style="font-size:0.72rem;color:rgba(250,243,238,0.3);">© 2025 The Dessert Chapter. All rights reserved.</p>
     </div>
@@ -161,7 +166,18 @@
     updateNav();
     const toggle = document.getElementById('menu-toggle'); const menu = document.getElementById('mobile-menu'); let open = false;
     toggle.addEventListener('click', () => { open = !open; menu.style.display = open ? 'flex' : 'none'; });
-  </script>
+
+    function adjMiscQty(btn, delta) {
+      var row = btn.parentElement;
+      var disp = row.querySelector('.misc-qty');
+      disp.textContent = Math.max(1, parseInt(disp.textContent) + delta);
+    }
+    function addMiscToCart(btn, sku) {
+      var row = btn.parentElement;
+      var qty = parseInt(row.querySelector('.misc-qty').textContent);
+      TDC.addToCart(sku, qty);
+    }
+</script>
   <script src="cart.js"></script>
 </body>
 </html>

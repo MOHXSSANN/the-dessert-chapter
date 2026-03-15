@@ -119,6 +119,10 @@
     /* Smooth scroll */
     html { scroll-behavior: smooth; }
 
+    /* Catering section responsive grid */
+    .catering-grid { grid-template-columns: 1fr; }
+    @media(min-width:768px){ .catering-grid { grid-template-columns: 1fr 1fr; gap: 64px; } }
+
     /* Nav link hover */
     .nav-link {
       position: relative; font-size: 0.8rem; letter-spacing: 0.06em; font-weight: 500;
@@ -655,7 +659,7 @@
   <section style="background:#1C0608;padding:100px 24px;position:relative;overflow:hidden;">
     <div style="position:absolute;top:-100px;right:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(184,35,47,0.2) 0%,transparent 70%);pointer-events:none;"></div>
     <div style="position:absolute;bottom:-80px;left:-60px;width:350px;height:350px;border-radius:50%;background:radial-gradient(circle,rgba(196,151,58,0.08) 0%,transparent 70%);pointer-events:none;"></div>
-    <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;" class="grid-cols-1 md:grid-cols-2">
+    <div style="max-width:1100px;margin:0 auto;display:grid;gap:48px;align-items:center;" class="catering-grid">
       <!-- Image side -->
       <div style="position:relative;">
         <div style="border-radius:20px;overflow:hidden;box-shadow:0 12px 48px rgba(28,6,8,0.5);">
