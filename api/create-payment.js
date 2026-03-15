@@ -15,10 +15,12 @@ const PRICES = {
   'cream-bun-biscoff':  850,
   'milk-cake-bento':    850,
   'milk-cake-half':    6500,
+  'cream-bento-cup':   850,
 };
 
 const MIN_QUANTITIES = {
   'milk-cake-bento': 6,
+  'cream-bento-cup': 6,
 };
 
 module.exports = async function handler(req, res) {

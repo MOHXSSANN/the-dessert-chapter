@@ -280,7 +280,7 @@
           ${item.note ? `<p style="font-size:0.72rem;color:#B8A09A;margin:2px 0 0;font-style:italic;">${item.note}</p>` : ''}
         </div>
         <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
-          <button class="qty-btn" onclick="changeQty('${item.id}', ${item.qty - 1})">−</button>
+          ${(TDC.CATALOGUE[item.id]?.minQty || 1) >= item.qty ? '' : `<button class="qty-btn" onclick="changeQty('${item.id}', ${item.qty - 1})">−</button>`}
           <span style="font-size:0.9rem;font-weight:600;min-width:20px;text-align:center;">${item.qty}</span>
           <button class="qty-btn" onclick="changeQty('${item.id}', ${item.qty + 1})">+</button>
         </div>

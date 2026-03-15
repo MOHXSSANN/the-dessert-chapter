@@ -14,6 +14,7 @@ const CATALOGUE = {
   'cream-bun-biscoff':  { name: 'Cream Bun (Biscoff/Pistachio)', price: 8.50,  minQty: 1  },
   'milk-cake-bento':    { name: 'Milk Cake Bento Box',            price: 8.50,  minQty: 6  },
   'milk-cake-half':     { name: 'Milk Cake (Half Sheet)',         price: 65.00, minQty: 1  },
+  'cream-bento-cup':   { name: 'Cream Bento Cup',               price: 8.50,  minQty: 6  },
 };
 
 function getCart() {
