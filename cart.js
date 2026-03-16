@@ -5,16 +5,63 @@ const CART_KEY = 'tdc_cart';
 
 // Product catalogue — server-side copy in api/create-payment.js MUST match
 const CATALOGUE = {
-  'brownie-regular':    { name: 'Brownie (Regular)',              price: 3.50,  minQty: 1  },
-  'brownie-nutella-rv': { name: 'Brownie (Nutella / Red Velvet)', price: 5.00,  minQty: 1  },
-  'brownie-biscoff':    { name: 'Brownie (Biscoff / Pistachio)',  price: 5.50,  minQty: 1  },
-  'brownie-box-6':      { name: 'Brownie Box (6 pcs)',            price: 8.50,  minQty: 1  },
-  'cream-bun-regular':  { name: 'Cream Bun (Regular)',            price: 6.50,  minQty: 1  },
-  'cream-bun-nutella':  { name: 'Cream Bun (Nutella)',            price: 7.50,  minQty: 1  },
-  'cream-bun-biscoff':  { name: 'Cream Bun (Biscoff/Pistachio)', price: 8.50,  minQty: 1  },
-  'milk-cake-bento':    { name: 'Milk Cake Bento Box',            price: 8.50,  minQty: 6  },
-  'milk-cake-half':     { name: 'Milk Cake (Half Sheet)',         price: 65.00, minQty: 1  },
-  'cream-bento-cup':   { name: 'Cream Bento Cup',               price: 8.50,  minQty: 6  },
+  // ── Brownies (single serve) ───────────────────────────────────────────────
+  'brownie-classic-nutella':  { name: 'Brownie – Classic Nutella',  price: 3.50, minQty: 1 },
+  'brownie-rv-nutella':       { name: 'Brownie – Red Velvet Nutella',price: 3.50, minQty: 1 },
+  'brownie-biscoff-single':   { name: 'Brownie – Biscoff',          price: 3.50, minQty: 1 },
+  'brownie-pistachio-single': { name: 'Brownie – Pistachio',        price: 3.50, minQty: 1 },
+  // ── Brownie trays ────────────────────────────────────────────────────────
+  'brownie-tray-classic-nutella': { name: 'Brownie Party Tray – Classic Nutella', price: 50.00, minQty: 1 },
+  'brownie-tray-rv':              { name: 'Brownie Party Tray – Red Velvet',      price: 55.00, minQty: 1 },
+  'brownie-tray-biscoff':         { name: 'Brownie Party Tray – Biscoff',         price: 60.00, minQty: 1 },
+  'brownie-tray-pistachio':       { name: 'Brownie Party Tray – Pistachio',       price: 60.00, minQty: 1 },
+  // ── Brownie mini tubs ────────────────────────────────────────────────────
+  'brownie-tub-classic-nutella':  { name: 'Brownie Tub – Classic Nutella', price: 5.00, minQty: 12 },
+  'brownie-tub-rv':               { name: 'Brownie Tub – Red Velvet',      price: 5.00, minQty: 12 },
+  'brownie-tub-biscoff':          { name: 'Brownie Tub – Biscoff',         price: 5.50, minQty: 12 },
+  'brownie-tub-pistachio':        { name: 'Brownie Tub – Pistachio',       price: 5.50, minQty: 12 },
+  // ── Milk cake shots ──────────────────────────────────────────────────────
+  'milk-cake-shot-saffron':    { name: 'Milk Cake Shot – Saffron',    price: 5.00, minQty: 6 },
+  'milk-cake-shot-strawberry': { name: 'Milk Cake Shot – Strawberry', price: 5.00, minQty: 6 },
+  'milk-cake-shot-coconut':    { name: 'Milk Cake Shot – Coconut',    price: 5.00, minQty: 6 },
+  'milk-cake-shot-biscoff':    { name: 'Milk Cake Shot – Biscoff',    price: 5.00, minQty: 6 },
+  // ── Milk cake bento tubs ─────────────────────────────────────────────────
+  'milk-cake-tub-saffron':    { name: 'Milk Cake Bento – Saffron',    price: 8.50, minQty: 6 },
+  'milk-cake-tub-biscoff':    { name: 'Milk Cake Bento – Biscoff',    price: 8.50, minQty: 6 },
+  'milk-cake-tub-coconut':    { name: 'Milk Cake Bento – Coconut',    price: 8.50, minQty: 6 },
+  'milk-cake-tub-strawberry': { name: 'Milk Cake Bento – Strawberry', price: 8.50, minQty: 6 },
+  // ── Milk cake trays ──────────────────────────────────────────────────────
+  'milk-cake-tray-saffron':    { name: 'Milk Cake Tray – Saffron',    price: 65.00, minQty: 1 },
+  'milk-cake-tray-biscoff':    { name: 'Milk Cake Tray – Biscoff',    price: 65.00, minQty: 1 },
+  'milk-cake-tray-coconut':    { name: 'Milk Cake Tray – Coconut',    price: 65.00, minQty: 1 },
+  'milk-cake-tray-strawberry': { name: 'Milk Cake Tray – Strawberry', price: 65.00, minQty: 1 },
+  // ── Cinnamon buns ────────────────────────────────────────────────────────
+  'cream-bun-classic': { name: 'Cinnamon Bun – Classic',      price: 6.50, minQty: 6 },
+  'cream-bun-chai':    { name: 'Cinnamon Bun – Chai Caramel', price: 7.50, minQty: 6 },
+  'cream-bun-biscoff': { name: 'Cinnamon Bun – Biscoff',      price: 8.50, minQty: 6 },
+  // ── Cupcakes ─────────────────────────────────────────────────────────────
+  'cupcake-vanilla':   { name: 'Cupcake – Vanilla',    price: 2.50, minQty: 6 },
+  'cupcake-choco':     { name: 'Cupcake – Chocolate',  price: 2.50, minQty: 6 },
+  'cupcake-redvelvet': { name: 'Cupcake – Red Velvet', price: 2.50, minQty: 6 },
+  // ── Caramel sauces ───────────────────────────────────────────────────────
+  'caramel-sauce-classic-small':       { name: 'Classic Caramel Sauce (Small)',       price: 5.00,  minQty: 1 },
+  'caramel-sauce-classic-large':       { name: 'Classic Caramel Sauce (Large)',       price: 10.00, minQty: 1 },
+  'caramel-sauce-chai-small':          { name: 'Chai Caramel Sauce (Small)',          price: 5.00,  minQty: 1 },
+  'caramel-sauce-chai-large':          { name: 'Chai Caramel Sauce (Large)',          price: 10.00, minQty: 1 },
+  'caramel-sauce-butterscotch-small':  { name: 'Butterscotch Caramel Sauce (Small)',  price: 5.00,  minQty: 1 },
+  'caramel-sauce-butterscotch-large':  { name: 'Butterscotch Caramel Sauce (Large)', price: 10.00, minQty: 1 },
+  // ── Red Velvet Tubs ──────────────────────────────────────────────────────
+  'red-velvet-tub': { name: 'Red Velvet Tub', price: 8.50, minQty: 6 },
+  // ── Legacy SKUs (kept for safety) ────────────────────────────────────────
+  'brownie-regular':    { name: 'Brownie (Regular)',              price: 3.50,  minQty: 1 },
+  'brownie-nutella-rv': { name: 'Brownie (Nutella / Red Velvet)', price: 3.50,  minQty: 1 },
+  'brownie-biscoff':    { name: 'Brownie (Biscoff / Pistachio)',  price: 3.50,  minQty: 1 },
+  'brownie-box-6':      { name: 'Brownie Box (6 pcs)',            price: 8.50,  minQty: 1 },
+  'cream-bun-regular':  { name: 'Cream Bun (Regular)',            price: 6.50,  minQty: 1 },
+  'cream-bun-nutella':  { name: 'Cream Bun (Nutella)',            price: 7.50,  minQty: 1 },
+  'milk-cake-bento':    { name: 'Milk Cake Bento Box',            price: 8.50,  minQty: 6 },
+  'milk-cake-half':     { name: 'Milk Cake (Half Sheet)',         price: 65.00, minQty: 1 },
+  'cream-bento-cup':    { name: 'Cream Bento Cup',                price: 8.50,  minQty: 6 },
 };
 
 function getCart() {
@@ -120,11 +167,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Update cart button color when nav scrolls (matches updateNav() on each page)
     const navbar = document.getElementById('navbar');
     if (navbar) {
-      new MutationObserver(() => {
+      function syncCartLinkColor() {
         const scrolled = navbar.classList.contains('nav-scrolled');
         cartLink.style.color = scrolled ? '#1C0608' : 'rgba(255,255,255,0.88)';
         cartLink.style.borderColor = scrolled ? 'rgba(28,6,8,0.25)' : 'rgba(255,255,255,0.25)';
-      }).observe(navbar, { attributes: true, attributeFilter: ['class'] });
+      }
+      new MutationObserver(syncCartLinkColor).observe(navbar, { attributes: true, attributeFilter: ['class'] });
+      syncCartLinkColor(); // apply immediately on load
     }
   }
   updateCartBadge();

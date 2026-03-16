@@ -9,7 +9,7 @@
     *{box-sizing:border-box;}body{font-family:'DM Sans',system-ui,sans-serif;background:#FDF9F6;color:#1C0608;margin:0;}h1,h2,h3{font-family:'Playfair Display',Georgia,serif;}
     nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:background 0.3s ease;}
     .nav-scrolled{background:rgba(253,249,246,0.97);backdrop-filter:blur(12px);box-shadow:0 1px 0 rgba(184,35,47,0.12);}
-    .nav-link{position:relative;font-size:0.8rem;letter-spacing:0.06em;font-weight:500;color:rgba(255,255,255,0.88);text-decoration:none;padding:4px 0;}
+    .nav-link{position:relative;font-size:0.78rem;letter-spacing:0.04em;font-weight:500;color:rgba(255,255,255,0.88);text-decoration:none;padding:4px 0;white-space:nowrap;}
     .nav-link::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1.5px;background:#B8232F;transition:width 0.25s ease;}
     .nav-link:hover::after{width:100%;}.nav-link:hover{color:#F5A5AF;}
     .nav-scrolled .nav-link{color:#1C0608;}.nav-scrolled .nav-link:hover{color:#B8232F;}
@@ -18,7 +18,7 @@
     .section-tag{font-family:'DM Sans',sans-serif;font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:#B8232F;font-weight:600;}
     .product-card{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 2px 8px rgba(184,35,47,0.06),0 8px 32px rgba(28,6,8,0.08);transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.3s ease;}
     .product-card:hover{transform:translateY(-8px);box-shadow:0 6px 20px rgba(184,35,47,0.14),0 20px 56px rgba(28,6,8,0.12);}
-    .product-card img{width:100%;height:260px;object-fit:cover;display:block;}
+    .product-card img{width:100%;height:300px;object-fit:cover;display:block;}
     .price-tag{display:inline-block;background:#B8232F;color:#fff;padding:4px 14px;border-radius:100px;font-size:0.82rem;font-weight:600;}
     footer{background:#1C0608;color:#FAF3EE;}#mobile-menu{display:none;}
   </style>
@@ -33,10 +33,11 @@
           <div style="font-size:0.6rem;color:rgba(196,151,58,0.9);letter-spacing:0.12em;text-transform:uppercase;font-weight:500;">est. 2025 · Ottawa, CA</div>
         </div>
       </a>
-      <div id="desktop-nav" style="align-items:center;gap:24px;" class="hidden lg:flex">
+      <div id="desktop-nav" style="align-items:center;gap:16px;" class="hidden lg:flex">
         <a href="milk-cake-bento.html" class="nav-link">Milk Cake Bento</a>
         <a href="brownies.html" class="nav-link">Brownies</a>
-        <a href="cream-buns.html" class="nav-link">Cream Buns</a>
+        <a href="cupcakes.html" class="nav-link">Cupcakes</a>
+        <a href="cream-buns.html" class="nav-link">Cinnamon Buns</a>
         <a href="build-your-dessert-chapter.html" class="nav-link" style="color:#B8232F;">Build Your Chapter</a>
         <a href="catering.html" class="nav-link">Catering</a>
         <a href="misc-items.html" class="nav-link">Misc Items</a>
@@ -55,7 +56,8 @@
       <a href="index.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">← Home</a>
       <a href="milk-cake-bento.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Milk Cake Bento</a>
       <a href="brownies.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Brownies</a>
-      <a href="cream-buns.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Cream Buns</a>
+      <a href="cupcakes.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Cupcakes</a>
+      <a href="cream-buns.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Cinnamon Buns</a>
       <a href="build-your-dessert-chapter.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#B8232F;text-decoration:none;border-radius:8px;background:rgba(184,35,47,0.06);">Build Your Chapter</a>
       <a href="misc-items.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Misc Items</a>
       <a href="catering.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Catering</a>
@@ -77,45 +79,108 @@
 
   <section style="padding:80px 24px 120px;">
     <div style="max-width:1200px;margin:0 auto;">
-      <div style="background:rgba(184,35,47,0.06);border:1px solid rgba(184,35,47,0.15);border-radius:12px;padding:16px 20px;margin-bottom:56px;display:flex;align-items:center;gap:12px;">
-        <span style="font-size:1.1rem;">💬</span>
-        <p style="font-size:0.85rem;color:#4A1C20;margin:0;">To order, DM <strong>@thedessertchapter</strong> on Instagram or email <strong>thedessertchapter2025@gmail.com</strong> with your selections.</p>
+
+      <!-- Milk Cake Shots -->
+      <p class="section-tag" style="margin-bottom:8px;">Milk Cake</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:#1C0608;margin-bottom:8px;">Milk Cake Cup Shots</h2>
+      <p style="font-size:0.85rem;color:#5A2428;margin-bottom:32px;">$5 each · min. 6 · Mix &amp; match flavours</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px;margin-bottom:56px;">
+        <div class="product-card" style="grid-column:span 2;">
+          <div style="position:relative;overflow:hidden;height:320px;">
+            <div class="byc-shots-track" style="display:flex;height:100%;transition:transform 0.4s cubic-bezier(0.4,0,0.2,1);">
+              <img src="images/milkcakecupshots.jpeg" alt="Milk Cake Cup Shots" style="min-width:100%;height:320px;object-fit:cover;"/>
+              <img src="images/MENUNEW/choicemilkcakes.jpeg" alt="Milk Cake Flavours" style="min-width:100%;height:320px;object-fit:cover;"/>
+            </div>
+            <button onclick="slideShots(-1)" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);background:rgba(28,6,8,0.55);color:#fff;border:none;border-radius:50%;width:36px;height:36px;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;">‹</button>
+            <button onclick="slideShots(1)" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:rgba(28,6,8,0.55);color:#fff;border:none;border-radius:50%;width:36px;height:36px;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;">›</button>
+            <div style="position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:6px;">
+              <span class="shots-dot" style="width:7px;height:7px;border-radius:50%;background:#fff;opacity:1;cursor:pointer;" onclick="goShots(0)"></span>
+              <span class="shots-dot" style="width:7px;height:7px;border-radius:50%;background:#fff;opacity:0.45;cursor:pointer;" onclick="goShots(1)"></span>
+            </div>
+          </div>
+          <div style="padding:20px;">
+            <h3 style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;margin-bottom:10px;">Select Flavour</h3>
+            <select class="byc-flavor" style="width:100%;border:1px solid rgba(184,35,47,0.25);border-radius:8px;padding:7px 10px;font-size:0.8rem;color:#1C0608;background:#fff;font-family:'DM Sans',sans-serif;margin-bottom:14px;cursor:pointer;">
+              <option value="milk-cake-shot-saffron">Saffron — $5</option>
+              <option value="milk-cake-shot-strawberry">Strawberry — $5</option>
+              <option value="milk-cake-shot-coconut">Coconut — $5</option>
+              <option value="milk-cake-shot-biscoff">Biscoff — $5</option>
+            </select>
+            <p style="font-size:0.75rem;color:#8B6914;margin-bottom:14px;">Mango (seasonal) &amp; Rose Milk (special occasions) — contact to order</p>
+            <div style="margin-top:0;">
+              <span class="price-tag">$5 each · min. 6</span>
+              <div style="display:flex;align-items:center;gap:6px;margin-top:8px;">
+                <button onclick="adjBYC(this,-1)" style="background:rgba(184,35,47,0.12);color:#B8232F;border:none;border-radius:50%;width:26px;height:26px;font-size:1rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-weight:700;">−</button>
+                <span class="byc-qty" style="min-width:18px;text-align:center;font-size:0.85rem;font-weight:600;">1</span>
+                <button onclick="adjBYC(this,1)" style="background:rgba(184,35,47,0.12);color:#B8232F;border:none;border-radius:50%;width:26px;height:26px;font-size:1rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-weight:700;">+</button>
+                <button onclick="addBYC(this)" style="background:#B8232F;color:#fff;border:none;border-radius:100px;padding:7px 16px;font-size:0.75rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.2s;" onmouseover="this.style.background='#D42535'" onmouseout="this.style.background='#B8232F'">+ Add to Cart</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- Milk Cake Bento -->
       <p class="section-tag" style="margin-bottom:8px;">Milk Cake Bento</p>
-      <h2 style="font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:#1C0608;margin-bottom:32px;">Bento Box Cakes</h2>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:22px;margin-bottom:56px;">
-        <div class="product-card"><img src="images/2026_02_03_Edible_0294.jpg" alt="Rose Bento"/><div style="padding:16px;"><h3 style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;margin-bottom:4px;">Rose & Pistachio Bento</h3><div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;"><span class="price-tag">Contact</span><a href="build-your-cake-chapter.html" style="font-size:0.75rem;color:#B8232F;font-weight:600;text-decoration:none;">Order →</a></div></div></div>
-        <div class="product-card"><img src="images/2026_02_03_Edible_0566.jpg" alt="Gold Pearl Bento"/><div style="padding:16px;"><h3 style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;margin-bottom:4px;">Gold Pearl Bento</h3><div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;"><span class="price-tag">Contact</span><a href="build-your-cake-chapter.html" style="font-size:0.75rem;color:#B8232F;font-weight:600;text-decoration:none;">Order →</a></div></div></div>
-        <div class="product-card"><img src="images/2026_02_03_Edible_0588.jpg" alt="White Flower Bento"/><div style="padding:16px;"><h3 style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;margin-bottom:4px;">White Flower Bento</h3><div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;"><span class="price-tag">Contact</span><a href="build-your-cake-chapter.html" style="font-size:0.75rem;color:#B8232F;font-weight:600;text-decoration:none;">Order →</a></div></div></div>
-        <div class="product-card"><img src="images/2026_02_03_Edible_0604.jpg" alt="Classic Bento"/><div style="padding:16px;"><h3 style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;margin-bottom:4px;">Classic Milk Bento</h3><div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;"><span class="price-tag">Contact</span><a href="build-your-cake-chapter.html" style="font-size:0.75rem;color:#B8232F;font-weight:600;text-decoration:none;">Order →</a></div></div></div>
-      </div>
-
-      <!-- Milk Cake Cups -->
-      <p class="section-tag" style="margin-bottom:8px;">Milk Cake Cups</p>
-      <h2 style="font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:#1C0608;margin-bottom:32px;">Dessert Cups</h2>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:22px;margin-bottom:56px;">
-        <div class="product-card"><img src="images/2026_02_03_Edible_0275.jpg" alt="Rose Milk Cup"/><div style="padding:16px;"><h3 style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;margin-bottom:4px;">Rose & Pistachio Cup</h3><div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;"><span class="price-tag">Contact</span><a href="build-your-cake-chapter.html" style="font-size:0.75rem;color:#B8232F;font-weight:600;text-decoration:none;">Order →</a></div></div></div>
-        <div class="product-card"><img src="images/2026_02_03_Edible_0045.jpg" alt="Coconut Milk Cake"/><div style="padding:16px;"><h3 style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;margin-bottom:4px;">Coconut Milk Cake</h3><div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;"><span class="price-tag">Contact</span><a href="build-your-cake-chapter.html" style="font-size:0.75rem;color:#B8232F;font-weight:600;text-decoration:none;">Order →</a></div></div></div>
-        <div class="product-card"><img src="images/2026_02_03_Edible_0272.jpg" alt="Pistachio Rose Cup"/><div style="padding:16px;"><h3 style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;margin-bottom:4px;">Pistachio Rose Cup</h3><div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;"><span class="price-tag">Contact</span><a href="build-your-cake-chapter.html" style="font-size:0.75rem;color:#B8232F;font-weight:600;text-decoration:none;">Order →</a></div></div></div>
-        <div class="product-card"><img src="images/2026_02_03_Edible_0030.jpg" alt="Signature Cup"/><div style="padding:16px;"><h3 style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;margin-bottom:4px;">Signature Milk Cup</h3><div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;"><span class="price-tag">Contact</span><a href="build-your-cake-chapter.html" style="font-size:0.75rem;color:#B8232F;font-weight:600;text-decoration:none;">Order →</a></div></div></div>
-      </div>
-
-      <!-- Cream Buns -->
-      <p class="section-tag" style="margin-bottom:8px;">Cream Buns</p>
-      <h2 style="font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:#1C0608;margin-bottom:32px;">Floral Cream Buns</h2>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:22px;margin-bottom:56px;">
-        <div class="product-card"><img src="images/2026_02_03_Edible_0078.jpg" alt="Garden Rose Bun"/><div style="padding:16px;"><h3 style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;margin-bottom:4px;">Garden Rose Bun</h3><div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;"><span class="price-tag">Contact</span><a href="build-your-cake-chapter.html" style="font-size:0.75rem;color:#B8232F;font-weight:600;text-decoration:none;">Order →</a></div></div></div>
-        <div class="product-card"><img src="images/2026_02_03_Edible_0267.jpg" alt="Red Velvet Bento"/><div style="padding:16px;"><h3 style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;margin-bottom:4px;">Red Velvet Bento Cup</h3><div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;"><span class="price-tag">Contact</span><a href="build-your-cake-chapter.html" style="font-size:0.75rem;color:#B8232F;font-weight:600;text-decoration:none;">Order →</a></div></div></div>
-        <div class="product-card"><img src="images/2026_02_03_Edible_0261.jpg" alt="Cream Bento"/><div style="padding:16px;"><h3 style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;margin-bottom:4px;">Strawberry Cream Bento</h3><div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;"><span class="price-tag">Contact</span><a href="build-your-cake-chapter.html" style="font-size:0.75rem;color:#B8232F;font-weight:600;text-decoration:none;">Order →</a></div></div></div>
+      <h2 style="font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:#1C0608;margin-bottom:8px;">Bento Box Cakes</h2>
+      <p style="font-size:0.85rem;color:#5A2428;margin-bottom:32px;">$8.50 each · min. 6 · Available in Saffron, Strawberry, Coconut, Biscoff, Mango (seasonal) &amp; Rose Milk (special occasions)</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px;margin-bottom:56px;">
+        <div class="product-card"><img src="images/2026_02_03_Edible_0294.jpg" alt="Saffron Milk Cake Bento" style="width:100%;height:300px;object-fit:cover;display:block;"/><div style="padding:20px;"><h3 style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;margin-bottom:4px;">Saffron Milk Cake</h3><p style="font-size:0.78rem;color:#5A2428;margin-bottom:8px;">Golden saffron milk cake in a signature bento box.</p><div style="margin-top:10px;"><span class="price-tag">$8.50 · min. 6</span><div style="display:flex;align-items:center;gap:6px;margin-top:8px;"><button onclick="adjBYC(this,-1)" style="background:rgba(184,35,47,0.12);color:#B8232F;border:none;border-radius:50%;width:26px;height:26px;font-size:1rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-weight:700;">−</button><span class="byc-qty" style="min-width:18px;text-align:center;font-size:0.85rem;font-weight:600;">1</span><button onclick="adjBYC(this,1)" style="background:rgba(184,35,47,0.12);color:#B8232F;border:none;border-radius:50%;width:26px;height:26px;font-size:1rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-weight:700;">+</button><button onclick="addBYC(this,'milk-cake-tub-saffron')" style="background:#B8232F;color:#fff;border:none;border-radius:100px;padding:6px 12px;font-size:0.72rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.2s;" onmouseover="this.style.background='#D42535'" onmouseout="this.style.background='#B8232F'">+ Add to Cart</button></div></div></div></div>
+        <div class="product-card"><img src="images/2026_02_03_Edible_0566.jpg" alt="Biscoff Milk Cake Bento" style="width:100%;height:300px;object-fit:cover;display:block;"/><div style="padding:20px;"><h3 style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;margin-bottom:4px;">Biscoff Milk Cake</h3><p style="font-size:0.78rem;color:#5A2428;margin-bottom:8px;">Caramelized Biscoff milk cake in a signature bento box.</p><div style="margin-top:10px;"><span class="price-tag">$8.50 · min. 6</span><div style="display:flex;align-items:center;gap:6px;margin-top:8px;"><button onclick="adjBYC(this,-1)" style="background:rgba(184,35,47,0.12);color:#B8232F;border:none;border-radius:50%;width:26px;height:26px;font-size:1rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-weight:700;">−</button><span class="byc-qty" style="min-width:18px;text-align:center;font-size:0.85rem;font-weight:600;">1</span><button onclick="adjBYC(this,1)" style="background:rgba(184,35,47,0.12);color:#B8232F;border:none;border-radius:50%;width:26px;height:26px;font-size:1rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-weight:700;">+</button><button onclick="addBYC(this,'milk-cake-tub-biscoff')" style="background:#B8232F;color:#fff;border:none;border-radius:100px;padding:6px 12px;font-size:0.72rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.2s;" onmouseover="this.style.background='#D42535'" onmouseout="this.style.background='#B8232F'">+ Add to Cart</button></div></div></div></div>
       </div>
 
       <!-- Brownies -->
       <p class="section-tag" style="margin-bottom:8px;">Brownies</p>
-      <h2 style="font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:#1C0608;margin-bottom:32px;">Fudgy Brownies</h2>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:22px;margin-bottom:56px;">
-        <div class="product-card"><img src="images/2026_02_03_Edible_0027.jpg" alt="Valentine Brownie"/><div style="padding:16px;"><h3 style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;margin-bottom:4px;">Valentine Heart Brownie</h3><div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;"><span class="price-tag">Contact</span><a href="build-your-cake-chapter.html" style="font-size:0.75rem;color:#B8232F;font-weight:600;text-decoration:none;">Order →</a></div></div></div>
+      <h2 style="font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:#1C0608;margin-bottom:8px;">Fudgy Brownies</h2>
+      <p style="font-size:0.85rem;color:#5A2428;margin-bottom:32px;">$3.50 each · Mix &amp; match to 6</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px;margin-bottom:56px;">
+
+        <!-- Standard flavours card -->
+        <div class="product-card" style="grid-column:span 2;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;height:300px;">
+            <img src="images/MENUNEW/singleservebrownies.jpeg" alt="Brownies" style="width:100%;height:300px;object-fit:cover;display:block;"/>
+            <img src="images/MENUNEW/biscofforpistachio.jpeg" alt="Biscoff Pistachio Brownies" style="width:100%;height:300px;object-fit:cover;display:block;"/>
+          </div>
+          <div style="padding:20px;">
+            <h3 style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;margin-bottom:10px;">Select Flavour</h3>
+            <select class="byc-flavor" style="width:100%;border:1px solid rgba(184,35,47,0.25);border-radius:8px;padding:7px 10px;font-size:0.8rem;color:#1C0608;background:#fff;font-family:'DM Sans',sans-serif;margin-bottom:14px;cursor:pointer;">
+              <option value="brownie-rv-nutella">Red Velvet — $3.50</option>
+              <option value="brownie-classic-nutella">Nutella — $3.50</option>
+              <option value="brownie-pistachio-single">Pistachio — $3.50</option>
+              <option value="brownie-biscoff-single">Biscoff — $3.50</option>
+            </select>
+            <p style="font-size:0.75rem;color:#8B6914;margin-bottom:14px;">Dubai Choco (special request) &amp; Heart Brownie — <a href="mailto:thedessertchapter2025@gmail.com" style="color:#B8232F;font-weight:600;text-decoration:none;">contact to order</a></p>
+            <span class="price-tag">$3.50 each · mix to 6</span>
+            <div style="display:flex;align-items:center;gap:6px;margin-top:8px;">
+              <button onclick="adjBYC(this,-1)" style="background:rgba(184,35,47,0.12);color:#B8232F;border:none;border-radius:50%;width:26px;height:26px;font-size:1rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-weight:700;">−</button>
+              <span class="byc-qty" style="min-width:18px;text-align:center;font-size:0.85rem;font-weight:600;">1</span>
+              <button onclick="adjBYC(this,1)" style="background:rgba(184,35,47,0.12);color:#B8232F;border:none;border-radius:50%;width:26px;height:26px;font-size:1rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-weight:700;">+</button>
+              <button onclick="addBYC(this)" style="background:#B8232F;color:#fff;border:none;border-radius:100px;padding:7px 16px;font-size:0.75rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.2s;" onmouseover="this.style.background='#D42535'" onmouseout="this.style.background='#B8232F'">+ Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Cinnamon Buns -->
+      <p class="section-tag" style="margin-bottom:8px;">Cinnamon Buns</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:#1C0608;margin-bottom:8px;">Cinnamon Buns</h2>
+      <p style="font-size:0.85rem;color:#5A2428;margin-bottom:32px;">From $6.50 each · min. 6</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px;margin-bottom:56px;">
+        <div class="product-card"><img src="images/MENUNEW/classiccreamcheese.jpeg" alt="Classic Cinnamon Bun" style="width:100%;height:300px;object-fit:cover;display:block;"/><div style="padding:20px;"><h3 style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;margin-bottom:4px;">Classic</h3><p style="font-size:0.78rem;color:#5A2428;margin-bottom:8px;">Soft, fluffy bun with silky cream cheese glaze.</p><div style="margin-top:10px;"><span class="price-tag">$6.50 · min. 6</span><div style="display:flex;align-items:center;gap:6px;margin-top:8px;"><button onclick="adjBYC(this,-1)" style="background:rgba(184,35,47,0.12);color:#B8232F;border:none;border-radius:50%;width:26px;height:26px;font-size:1rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-weight:700;">−</button><span class="byc-qty" style="min-width:18px;text-align:center;font-size:0.85rem;font-weight:600;">1</span><button onclick="adjBYC(this,1)" style="background:rgba(184,35,47,0.12);color:#B8232F;border:none;border-radius:50%;width:26px;height:26px;font-size:1rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-weight:700;">+</button><button onclick="addBYC(this,'cream-bun-classic')" style="background:#B8232F;color:#fff;border:none;border-radius:100px;padding:6px 12px;font-size:0.72rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.2s;" onmouseover="this.style.background='#D42535'" onmouseout="this.style.background='#B8232F'">+ Add to Cart</button></div></div></div></div>
+        <div class="product-card"><img src="images/MENUNEW/partybuntraychaicaramel.jpeg" alt="Chai Caramel Cinnamon Bun" style="width:100%;height:300px;object-fit:cover;display:block;"/><div style="padding:20px;"><h3 style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;margin-bottom:4px;">Chai Caramel</h3><p style="font-size:0.78rem;color:#5A2428;margin-bottom:8px;">Cinnamon bun drizzled with aromatic chai caramel.</p><div style="margin-top:10px;"><span class="price-tag">$7.50 · min. 6</span><div style="display:flex;align-items:center;gap:6px;margin-top:8px;"><button onclick="adjBYC(this,-1)" style="background:rgba(184,35,47,0.12);color:#B8232F;border:none;border-radius:50%;width:26px;height:26px;font-size:1rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-weight:700;">−</button><span class="byc-qty" style="min-width:18px;text-align:center;font-size:0.85rem;font-weight:600;">1</span><button onclick="adjBYC(this,1)" style="background:rgba(184,35,47,0.12);color:#B8232F;border:none;border-radius:50%;width:26px;height:26px;font-size:1rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-weight:700;">+</button><button onclick="addBYC(this,'cream-bun-chai')" style="background:#B8232F;color:#fff;border:none;border-radius:100px;padding:6px 12px;font-size:0.72rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.2s;" onmouseover="this.style.background='#D42535'" onmouseout="this.style.background='#B8232F'">+ Add to Cart</button></div></div></div></div>
+        <div class="product-card"><img src="images/MENUNEW/partybuntraybiscoff.jpeg" alt="Biscoff Cinnamon Bun" style="width:100%;height:300px;object-fit:cover;display:block;"/><div style="padding:20px;"><h3 style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;margin-bottom:4px;">Biscoff</h3><p style="font-size:0.78rem;color:#5A2428;margin-bottom:8px;">Topped with caramelized Biscoff spread and crumble.</p><div style="margin-top:10px;"><span class="price-tag">$8.50 · min. 6</span><div style="display:flex;align-items:center;gap:6px;margin-top:8px;"><button onclick="adjBYC(this,-1)" style="background:rgba(184,35,47,0.12);color:#B8232F;border:none;border-radius:50%;width:26px;height:26px;font-size:1rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-weight:700;">−</button><span class="byc-qty" style="min-width:18px;text-align:center;font-size:0.85rem;font-weight:600;">1</span><button onclick="adjBYC(this,1)" style="background:rgba(184,35,47,0.12);color:#B8232F;border:none;border-radius:50%;width:26px;height:26px;font-size:1rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-weight:700;">+</button><button onclick="addBYC(this,'cream-bun-biscoff')" style="background:#B8232F;color:#fff;border:none;border-radius:100px;padding:6px 12px;font-size:0.72rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.2s;" onmouseover="this.style.background='#D42535'" onmouseout="this.style.background='#B8232F'">+ Add to Cart</button></div></div></div></div>
+      </div>
+
+      <!-- Cupcakes -->
+      <p class="section-tag" style="margin-bottom:8px;">Cupcakes</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:#1C0608;margin-bottom:8px;">Handcrafted Cupcakes</h2>
+      <p style="font-size:0.85rem;color:#5A2428;margin-bottom:32px;">$2.50 each · min. 6 · Flavours &amp; toppings can be customized for an additional charge.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px;margin-bottom:56px;">
+        <div class="product-card"><img src="vanillacup.jpeg" alt="Vanilla Cupcake" style="width:100%;height:300px;object-fit:cover;display:block;"/><div style="padding:20px;"><h3 style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;margin-bottom:4px;">Vanilla</h3><p style="font-size:0.78rem;color:#5A2428;margin-bottom:8px;">Classic vanilla with silky vanilla buttercream.</p><div style="margin-top:10px;"><span class="price-tag">$2.50 each</span><div style="display:flex;align-items:center;gap:6px;margin-top:8px;"><button onclick="adjBYC(this,-1)" style="background:rgba(184,35,47,0.12);color:#B8232F;border:none;border-radius:50%;width:26px;height:26px;font-size:1rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-weight:700;">−</button><span class="byc-qty" style="min-width:18px;text-align:center;font-size:0.85rem;font-weight:600;">1</span><button onclick="adjBYC(this,1)" style="background:rgba(184,35,47,0.12);color:#B8232F;border:none;border-radius:50%;width:26px;height:26px;font-size:1rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-weight:700;">+</button><button onclick="addBYC(this,'cupcake-vanilla')" style="background:#B8232F;color:#fff;border:none;border-radius:100px;padding:6px 12px;font-size:0.72rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.2s;" onmouseover="this.style.background='#D42535'" onmouseout="this.style.background='#B8232F'">+ Add to Cart</button></div></div></div></div>
+        <div class="product-card"><img src="chococupake.jpeg" alt="Chocolate Cupcake" style="width:100%;height:300px;object-fit:cover;display:block;"/><div style="padding:20px;"><h3 style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;margin-bottom:4px;">Chocolate</h3><p style="font-size:0.78rem;color:#5A2428;margin-bottom:8px;">Rich chocolate with decadent chocolate frosting.</p><div style="margin-top:10px;"><span class="price-tag">$2.50 each</span><div style="display:flex;align-items:center;gap:6px;margin-top:8px;"><button onclick="adjBYC(this,-1)" style="background:rgba(184,35,47,0.12);color:#B8232F;border:none;border-radius:50%;width:26px;height:26px;font-size:1rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-weight:700;">−</button><span class="byc-qty" style="min-width:18px;text-align:center;font-size:0.85rem;font-weight:600;">1</span><button onclick="adjBYC(this,1)" style="background:rgba(184,35,47,0.12);color:#B8232F;border:none;border-radius:50%;width:26px;height:26px;font-size:1rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-weight:700;">+</button><button onclick="addBYC(this,'cupcake-choco')" style="background:#B8232F;color:#fff;border:none;border-radius:100px;padding:6px 12px;font-size:0.72rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.2s;" onmouseover="this.style.background='#D42535'" onmouseout="this.style.background='#B8232F'">+ Add to Cart</button></div></div></div></div>
+        <div class="product-card"><img src="redvelvet.jpeg" alt="Red Velvet Cupcake" style="width:100%;height:300px;object-fit:cover;display:block;"/><div style="padding:20px;"><h3 style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;margin-bottom:4px;">Red Velvet</h3><p style="font-size:0.78rem;color:#5A2428;margin-bottom:8px;">Velvety red sponge topped with cream cheese frosting.</p><div style="margin-top:10px;"><span class="price-tag">$2.50 each</span><div style="display:flex;align-items:center;gap:6px;margin-top:8px;"><button onclick="adjBYC(this,-1)" style="background:rgba(184,35,47,0.12);color:#B8232F;border:none;border-radius:50%;width:26px;height:26px;font-size:1rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-weight:700;">−</button><span class="byc-qty" style="min-width:18px;text-align:center;font-size:0.85rem;font-weight:600;">1</span><button onclick="adjBYC(this,1)" style="background:rgba(184,35,47,0.12);color:#B8232F;border:none;border-radius:50%;width:26px;height:26px;font-size:1rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-weight:700;">+</button><button onclick="addBYC(this,'cupcake-redvelvet')" style="background:#B8232F;color:#fff;border:none;border-radius:100px;padding:6px 12px;font-size:0.72rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.2s;" onmouseover="this.style.background='#D42535'" onmouseout="this.style.background='#B8232F'">+ Add to Cart</button></div></div></div></div>
+        <div class="product-card"><img src="cupcake2.jpeg" alt="Custom Cupcakes" style="width:100%;height:300px;object-fit:cover;display:block;"/><div style="padding:20px;"><h3 style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;margin-bottom:4px;">Custom Floral</h3><p style="font-size:0.78rem;color:#5A2428;margin-bottom:8px;">Custom flavour &amp; floral topping. Additional charge applies.</p><div style="margin-top:10px;"><span class="price-tag">Contact</span><br/><a href="mailto:thedessertchapter2025@gmail.com" style="display:inline-block;margin-top:8px;background:#B8232F;color:#fff;border-radius:100px;padding:6px 14px;font-size:0.72rem;font-weight:600;text-decoration:none;font-family:'DM Sans',sans-serif;">Contact to Order</a></div></div></div>
       </div>
 
       <!-- CTA -->
@@ -152,6 +217,29 @@
     updateNav();
     const toggle = document.getElementById('menu-toggle'); const menu = document.getElementById('mobile-menu'); let open = false;
     toggle.addEventListener('click', () => { open = !open; menu.style.display = open ? 'flex' : 'none'; });
+
+    var shotsIdx = 0;
+    function slideShots(dir) { goShots(shotsIdx + dir); }
+    function goShots(idx) {
+      var total = 2;
+      shotsIdx = (idx + total) % total;
+      document.querySelector('.byc-shots-track').style.transform = 'translateX(-' + (shotsIdx * 100) + '%)';
+      document.querySelectorAll('.shots-dot').forEach(function(d, i) { d.style.opacity = i === shotsIdx ? '1' : '0.45'; });
+    }
+
+    function adjBYC(btn, delta) {
+      var row = btn.parentElement;
+      var disp = row.querySelector('.byc-qty');
+      disp.textContent = Math.max(1, parseInt(disp.textContent) + delta);
+    }
+    function addBYC(btn, sku) {
+      var row = btn.parentElement;
+      var card = btn.closest('.product-card');
+      var flavorSel = card ? card.querySelector('.byc-flavor') : null;
+      var finalSku = flavorSel ? flavorSel.value : sku;
+      var qty = parseInt(row.querySelector('.byc-qty').textContent);
+      TDC.addToCart(finalSku, qty);
+    }
   </script>
   <script src="cart.js"></script>
 </body>

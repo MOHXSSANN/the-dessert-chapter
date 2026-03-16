@@ -36,16 +36,29 @@ const PRICES = {
   'milk-cake-tray-biscoff':      6500,
   'milk-cake-tray-coconut':      6500,
   'milk-cake-tray-strawberry':   6500,
-  // ── Cream buns individual (min 12) ───────────────────────────────────────
-  'cream-bun-classic':           450,
-  'cream-bun-chai':              500,
-  'cream-bun-biscoff':           550,
+  // ── Cupcakes (min 6) ─────────────────────────────────────────────────────
+  'cupcake-vanilla':             250,
+  'cupcake-choco':               250,
+  'cupcake-redvelvet':           250,
+  // ── Cinnamon buns individual (min 6) ─────────────────────────────────────
+  'cream-bun-classic':           650,
+  'cream-bun-chai':              750,
+  'cream-bun-biscoff':           850,
   // ── Bun trays ─────────────────────────────────────────────────────────────
   'bun-tray-classic':            3500,
   'bun-tray-chai':               3500,
   'bun-tray-biscoff':            4000,
   // ── Cream bento cups (min 6) ─────────────────────────────────────────────
   'cream-bento-cup':             850,
+  // ── Caramel sauces ───────────────────────────────────────────────────────
+  'caramel-sauce-classic-small':       500,
+  'caramel-sauce-classic-large':      1000,
+  'caramel-sauce-chai-small':          500,
+  'caramel-sauce-chai-large':         1000,
+  'caramel-sauce-butterscotch-small':  500,
+  'caramel-sauce-butterscotch-large': 1000,
+  // ── Red Velvet Tubs ───────────────────────────────────────────────────────
+  'red-velvet-tub':                    850,
   // ── Misc ─────────────────────────────────────────────────────────────────
   'milk-cake-bento':             850,
   'milk-cake-half':             6500,
@@ -69,10 +82,10 @@ const MIN_QUANTITIES = {
   'milk-cake-tub-biscoff':       6,
   'milk-cake-tub-coconut':       6,
   'milk-cake-tub-strawberry':    6,
-  // Cream buns
-  'cream-bun-classic':           12,
-  'cream-bun-chai':              12,
-  'cream-bun-biscoff':           12,
+  // Cinnamon buns
+  'cream-bun-classic':           6,
+  'cream-bun-chai':              6,
+  'cream-bun-biscoff':           6,
   // Legacy
   'milk-cake-bento':             6,
   'cream-bento-cup':             6,

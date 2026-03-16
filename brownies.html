@@ -10,7 +10,7 @@
     *{box-sizing:border-box;}body{font-family:'DM Sans',system-ui,sans-serif;background:#FDF9F6;color:#1C0608;margin:0;}h1,h2,h3{font-family:'Playfair Display',Georgia,serif;}
     nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:background 0.3s ease;}
     .nav-scrolled{background:rgba(253,249,246,0.97);backdrop-filter:blur(12px);box-shadow:0 1px 0 rgba(184,35,47,0.12);}
-    .nav-link{position:relative;font-size:0.8rem;letter-spacing:0.06em;font-weight:500;color:rgba(255,255,255,0.88);text-decoration:none;padding:4px 0;}
+    .nav-link{position:relative;font-size:0.78rem;letter-spacing:0.04em;font-weight:500;color:rgba(255,255,255,0.88);text-decoration:none;padding:4px 0;white-space:nowrap;}
     .nav-link::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1.5px;background:#B8232F;transition:width 0.25s ease;}
     .nav-link:hover::after{width:100%;}.nav-link:hover{color:#F5A5AF;}
     .nav-scrolled .nav-link{color:#1C0608;}.nav-scrolled .nav-link:hover{color:#B8232F;}
@@ -51,10 +51,11 @@
           <div style="font-size:0.6rem;color:rgba(196,151,58,0.9);letter-spacing:0.12em;text-transform:uppercase;font-weight:500;">est. 2025 · Ottawa, CA</div>
         </div>
       </a>
-      <div id="desktop-nav" style="align-items:center;gap:24px;" class="hidden lg:flex">
+      <div id="desktop-nav" style="align-items:center;gap:16px;" class="hidden lg:flex">
         <a href="milk-cake-bento.html" class="nav-link">Milk Cake Bento</a>
         <a href="brownies.html" class="nav-link" style="color:#B8232F;">Brownies</a>
-        <a href="cream-buns.html" class="nav-link">Cream Buns</a>
+        <a href="cupcakes.html" class="nav-link">Cupcakes</a>
+        <a href="cream-buns.html" class="nav-link">Cinnamon Buns</a>
         <a href="build-your-dessert-chapter.html" class="nav-link">Build Your Chapter</a>
         <a href="catering.html" class="nav-link">Catering</a>
         <a href="misc-items.html" class="nav-link">Misc Items</a>
@@ -73,7 +74,8 @@
       <a href="index.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">← Home</a>
       <a href="milk-cake-bento.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Milk Cake Bento</a>
       <a href="brownies.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#B8232F;text-decoration:none;border-radius:8px;background:rgba(184,35,47,0.06);">Brownies</a>
-      <a href="cream-buns.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Cream Buns</a>
+      <a href="cupcakes.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Cupcakes</a>
+      <a href="cream-buns.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Cinnamon Buns</a>
       <a href="build-your-dessert-chapter.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Build Your Chapter</a>
       <a href="misc-items.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Misc Items</a>
       <a href="catering.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Catering</a>
@@ -141,10 +143,11 @@
             <div class="carousel-track">
               <img src="images/MENUNEW/brownieop.png" alt="Single Serve Brownies assorted" style="flex:0 0 100%;width:100%;height:280px;object-fit:cover;" />
               <img src="images/MENUNEW/singleservebrownies.jpeg" alt="Single Serve Brownies" style="flex:0 0 100%;width:100%;height:280px;object-fit:cover;" />
+              <img src="menunew3.png" alt="Brownie Menu" style="flex:0 0 100%;width:100%;height:280px;object-fit:cover;" />
             </div>
             <button class="c-btn" style="left:8px;" data-dir="-1">‹</button>
             <button class="c-btn" style="right:8px;" data-dir="1">›</button>
-            <div class="c-dots"><span class="c-dot on"></span><span class="c-dot"></span></div>
+            <div class="c-dots"><span class="c-dot on"></span><span class="c-dot"></span><span class="c-dot"></span></div>
             <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(28,6,8,0.5) 0%,transparent 55%);pointer-events:none;"></div>
           </div>
           <div style="padding:22px;">
@@ -228,10 +231,11 @@
             <div class="carousel-track">
               <img src="images/MENUNEW/nutellabrown.png" alt="Party Brownie Tray" style="flex:0 0 100%;width:100%;height:280px;object-fit:cover;" />
               <img src="images/MENUNEW/nutellabrown2.png" alt="Party Brownie Tray 2" style="flex:0 0 100%;width:100%;height:280px;object-fit:cover;" />
+              <img src="images/MENUNEW/partytraybrowniesclassicnutella.jpeg" alt="Party Brownie Tray Classic Nutella" style="flex:0 0 100%;width:100%;height:280px;object-fit:cover;" />
             </div>
             <button class="c-btn" style="left:8px;" data-dir="-1">‹</button>
             <button class="c-btn" style="right:8px;" data-dir="1">›</button>
-            <div class="c-dots"><span class="c-dot on"></span><span class="c-dot"></span></div>
+            <div class="c-dots"><span class="c-dot on"></span><span class="c-dot"></span><span class="c-dot"></span></div>
             <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(28,6,8,0.5) 0%,transparent 55%);pointer-events:none;"></div>
           </div>
           <div style="padding:22px;">

@@ -9,7 +9,7 @@
     *{box-sizing:border-box;}body{font-family:'DM Sans',system-ui,sans-serif;background:#FDF9F6;color:#1C0608;margin:0;}h1,h2,h3{font-family:'Playfair Display',Georgia,serif;}
     nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:background 0.3s ease;}
     .nav-scrolled{background:rgba(253,249,246,0.97);backdrop-filter:blur(12px);box-shadow:0 1px 0 rgba(184,35,47,0.12);}
-    .nav-link{position:relative;font-size:0.8rem;letter-spacing:0.06em;font-weight:500;color:rgba(255,255,255,0.88);text-decoration:none;padding:4px 0;}
+    .nav-link{position:relative;font-size:0.78rem;letter-spacing:0.04em;font-weight:500;color:rgba(255,255,255,0.88);text-decoration:none;padding:4px 0;white-space:nowrap;}
     .nav-link::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1.5px;background:#B8232F;transition:width 0.25s ease;}
     .nav-link:hover::after{width:100%;}.nav-link:hover{color:#F5A5AF;}
     .nav-scrolled .nav-link{color:#1C0608;}.nav-scrolled .nav-link:hover{color:#B8232F;}
@@ -33,10 +33,11 @@
           <div style="font-size:0.6rem;color:rgba(196,151,58,0.9);letter-spacing:0.12em;text-transform:uppercase;font-weight:500;">est. 2025 · Ottawa, CA</div>
         </div>
       </a>
-      <div id="desktop-nav" style="align-items:center;gap:24px;" class="hidden lg:flex">
+      <div id="desktop-nav" style="align-items:center;gap:16px;" class="hidden lg:flex">
         <a href="milk-cake-bento.html" class="nav-link">Milk Cake Bento</a>
         <a href="brownies.html" class="nav-link">Brownies</a>
-        <a href="cream-buns.html" class="nav-link">Cream Buns</a>
+        <a href="cupcakes.html" class="nav-link">Cupcakes</a>
+        <a href="cream-buns.html" class="nav-link">Cinnamon Buns</a>
         <a href="build-your-dessert-chapter.html" class="nav-link">Build Your Chapter</a>
         <a href="catering.html" class="nav-link">Catering</a>
         <a href="misc-items.html" class="nav-link">Misc Items</a>
@@ -55,7 +56,8 @@
       <a href="index.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">← Home</a>
       <a href="milk-cake-bento.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Milk Cake Bento</a>
       <a href="brownies.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Brownies</a>
-      <a href="cream-buns.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Cream Buns</a>
+      <a href="cupcakes.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Cupcakes</a>
+      <a href="cream-buns.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Cinnamon Buns</a>
       <a href="build-your-dessert-chapter.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Build Your Chapter</a>
       <a href="misc-items.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#B8232F;text-decoration:none;border-radius:8px;background:rgba(184,35,47,0.06);">Misc Items</a>
       <a href="catering.html" style="display:block;padding:10px 12px;font-size:0.88rem;font-weight:500;color:#1C0608;text-decoration:none;border-radius:8px;">Catering</a>
@@ -80,23 +82,27 @@
       <p class="section-tag" style="margin-bottom:8px;">Sauces & Spreads</p>
       <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3vw,2rem);font-weight:700;color:#1C0608;margin-bottom:36px;">Artisan Caramel Sauce</h2>
 
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:32px;">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px;">
 
         <div class="product-card">
           <div style="position:relative;overflow:hidden;">
-            <img src="images/2026_02_03_Edible_0320.jpg" alt="Caramel Sauce" />
+            <img src="carmel1.jpeg" alt="Classic Caramel Sauce" />
             <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(28,6,8,0.5) 0%,transparent 50%);"></div>
           </div>
           <div style="padding:24px;">
             <h3 style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:600;color:#1C0608;margin-bottom:8px;">Classic Caramel Sauce</h3>
-            <p style="font-size:0.85rem;color:#5A2428;line-height:1.7;margin-bottom:16px;">Rich, velvety house-made caramel sauce. Perfect drizzled over our milk cakes, ice cream, or anything that needs a touch of golden sweetness.</p>
+            <p style="font-size:0.85rem;color:#5A2428;line-height:1.7;margin-bottom:12px;">Rich, velvety house-made caramel sauce. Perfect drizzled over our milk cakes, ice cream, or anything that needs a touch of golden sweetness.</p>
+            <select class="sauce-size" style="width:100%;border:1px solid rgba(184,35,47,0.25);border-radius:8px;padding:7px 10px;font-size:0.8rem;color:#1C0608;background:#fff;font-family:'DM Sans',sans-serif;margin-bottom:12px;cursor:pointer;">
+              <option value="caramel-sauce-classic-small">Small — $5</option>
+              <option value="caramel-sauce-classic-large">Large — $10</option>
+            </select>
             <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
-              <span class="price-tag">Contact for Price</span>
+              <span class="price-tag">$5 · $10</span>
               <div style="display:flex;align-items:center;gap:8px;">
                 <button onclick="adjMiscQty(this,-1)" style="background:rgba(184,35,47,0.12);color:#B8232F;border:none;border-radius:50%;width:28px;height:28px;font-size:1.1rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-weight:700;">−</button>
                 <span class="misc-qty" style="min-width:20px;text-align:center;font-size:0.9rem;font-weight:600;">1</span>
                 <button onclick="adjMiscQty(this,1)" style="background:rgba(184,35,47,0.12);color:#B8232F;border:none;border-radius:50%;width:28px;height:28px;font-size:1.1rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-weight:700;">+</button>
-                <button onclick="addMiscToCart(this,'caramel-sauce-classic')" style="background:#B8232F;color:#fff;border:none;border-radius:100px;padding:7px 16px;font-size:0.75rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.2s;" onmouseover="this.style.background='#D42535'" onmouseout="this.style.background='#B8232F'">+ Add to Cart</button>
+                <button onclick="addMiscToCart(this)" style="background:#B8232F;color:#fff;border:none;border-radius:100px;padding:7px 16px;font-size:0.75rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.2s;" onmouseover="this.style.background='#D42535'" onmouseout="this.style.background='#B8232F'">+ Add to Cart</button>
               </div>
             </div>
           </div>
@@ -104,37 +110,73 @@
 
         <div class="product-card">
           <div style="position:relative;overflow:hidden;">
-            <img src="images/2026_02_03_Edible_0326.jpg" alt="Rose Caramel" />
+            <img src="carmeloptions.jpeg" alt="Chai Caramel Sauce" />
             <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(28,6,8,0.5) 0%,transparent 50%);"></div>
           </div>
           <div style="padding:24px;">
-            <h3 style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:600;color:#1C0608;margin-bottom:8px;">Rose & Pistachio Caramel</h3>
-            <p style="font-size:0.85rem;color:#5A2428;line-height:1.7;margin-bottom:16px;">Our signature caramel infused with rose water and topped with crushed pistachios and dried petals — a Middle Eastern twist on a classic.</p>
+            <h3 style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:600;color:#1C0608;margin-bottom:8px;">Chai Caramel Sauce</h3>
+            <p style="font-size:0.85rem;color:#5A2428;line-height:1.7;margin-bottom:12px;">House-made caramel infused with warming chai spices — cinnamon, cardamom, and ginger. A cozy, aromatic twist on classic caramel.</p>
+            <select class="sauce-size" style="width:100%;border:1px solid rgba(184,35,47,0.25);border-radius:8px;padding:7px 10px;font-size:0.8rem;color:#1C0608;background:#fff;font-family:'DM Sans',sans-serif;margin-bottom:12px;cursor:pointer;">
+              <option value="caramel-sauce-chai-small">Small — $5</option>
+              <option value="caramel-sauce-chai-large">Large — $10</option>
+            </select>
             <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
-              <span class="price-tag">Contact for Price</span>
+              <span class="price-tag">$5 · $10</span>
               <div style="display:flex;align-items:center;gap:8px;">
                 <button onclick="adjMiscQty(this,-1)" style="background:rgba(184,35,47,0.12);color:#B8232F;border:none;border-radius:50%;width:28px;height:28px;font-size:1.1rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-weight:700;">−</button>
                 <span class="misc-qty" style="min-width:20px;text-align:center;font-size:0.9rem;font-weight:600;">1</span>
                 <button onclick="adjMiscQty(this,1)" style="background:rgba(184,35,47,0.12);color:#B8232F;border:none;border-radius:50%;width:28px;height:28px;font-size:1.1rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-weight:700;">+</button>
-                <button onclick="addMiscToCart(this,'caramel-sauce-rose-pistachio')" style="background:#B8232F;color:#fff;border:none;border-radius:100px;padding:7px 16px;font-size:0.75rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.2s;" onmouseover="this.style.background='#D42535'" onmouseout="this.style.background='#B8232F'">+ Add to Cart</button>
+                <button onclick="addMiscToCart(this)" style="background:#B8232F;color:#fff;border:none;border-radius:100px;padding:7px 16px;font-size:0.75rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.2s;" onmouseover="this.style.background='#D42535'" onmouseout="this.style.background='#B8232F'">+ Add to Cart</button>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- More coming soon -->
-        <div class="product-card" style="border:2px dashed rgba(184,35,47,0.2);background:#FAF3EE;">
-          <div style="height:360px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;">
-            <div style="width:64px;height:64px;border-radius:50%;background:rgba(184,35,47,0.1);display:flex;align-items:center;justify-content:center;">
-              <span style="font-size:1.8rem;">✨</span>
-            </div>
-            <p style="font-family:'Playfair Display',serif;font-size:1rem;color:#B8232F;font-weight:600;text-align:center;padding:0 20px;">More Extras<br/>Coming Soon</p>
-            <p style="font-size:0.78rem;color:#5A2428;text-align:center;padding:0 24px;">Follow us on Instagram for new seasonal additions to our menu!</p>
+        <div class="product-card">
+          <div style="position:relative;overflow:hidden;">
+            <img src="butterscotchcarmel.jpeg" alt="Butterscotch Caramel Sauce" />
+            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(28,6,8,0.5) 0%,transparent 50%);"></div>
           </div>
           <div style="padding:24px;">
-            <a href="https://instagram.com/thedessertchapter" target="_blank" rel="noopener" class="btn-primary" style="width:100%;justify-content:center;padding:12px 24px;">Follow @thedessertchapter</a>
+            <h3 style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:600;color:#1C0608;margin-bottom:8px;">Butterscotch Caramel Sauce</h3>
+            <p style="font-size:0.85rem;color:#5A2428;line-height:1.7;margin-bottom:12px;">Indulgent butterscotch caramel — golden, buttery, and irresistibly smooth. Perfect drizzled over brownies, cakes, or ice cream.</p>
+            <select class="sauce-size" style="width:100%;border:1px solid rgba(184,35,47,0.25);border-radius:8px;padding:7px 10px;font-size:0.8rem;color:#1C0608;background:#fff;font-family:'DM Sans',sans-serif;margin-bottom:12px;cursor:pointer;">
+              <option value="caramel-sauce-butterscotch-small">Small — $5</option>
+              <option value="caramel-sauce-butterscotch-large">Large — $10</option>
+            </select>
+            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+              <span class="price-tag">$5 · $10</span>
+              <div style="display:flex;align-items:center;gap:8px;">
+                <button onclick="adjMiscQty(this,-1)" style="background:rgba(184,35,47,0.12);color:#B8232F;border:none;border-radius:50%;width:28px;height:28px;font-size:1.1rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-weight:700;">−</button>
+                <span class="misc-qty" style="min-width:20px;text-align:center;font-size:0.9rem;font-weight:600;">1</span>
+                <button onclick="adjMiscQty(this,1)" style="background:rgba(184,35,47,0.12);color:#B8232F;border:none;border-radius:50%;width:28px;height:28px;font-size:1.1rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-weight:700;">+</button>
+                <button onclick="addMiscToCart(this)" style="background:#B8232F;color:#fff;border:none;border-radius:100px;padding:7px 16px;font-size:0.75rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.2s;" onmouseover="this.style.background='#D42535'" onmouseout="this.style.background='#B8232F'">+ Add to Cart</button>
+              </div>
+            </div>
           </div>
         </div>
+      </div>
+
+      <!-- Red Velvet Tubs -->
+      <p class="section-tag" style="margin-bottom:8px;margin-top:72px;">Mini Cake Tubs</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3vw,2rem);font-weight:700;color:#1C0608;margin-bottom:36px;">Red Velvet Tubs</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:32px;margin-bottom:72px;">
+
+        <div class="product-card">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;overflow:hidden;border-radius:20px 20px 0 0;">
+            <img src="images/2026_02_03_Edible_0267.jpg" alt="Red Velvet Mini Cake Tub" style="width:100%;height:220px;object-fit:cover;display:block;" />
+            <img src="images/2026_02_03_Edible_0261.jpg" alt="Strawberry Mini Cake Tub" style="width:100%;height:220px;object-fit:cover;display:block;" />
+          </div>
+          <div style="padding:24px;">
+            <h3 style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:600;color:#1C0608;margin-bottom:8px;">Red Velvet Tubs</h3>
+            <p style="font-size:0.85rem;color:#5A2428;line-height:1.7;margin-bottom:16px;">Individual mini cake tubs — available in Red Velvet with cream cheese frosting, or Strawberry with fluffy cream. Beautifully presented in signature red containers. Min. 6.</p>
+            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+              <span class="price-tag">$8.50 · min. 6</span>
+              <button onclick="TDC.addToCart('cream-bento-cup',6)" style="background:#B8232F;color:#fff;border:none;border-radius:100px;padding:7px 16px;font-size:0.75rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.2s;" onmouseover="this.style.background='#D42535'" onmouseout="this.style.background='#B8232F'">+ Add 6 to Cart</button>
+            </div>
+          </div>
+        </div>
+
       </div>
 
       <div style="text-align:center;margin-top:72px;padding:56px 40px;background:linear-gradient(135deg,#1C0608,#3A0C10);border-radius:24px;">
@@ -174,8 +216,11 @@
     }
     function addMiscToCart(btn, sku) {
       var row = btn.parentElement;
+      var card = btn.closest('.product-card');
+      var sizeSelect = card ? card.querySelector('.sauce-size') : null;
+      var finalSku = sizeSelect ? sizeSelect.value : sku;
       var qty = parseInt(row.querySelector('.misc-qty').textContent);
-      TDC.addToCart(sku, qty);
+      TDC.addToCart(finalSku, qty);
     }
 </script>
   <script src="cart.js"></script>
