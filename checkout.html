@@ -381,18 +381,12 @@
 
       await loadScript(sdkUrl);
 
-      const payments = window.Square.payments(config.appId, config.locationId);
-      squareCard = await payments.card({
-        style: {
-          '.input-container': { borderRadius: '10px', borderColor: 'rgba(184,35,47,0.18)', backgroundColor: '#FDF9F6' },
-          '.input-container.is-focus': { borderColor: '#B8232F' },
-          '.input-container.is-error': { borderColor: '#B8232F' },
-          '.message-text': { color: '#B8232F' },
-          '.message-icon': { color: '#B8232F' },
-          'input': { color: '#1C0608', fontFamily: 'DM Sans, sans-serif', fontSize: '15px' },
-          '::placeholder': { color: '#B8A09A' },
-        }
-      });
+      if (!window.Square) {
+        throw new Error('Square SDK failed to load');
+      }
+
+      const payments = await window.Square.payments(config.appId, config.locationId);
+      squareCard = await payments.card();
       await squareCard.attach('#square-card');
 
       payBtnText.textContent = `Pay $${(TDC.cartTotal() * 1.13).toFixed(2)} CAD`;
@@ -400,7 +394,7 @@
 
     } catch (err) {
       console.error('Square init error:', err);
-      statusEl.textContent = 'Unable to load payment form. Please refresh the page.';
+      statusEl.textContent = 'Unable to load payment form: ' + err.message + '. Please refresh the page.';
       statusEl.style.display = 'block';
     }
   }
