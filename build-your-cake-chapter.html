@@ -97,19 +97,24 @@
         <p style="font-size:0.85rem;color:#4A1C20;margin:0;line-height:1.6;">We will be honoured to help bring your celebrations to the best chapter of your life through our dessert chapters. <strong>* Indicates required question.</strong></p>
       </div>
 
-      <form id="cake-form" onsubmit="handleSubmit(event)">
+      <form id="cake-form" action="https://formsubmit.co/thedessertchapter2025@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="New Custom Cake Order — The Dessert Chapter" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_next" value="https://afsana-vert.vercel.app/build-your-cake-chapter.html?success=1" />
+        <input type="text" name="_honey" style="display:none" />
 
         <div class="form-section">
           <h2 style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:600;color:#1C0608;margin-bottom:20px;">Your Dream Cake</h2>
 
           <div style="margin-bottom:20px;">
             <label class="form-label">Describe your ideal cake <span>*</span><br/><span style="color:#5A2428;font-weight:400;font-size:0.78rem;">What colors, design or vision do you have? Tell us what your perfect cake would or should look like.</span></label>
-            <textarea rows="5" required placeholder="e.g. A two-tier cake in dusty rose and white, with hand-painted florals and gold leaf accents…" style="resize:vertical;"></textarea>
+            <textarea name="Cake Description" rows="5" required placeholder="e.g. A two-tier cake in dusty rose and white, with hand-painted florals and gold leaf accents…" style="resize:vertical;"></textarea>
           </div>
 
           <div style="margin-bottom:20px;">
             <label class="form-label">What's the chapter of life you are celebrating? <span>*</span></label>
-            <select required>
+            <select name="Occasion" required>
               <option value="" disabled selected>Select an occasion…</option>
               <option>Birthday</option>
               <option>Wedding / Anniversary</option>
@@ -125,7 +130,7 @@
 
           <div>
             <label class="form-label">Additional notes or inspo description</label>
-            <textarea rows="3" placeholder="Any flavour preferences, allergies, or other details we should know…" style="resize:vertical;"></textarea>
+            <textarea name="Additional Notes" rows="3" placeholder="Any flavour preferences, allergies, or other details we should know…" style="resize:vertical;"></textarea>
           </div>
         </div>
 
@@ -135,11 +140,11 @@
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;">
             <div>
               <label class="form-label">Pickup Date <span>*</span></label>
-              <input type="date" required min="" id="pickup-date" />
+              <input type="date" name="Pickup Date" required min="" id="pickup-date" />
             </div>
             <div>
               <label class="form-label">Preferred Pickup Time</label>
-              <select>
+              <select name="Pickup Time">
                 <option value="">Any time</option>
                 <option>Morning (9am – 12pm)</option>
                 <option>Afternoon (12pm – 4pm)</option>
@@ -154,15 +159,15 @@
           <div style="display:grid;gap:16px;">
             <div>
               <label class="form-label">Name <span>*</span></label>
-              <input type="text" required placeholder="Your full name" />
+              <input type="text" name="Name" required placeholder="Your full name" />
             </div>
             <div>
               <label class="form-label">Phone Number <span>*</span></label>
-              <input type="tel" required placeholder="e.g. +1 (613) 555-0100" />
+              <input type="tel" name="Phone" required placeholder="e.g. +1 (613) 555-0100" />
             </div>
             <div>
               <label class="form-label">Email <span>*</span></label>
-              <input type="email" required placeholder="your@email.com" />
+              <input type="email" name="Email" required placeholder="your@email.com" />
             </div>
           </div>
         </div>
@@ -218,11 +223,13 @@
     const d = new Date(); d.setDate(d.getDate() + 2);
     document.getElementById('pickup-date').min = d.toISOString().split('T')[0];
 
-    function handleSubmit(e) {
-      e.preventDefault();
+    // Show success message if redirected back after form submission
+    if (new URLSearchParams(window.location.search).get('success') === '1') {
       document.getElementById('cake-form').style.display = 'none';
       document.getElementById('success-msg').style.display = 'block';
       window.scrollTo({ top: document.getElementById('success-msg').offsetTop - 120, behavior: 'smooth' });
+      // Clean URL
+      history.replaceState(null, '', window.location.pathname);
     }
   </script>
   <script src="cart.js"></script>
